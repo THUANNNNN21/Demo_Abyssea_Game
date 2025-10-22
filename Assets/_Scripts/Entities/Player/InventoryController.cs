@@ -3,6 +3,18 @@ using UnityEngine;
 
 public class InventoryController : MyMonoBehaviour
 {
+    [SerializeField] private ItemLooter itemLooter;
+    public ItemLooter ItemLooter { get => itemLooter; }
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadItemLooter();
+    }
+    private void LoadItemLooter()
+    {
+        if (this.itemLooter != null) return;
+        this.itemLooter = GetComponentInChildren<ItemLooter>();
+    }
     [SerializeField] private int maxSlot = 20;
     [SerializeField] private List<ItemInInventory> listItems;
     public List<ItemInInventory> ListItems { get => listItems; }

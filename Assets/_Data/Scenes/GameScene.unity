@@ -1497,7 +1497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerSO: {fileID: 11400000, guid: 9776d833ed0394840900335af9ff8c26, type: 2}
-  playerDamReceiver: {fileID: 0}
+  playerDamReceiver: {fileID: 376096219}
   playerMovement: {fileID: 1693061212}
   inventoryController: {fileID: 1185701809}
   damSender: {fileID: 376096218}
@@ -2360,7 +2360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa9c56833c9241259f3bc7ac9382fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerImpact
-  delayTime: 3
+  delayTime: 1
   col2D: {fileID: 875671750}
   rb2D: {fileID: 875671749}
   playerController: {fileID: 519011901}
@@ -2738,7 +2738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1180778824
 Transform:
   m_ObjectHideFlags: 0
@@ -2816,39 +2816,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55bec61f97efb4e448d9bb1a96c20d97, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  maxSlot: 15
-  listItems:
-  - id: 
-    itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
-    upgradeLevel: 0
-    maxStack: 0
-    itemsCount: 1
-  - id: 
-    itemSO: {fileID: 11400000, guid: e452abf546407468b920a37ad48ce935, type: 2}
-    upgradeLevel: 0
-    maxStack: 0
-    itemsCount: 1
-  - id: 
-    itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
-    upgradeLevel: 0
-    maxStack: 0
-    itemsCount: 1
-  - id: 
-    itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
-    upgradeLevel: 0
-    maxStack: 0
-    itemsCount: 1
-  - id: 
-    itemSO: {fileID: 11400000, guid: e452abf546407468b920a37ad48ce935, type: 2}
-    upgradeLevel: 0
-    maxStack: 0
-    itemsCount: 1
-  - id: 
-    itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
-    upgradeLevel: 0
-    maxStack: 0
-    itemsCount: 0
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryController
+  itemLooter: {fileID: 1235507579}
+  maxSlot: 20
+  listItems: []
 --- !u!1 &1217134155
 GameObject:
   m_ObjectHideFlags: 0
@@ -4060,7 +4031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipController: {fileID: 519011901}
-  speed: 10
+  speed: 20
 --- !u!1 &1739809866
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ public abstract class Cooldown : MyMonoBehaviour
     [Header("Cooldown Settings")]
     private float timer;
     [SerializeField] protected float delayTime;
+    public float DelayTime { get => delayTime; }
     protected bool isReady = true;
     protected virtual void Timing()
     {
@@ -18,7 +19,7 @@ public abstract class Cooldown : MyMonoBehaviour
         this.isReady = false;
         this.timer = 0f;
     }
-    protected void SetDelayTime(float delayTime)
+    public void SetDelayTime(float delayTime)
     {
         this.delayTime = delayTime;
     }

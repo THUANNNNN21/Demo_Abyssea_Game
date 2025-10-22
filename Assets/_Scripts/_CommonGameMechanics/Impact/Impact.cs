@@ -30,5 +30,11 @@ public abstract class Impact : Cooldown
         this.rb2D.gravityScale = 0; // Không cần trọng lực
     }
     protected abstract void OnTriggerEnter2D(Collider2D other);
-
+    public void SetImpactRange(float range)
+    {
+        if (this.col2D is CircleCollider2D circleCol)
+        {
+            circleCol.radius = range;
+        }
+    }
 }

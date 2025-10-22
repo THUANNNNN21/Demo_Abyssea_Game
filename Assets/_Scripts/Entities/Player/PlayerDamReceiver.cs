@@ -3,10 +3,6 @@ using UnityEngine;
 public class PlayerDamReceiver : DamageReceiver
 {
     [SerializeField] private PlayerController playerController;
-    protected override void LoadValues()
-    {
-        this.SetHPMax(500);
-    }
     private void LoadController()
     {
         if (this.playerController == null)

@@ -5,6 +5,10 @@ public class PlayerSO : ScriptableObject
 {
     public string playerName = "Player";
     public int maxHP;
+    public int damage;
+    public float attackRange;
+    public float attackDelay;
     public int speed;
-    public int InventorySize;
+    public int inventorySize;
+    public float lootRange;
 }

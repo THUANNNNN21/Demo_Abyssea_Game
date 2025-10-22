@@ -49,7 +49,11 @@ public class PlayerController : MyMonoBehaviour
     {
         this.playerDamReceiver.SetHPMax(playerSO.maxHP);
         this.playerMovement.SetSpeed(playerSO.speed);
-        this.inventoryController.SetMaxSlot(playerSO.InventorySize);
+        this.inventoryController.SetMaxSlot(playerSO.inventorySize);
+        this.damSender.SetDamage(playerSO.damage);
+        this.playerImpact.SetImpactRange(playerSO.attackRange);
+        this.inventoryController.ItemLooter.SetLootRange(playerSO.lootRange);
+        this.playerImpact.SetDelayTime(playerSO.attackDelay);
     }
     private void LoadPlayerSO()
     {

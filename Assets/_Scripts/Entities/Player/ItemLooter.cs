@@ -146,4 +146,11 @@ public class ItemLooter : MyMonoBehaviour
     {
         nearbyItems.RemoveAll(item => item == null);
     }
+    public void SetLootRange(float range)
+    {
+        if (this.lootingCollider != null)
+        {
+            this.lootingCollider.radius = range;
+        }
+    }
 }

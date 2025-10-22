@@ -86,10 +86,4 @@ public class PlayerMovement : MyMonoBehaviour
     {
         return moveInput;
     }
-
-    [ContextMenu("Debug Move Input")]
-    private void DebugMoveInput()
-    {
-        Debug.Log($"Move Input: {moveInput}, Horizontal: {horizontal}, Vertical: {vertical}");
-    }
 }
