@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd3c86407ea14195b9a69996c8a4237, type: 3}
+  m_Name: NormalEnemy
+  m_EditorClassIdentifier: 
+  enemyName: 
+  maxHP: 100
+  damage: 2
+  speed: 10
+  maxDistance: 500
+  dropList:
+  - itemInInventory:
+      id: 
+      itemSO: {fileID: 11400000, guid: e452abf546407468b920a37ad48ce935, type: 2}
+      upgradeLevel: 0
+      maxStack: 1
+      itemsCount: 1
+    dropRate: 50
+  - itemInInventory:
+      id: 
+      itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
+      upgradeLevel: 0
+      maxStack: 1
+      itemsCount: 1
+    dropRate: 30
+  isDestroyWhenImpact: 0
