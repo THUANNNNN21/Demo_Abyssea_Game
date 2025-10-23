@@ -26,7 +26,19 @@ public class InputManager : MonoBehaviour
     public static event Action<int> OnDropItem;
     public static event Action<int> OnUpgradeItem;
     public static event Action OnMouseClick;
+
+    // ✅ Skill events
+    public static event Action<int> OnItemSelected;
+    public static event Action OnItemCast;
+    public static event Action OnItemDeselected; // New event for deselection
     #endregion
+
+    // ✅ Skill state - persistent selection
+    private bool isItemSelected = false;
+    private int selectedItemIndex = -1;
+
+    public bool IsItemSelected => isItemSelected;
+    public int SelectedItemIndex => selectedItemIndex;
 
     private bool isUpgradeModifierPressed = false;
     private bool isDropModifierPressed = false;
@@ -71,12 +83,15 @@ public class InputManager : MonoBehaviour
         inputActions.Player.Move.performed += OnMovePerformed;
         inputActions.Player.Move.canceled += OnMoveCanceled;
         inputActions.Player.Pickup.performed += OnPickupPerformed;
+
+        // Mouse click
         inputActions.Player.MouseClick.performed += OnMouseClickPerformed;
 
         // Upgrade modifier
         inputActions.Player.UpgradeModifier.started += OnUpgradeModifierStarted;
         inputActions.Player.UpgradeModifier.canceled += OnUpgradeModifierCanceled;
 
+        // Drop modifier
         inputActions.Player.DropModifier.started += OnDropModifierStarted;
         inputActions.Player.DropModifier.canceled += OnDropModifierCanceled;
         SubscribeToPositionActions();
@@ -138,6 +153,7 @@ public class InputManager : MonoBehaviour
         isUpgradeModifierPressed = false;
         Debug.Log("Upgrade mode deactivated");
     }
+
     private void OnDropModifierStarted(InputAction.CallbackContext context)
     {
         isDropModifierPressed = true;
@@ -150,7 +166,7 @@ public class InputManager : MonoBehaviour
         Debug.Log("Drop mode deactivated");
     }
 
-    // ✅ Single callback cho tất cả positions
+    // ✅ Updated skill selection - persistent until manually changed
     private void OnSelectPosition(int position)
     {
         if (isUpgradeModifierPressed)
@@ -162,6 +178,35 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log($"Drop item at position {position}");
             OnDropItem?.Invoke(position);
+        }
+        // ✅ Item selection for positions 1-4
+        else if (position >= 1 && position <= 4)
+        {
+            int itemIndex = position - 1; // Convert to 0-based index
+
+            if (isItemSelected && selectedItemIndex == itemIndex)
+            {
+                // ✅ Deselect only if same item pressed again
+                isItemSelected = false;
+                selectedItemIndex = -1;
+                OnItemDeselected?.Invoke();
+            }
+            else
+            {
+                // ✅ Select new item (switch from previous or select first time)
+                if (isItemSelected)
+                {
+                    Debug.Log($"Switching from item {selectedItemIndex + 1} to item {position}");
+                }
+                else
+                {
+                    Debug.Log($"Item {position} selected and remains active");
+                }
+
+                isItemSelected = true;
+                selectedItemIndex = itemIndex;
+                OnItemSelected?.Invoke(selectedItemIndex);
+            }
         }
     }
 
@@ -181,18 +226,25 @@ public class InputManager : MonoBehaviour
         Debug.Log("E key pressed - Pickup requested");
         OnPickupItem?.Invoke();
     }
+
+    // ✅ Updated mouse click - NO auto-deselect
     private void OnMouseClickPerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("Mouse clicked");
-        OnMouseClick?.Invoke();
+        if (isItemSelected)
+        {
+            OnItemCast?.Invoke();
+        }
+        else
+        {
+            Debug.Log("Mouse clicked - No item selected");
+            OnMouseClick?.Invoke();
+        }
     }
-    #endregion
 
-    // #region Legacy Methods
     public Vector3 GetMouseWorldPosition()
     {
         this.MouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return this.MouseWorldPosition;
     }
-    // #endregion
+    #endregion
 }

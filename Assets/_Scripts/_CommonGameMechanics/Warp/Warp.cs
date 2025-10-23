@@ -7,6 +7,7 @@ public class Warp : Cooldown
     [SerializeField] private bool isWarping = false;
     private Vector3 warpDirection;
     [SerializeField] private float warpDistance = 5f;
+    // [SerializeField] private int assignedSkillIndex = 1;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -19,14 +20,14 @@ public class Warp : Cooldown
             this.playerController = this.GetComponentInParent<PlayerController>();
         }
     }
-    private void OnEnable()
-    {
-        InputManager.OnMouseClick += this.OnMouseClickReceived;
-    }
-    private void OnDisable()
-    {
-        InputManager.OnMouseClick -= this.OnMouseClickReceived;
-    }
+    // private void OnEnable()
+    // {
+    //     InputManager.OnItemCast += this.OnMouseClickReceived;
+    // }
+    // private void OnDisable()
+    // {
+    //     InputManager.OnItemCast -= this.OnMouseClickReceived;
+    // }
     void Update()
     {
         this.CheckWarpPosition();
@@ -35,11 +36,19 @@ public class Warp : Cooldown
     {
         this.Timing();
     }
-    private void OnMouseClickReceived()
+    private void OnMouseClickReceived(int skillIndex)
     {
-        this.StartWarp();
+        // if (skillIndex == assignedSkillIndex)
+        // {
+        //     Debug.Log($"PlayerWarping: Casting skill {skillIndex + 1}");
+        //     this.StartWarp();
+        // }
+        // else
+        // {
+        //     Debug.Log($"PlayerWarping: Ignoring skill {skillIndex + 1} (not assigned to this warper)");
+        // }
     }
-    private void StartWarp()
+    public void StartWarp()
     {
         if (!this.isReady) return;
         if (isWarping) return;

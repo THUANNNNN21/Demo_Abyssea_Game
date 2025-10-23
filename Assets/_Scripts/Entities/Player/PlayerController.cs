@@ -30,6 +30,8 @@ public class PlayerController : MyMonoBehaviour
     public PlayerImpact PlayerImpact { get => playerImpact; }
     [SerializeField] private Warp warp;
     public Warp Warp { get => warp; }
+    [SerializeField] private PlayerShooting playerShooting;
+    public PlayerShooting PlayerShooting { get => playerShooting; }
     [SerializeField] private Animator animator;
     public Animator Animator { get => animator; }
 
@@ -44,6 +46,7 @@ public class PlayerController : MyMonoBehaviour
         this.LoadPlayerImpact();
         this.LoadAnimator();
         this.LoadWarp();
+        this.LoadPlayerShooting();
     }
     protected override void LoadValues()
     {
@@ -109,6 +112,13 @@ public class PlayerController : MyMonoBehaviour
         if (this.warp == null)
         {
             this.warp = GetComponentInChildren<Warp>();
+        }
+    }
+    private void LoadPlayerShooting()
+    {
+        if (this.playerShooting == null)
+        {
+            this.playerShooting = GetComponentInChildren<PlayerShooting>();
         }
     }
 }
