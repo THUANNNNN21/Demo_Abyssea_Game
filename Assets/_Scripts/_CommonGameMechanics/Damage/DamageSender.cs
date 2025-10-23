@@ -10,6 +10,13 @@ public class DamageSender : MyMonoBehaviour
         get { return this.damage; }
         set { this.damage = value; }
     }
+    public void SendDamage(Transform obj, int damage)
+    {
+        DamageReceiver damageReceiver = obj.GetComponentInChildren<DamageReceiver>();
+        if (damageReceiver == null) return;
+        damageReceiver.Remove(damage);
+        damageReceiver.CheckDead();
+    }
     public void SendDamage(Transform obj)
     {
         DamageReceiver damageReceiver = obj.GetComponentInChildren<DamageReceiver>();

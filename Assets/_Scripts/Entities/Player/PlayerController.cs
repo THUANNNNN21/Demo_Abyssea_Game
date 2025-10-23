@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class PlayerController : MyMonoBehaviour
 {
-    [Header("References Settings")]
+    #region Singleton Pattern
     private static PlayerController instance;
     public static PlayerController Instance => instance;
+
     protected override void Awake()
     {
         base.Awake();
@@ -16,38 +17,56 @@ public class PlayerController : MyMonoBehaviour
         }
         instance = this;
     }
+    #endregion
+
+    #region Component References
+    [Header("References Settings")]
     [SerializeField] private PlayerSO playerSO;
     public PlayerSO PlayerSO { get => playerSO; }
+
     [SerializeField] private PlayerDamReceiver playerDamReceiver;
     public PlayerDamReceiver PlayerDamReceiver { get => playerDamReceiver; }
+
     [SerializeField] private PlayerMovement playerMovement;
     public PlayerMovement PlayerMovement { get => playerMovement; }
-    [SerializeField] private InventoryController inventoryController;
-    public InventoryController InventoryController { get => inventoryController; }
-    [SerializeField] private DamageSender damSender;
-    public DamageSender DamSender { get => damSender; }
-    [SerializeField] private PlayerImpact playerImpact;
-    public PlayerImpact PlayerImpact { get => playerImpact; }
-    [SerializeField] private Warp warp;
-    public Warp Warp { get => warp; }
+
     [SerializeField] private PlayerShooting playerShooting;
     public PlayerShooting PlayerShooting { get => playerShooting; }
+
+    [SerializeField] private PlayerImpact playerImpact;
+    public PlayerImpact PlayerImpact { get => playerImpact; }
+
+    [SerializeField] private InventoryController inventoryController;
+    public InventoryController InventoryController { get => inventoryController; }
+
+    [SerializeField] private DamageSender damSender;
+    public DamageSender DamSender { get => damSender; }
+
+    [SerializeField] private Warp warp;
+    public Warp Warp { get => warp; }
+
     [SerializeField] private Animator animator;
     public Animator Animator { get => animator; }
+    [SerializeField] private Burn burn;
+    public Burn Burn { get => burn; }
+    #endregion
 
+    #region Initialization
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadPlayerSO();
         this.LoadPlayerDamReceiver();
-        this.LoadInventoryController();
         this.LoadPlayerMovement();
-        this.LoadDamSender();
-        this.LoadPlayerImpact();
-        this.LoadAnimator();
-        this.LoadWarp();
         this.LoadPlayerShooting();
+        this.LoadPlayerImpact();
+        this.LoadInventoryController();
+        this.LoadDamSender();
+        this.LoadWarp();
+        this.LoadBurn();
+        this.LoadAnimator();
     }
+
     protected override void LoadValues()
     {
         this.playerDamReceiver.SetHPMax(playerSO.maxHP);
@@ -55,9 +74,12 @@ public class PlayerController : MyMonoBehaviour
         this.inventoryController.SetMaxSlot(playerSO.inventorySize);
         this.damSender.SetDamage(playerSO.damage);
         this.playerImpact.SetImpactRange(playerSO.attackRange);
-        this.inventoryController.ItemLooter.SetLootRange(playerSO.lootRange);
         this.playerImpact.SetDelayTime(playerSO.attackDelay);
+        this.inventoryController.ItemLooter.SetLootRange(playerSO.lootRange);
     }
+    #endregion
+
+    #region Component Loading Methods
     private void LoadPlayerSO()
     {
         if (this.playerSO == null)
@@ -65,6 +87,7 @@ public class PlayerController : MyMonoBehaviour
             this.playerSO = Resources.Load<PlayerSO>("_SO/PlayerSO/" + this.name);
         }
     }
+
     private void LoadPlayerDamReceiver()
     {
         if (this.playerDamReceiver == null)
@@ -72,13 +95,7 @@ public class PlayerController : MyMonoBehaviour
             this.playerDamReceiver = GetComponentInChildren<PlayerDamReceiver>();
         }
     }
-    private void LoadInventoryController()
-    {
-        if (this.inventoryController == null)
-        {
-            this.inventoryController = GetComponentInChildren<InventoryController>();
-        }
-    }
+
     private void LoadPlayerMovement()
     {
         if (this.playerMovement == null)
@@ -86,34 +103,7 @@ public class PlayerController : MyMonoBehaviour
             this.playerMovement = GetComponentInChildren<PlayerMovement>();
         }
     }
-    private void LoadDamSender()
-    {
-        if (this.damSender == null)
-        {
-            this.damSender = GetComponentInChildren<DamageSender>();
-        }
-    }
-    private void LoadPlayerImpact()
-    {
-        if (this.playerImpact == null)
-        {
-            this.playerImpact = GetComponentInChildren<PlayerImpact>();
-        }
-    }
-    private void LoadAnimator()
-    {
-        if (this.animator == null)
-        {
-            this.animator = GetComponentInChildren<Animator>();
-        }
-    }
-    private void LoadWarp()
-    {
-        if (this.warp == null)
-        {
-            this.warp = GetComponentInChildren<Warp>();
-        }
-    }
+
     private void LoadPlayerShooting()
     {
         if (this.playerShooting == null)
@@ -121,4 +111,52 @@ public class PlayerController : MyMonoBehaviour
             this.playerShooting = GetComponentInChildren<PlayerShooting>();
         }
     }
+
+    private void LoadPlayerImpact()
+    {
+        if (this.playerImpact == null)
+        {
+            this.playerImpact = GetComponentInChildren<PlayerImpact>();
+        }
+    }
+
+    private void LoadInventoryController()
+    {
+        if (this.inventoryController == null)
+        {
+            this.inventoryController = GetComponentInChildren<InventoryController>();
+        }
+    }
+
+    private void LoadDamSender()
+    {
+        if (this.damSender == null)
+        {
+            this.damSender = GetComponentInChildren<DamageSender>();
+        }
+    }
+
+    private void LoadWarp()
+    {
+        if (this.warp == null)
+        {
+            this.warp = GetComponentInChildren<Warp>();
+        }
+    }
+
+    private void LoadAnimator()
+    {
+        if (this.animator == null)
+        {
+            this.animator = GetComponentInChildren<Animator>();
+        }
+    }
+    private void LoadBurn()
+    {
+        if (this.burn == null)
+        {
+            this.burn = GetComponentInChildren<Burn>();
+        }
+    }
+    #endregion
 }

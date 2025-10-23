@@ -6,6 +6,7 @@ public abstract class Impact : Cooldown
     [Header("Impact")]
     [SerializeField] private Collider2D col2D;
     [SerializeField] private Rigidbody2D rb2D;
+    public Rigidbody2D Rb2D { get => rb2D; }
 
     protected override void LoadComponents()
     {
@@ -19,6 +20,7 @@ public abstract class Impact : Cooldown
         {
             this.col2D = GetComponent<Collider2D>();
         }
+        this.col2D.isTrigger = true;
     }
     private void LoadRigidbody()
     {
