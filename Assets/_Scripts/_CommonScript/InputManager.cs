@@ -145,25 +145,21 @@ public class InputManager : MonoBehaviour
     private void OnUpgradeModifierStarted(InputAction.CallbackContext context)
     {
         isUpgradeModifierPressed = true;
-        Debug.Log("Upgrade mode activated - Hold and press 1-9 to select position");
     }
 
     private void OnUpgradeModifierCanceled(InputAction.CallbackContext context)
     {
         isUpgradeModifierPressed = false;
-        Debug.Log("Upgrade mode deactivated");
     }
 
     private void OnDropModifierStarted(InputAction.CallbackContext context)
     {
         isDropModifierPressed = true;
-        Debug.Log("Drop mode activated - Hold and press 1-9 to select position");
     }
 
     private void OnDropModifierCanceled(InputAction.CallbackContext context)
     {
         isDropModifierPressed = false;
-        Debug.Log("Drop mode deactivated");
     }
 
     // ✅ Updated skill selection - persistent until manually changed
@@ -171,12 +167,10 @@ public class InputManager : MonoBehaviour
     {
         if (isUpgradeModifierPressed)
         {
-            Debug.Log($"Upgrade item at position {position}");
             OnUpgradeItem?.Invoke(position);
         }
         else if (isDropModifierPressed)
         {
-            Debug.Log($"Drop item at position {position}");
             OnDropItem?.Invoke(position);
         }
         // ✅ Item selection for positions 1-4
@@ -193,16 +187,6 @@ public class InputManager : MonoBehaviour
             }
             else
             {
-                // ✅ Select new item (switch from previous or select first time)
-                if (isItemSelected)
-                {
-                    Debug.Log($"Switching from item {selectedItemIndex + 1} to item {position}");
-                }
-                else
-                {
-                    Debug.Log($"Item {position} selected and remains active");
-                }
-
                 isItemSelected = true;
                 selectedItemIndex = itemIndex;
                 OnItemSelected?.Invoke(selectedItemIndex);
@@ -223,7 +207,6 @@ public class InputManager : MonoBehaviour
 
     private void OnPickupPerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("E key pressed - Pickup requested");
         OnPickupItem?.Invoke();
     }
 
@@ -236,7 +219,6 @@ public class InputManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Mouse clicked - No item selected");
             OnMouseClick?.Invoke();
         }
     }

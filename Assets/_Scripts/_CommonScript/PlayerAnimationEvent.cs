@@ -33,12 +33,4 @@ public class PlayerAnimationEvent : MyMonoBehaviour
     {
         this.playerController.Warp.Warping();
     }
-    public void OnBurnAnimationPlay()
-    {
-        this.playerController.Burn.StartBurning();
-    }
-    public void OnBurnAnimationComplete()
-    {
-        this.playerController.Burn.CompleteBurning();
-    }
 }

@@ -19,7 +19,7 @@ public class PlayerDamReceiver : DamageReceiver
     {
         base.OnDead();
         Time.timeScale = 0f; // Pause the game
-        Debug.Log("Ship destroyed! Game paused.");
+        Debug.LogWarning("Player has died. Game Over.");
     }
 }
 

@@ -52,7 +52,6 @@ public class PlayerImpact : Impact
             if (!enemiesInRange.Contains(enemyTransform))
             {
                 enemiesInRange.Add(enemyTransform);
-                Debug.Log($"Enemy entered range: {enemyTransform.name}");
             }
         }
     }
@@ -66,15 +65,12 @@ public class PlayerImpact : Impact
             if (enemiesInRange.Contains(enemyTransform))
             {
                 enemiesInRange.Remove(enemyTransform);
-                Debug.Log($"Enemy exited range: {enemyTransform.name}");
             }
         }
     }
     public void AttackAllEnemies()
     {
         if (enemiesInRange.Count == 0) return;
-
-        Debug.Log($"Attacking {enemiesInRange.Count} enemies");
 
         foreach (Transform enemy in enemiesInRange)
         {

@@ -20,7 +20,6 @@ public class DragItem : MyMonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
         this.originalParent = this.transform.parent;
         this.transform.SetParent(HotKeyController.Instance.transform);
         image.raycastTarget = false;
@@ -28,14 +27,12 @@ public class DragItem : MyMonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
         Vector3 mousePosition = InputManager.Instance.GetMouseWorldPosition();
         this.transform.position = mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
         this.transform.SetParent(this.originalParent);
         image.raycastTarget = true;
     }

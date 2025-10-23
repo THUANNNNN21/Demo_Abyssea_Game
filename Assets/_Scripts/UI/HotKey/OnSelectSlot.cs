@@ -17,7 +17,6 @@ public class OnSelectSlot : MyMonoBehaviour
     {
         if (hotKeyController != null) return;
         hotKeyController = this.GetComponentInParent<HotKeyController>();
-        Debug.LogWarning($"Load HotKeyController in {this.name} ", this);
     }
 
     private void OnEnable()
@@ -46,29 +45,25 @@ public class OnSelectSlot : MyMonoBehaviour
     {
         if (currentSelectedItem != null)
         {
-            Debug.Log($"🔥 Calling OnSelect() of selected item: {currentSelectedItem.name}");
             currentSelectedItem.OnSelect();
         }
         else
         {
-            Debug.Log("No item selected to cast");
+            Debug.Log("No item is currently selected to cast.", this);
         }
     }
 
     private void Select(int slotNumber)
     {
-        Debug.Log($"Slot {slotNumber + 1} selected", this);
         ItemSlot slot = HotKeyController.ItemSlots[slotNumber];
         AbleToSelect ableToSelect = slot.GetComponentInChildren<AbleToSelect>();
 
         if (ableToSelect == null)
         {
-            Debug.Log($"No AbleToSelect found in slot {slotNumber + 1}", this);
             currentSelectedItem = null;
         }
         else
         {
-            Debug.Log($"✅ Item ready: {ableToSelect.name}");
             currentSelectedItem = ableToSelect;
         }
     }

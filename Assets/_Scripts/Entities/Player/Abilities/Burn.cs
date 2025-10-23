@@ -3,25 +3,26 @@ using UnityEngine;
 
 public class Burn : Cooldown
 {
-    [SerializeField] private PlayerController playerController;
-    public PlayerController PlayerController { get => playerController; }
+    [SerializeField] private BurnController burnController;
+    public BurnController BurnController { get => burnController; }
     [SerializeField] private CircleCollider2D circleCollider2D;
     public CircleCollider2D CircleCollider2D { get => circleCollider2D; }
     [SerializeField] private Rigidbody2D rb2D;
     [SerializeField] private List<Transform> enemiesInRange = new();
-    private bool isBurning = false;
-    private void LoadPlayerController()
+    [SerializeField] private int burnDamage = 5;
+    [SerializeField] private float burningTime = 6f;
+    private void LoadBurnController()
     {
-        if (this.playerController == null)
+        if (this.burnController == null)
         {
-            this.playerController = GetComponentInParent<PlayerController>();
+            this.burnController = GetComponentInParent<BurnController>();
         }
     }
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadPlayerController();
+        this.LoadBurnController();
         this.LoadCollider();
         this.LoadRigidbody();
     }
@@ -39,11 +40,31 @@ public class Burn : Cooldown
         this.rb2D.bodyType = RigidbodyType2D.Kinematic; // Không cần vật lý, chỉ cần trigger
         this.rb2D.gravityScale = 0; // Không cần trọng lực
     }
+    protected override void LoadValues()
+    {
+        base.LoadValues();
+        this.SetDelayTime(1f);
+        this.SetRange(4f);
+    }
     private void FixedUpdate()
     {
         this.Timing();
-        this.Burning();
+        if (this.isReady)
+        {
+            this.Burning();
+        }
+
     }
+    void OnEnable()
+    {
+        Invoke(nameof(this.DisableSelf), this.burningTime);
+    }
+    public void DisableSelf()
+    {
+        gameObject.SetActive(false);
+        this.burnController.Model.SetActive(false);
+    }
+    //implement trigger to detect enemies in range range
     protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
@@ -53,7 +74,6 @@ public class Burn : Cooldown
             if (!enemiesInRange.Contains(enemyTransform))
             {
                 enemiesInRange.Add(enemyTransform);
-                Debug.Log($"Enemy entered burn range: {enemyTransform.name}");
             }
         }
     }
@@ -67,35 +87,28 @@ public class Burn : Cooldown
             if (enemiesInRange.Contains(enemyTransform))
             {
                 enemiesInRange.Remove(enemyTransform);
-                Debug.Log($"Enemy exited burn range: {enemyTransform.name}");
             }
         }
-    }
-    public void StartBurning()
-    {
-        if (this.isReady && enemiesInRange.Count > 0 && !isBurning)
-        {
-            isBurning = true;
-            this.playerController.Animator.SetTrigger("burn");
-        }
-    }
-    public void CompleteBurning()
-    {
-        isBurning = false;
     }
     public void Burning()
     {
         if (enemiesInRange.Count == 0) return;
 
-        Debug.Log($"Attacking {enemiesInRange.Count} enemies");
-
         foreach (Transform enemy in enemiesInRange)
         {
             if (enemy != null)
             {
-                this.playerController.DamSender.SendDamage(enemy);
+                this.SendDamage(enemy);
             }
         }
         this.ResetCooldown();
+    }
+    private void SendDamage(Transform enemy)
+    {
+        this.burnController.PlayerController.DamSender.SendDamage(enemy, this.burnDamage);
+    }
+    public void SetRange(float range)
+    {
+        this.CircleCollider2D.radius = range;
     }
 }

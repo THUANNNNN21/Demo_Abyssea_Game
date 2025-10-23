@@ -64,7 +64,6 @@ public class UIInventory : MyMonoBehaviour
 
         if (items.Count == 0)
         {
-            Debug.Log("No items to display");
             this.ClearItems();
             return;
         }
@@ -82,8 +81,6 @@ public class UIInventory : MyMonoBehaviour
                 this.uiInventoryController.UIInventorySpawner.SpawnItem(item);
             }
         }
-
-        Debug.Log($"Displayed {sortedItems.Count} sorted items by {inventorySort}");
     }
     private void ClearItems()
     {

@@ -47,8 +47,8 @@ public class PlayerController : MyMonoBehaviour
 
     [SerializeField] private Animator animator;
     public Animator Animator { get => animator; }
-    [SerializeField] private Burn burn;
-    public Burn Burn { get => burn; }
+    [SerializeField] private BurnController burnController;
+    public BurnController BurnController { get => burnController; }
     #endregion
 
     #region Initialization
@@ -63,7 +63,7 @@ public class PlayerController : MyMonoBehaviour
         this.LoadInventoryController();
         this.LoadDamSender();
         this.LoadWarp();
-        this.LoadBurn();
+        this.LoadBurnController();
         this.LoadAnimator();
     }
 
@@ -151,11 +151,11 @@ public class PlayerController : MyMonoBehaviour
             this.animator = GetComponentInChildren<Animator>();
         }
     }
-    private void LoadBurn()
+    private void LoadBurnController()
     {
-        if (this.burn == null)
+        if (this.burnController == null)
         {
-            this.burn = GetComponentInChildren<Burn>();
+            this.burnController = GetComponentInChildren<BurnController>();
         }
     }
     #endregion

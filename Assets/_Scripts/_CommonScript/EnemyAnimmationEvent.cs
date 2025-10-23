@@ -28,7 +28,6 @@ public class EnemyAnimmationEvent : MyMonoBehaviour
     public void OnAppearAnimationComplete()
     {
         this.enemyController.ObjAppearing.FullyAppeared();
-        Debug.Log("Appear Animation Complete");
         HPBarSpawner.Instance.SpawnHPBar(this.enemyController);
     }
     public void OnShootAnimationComplete()
