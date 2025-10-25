@@ -115,7 +115,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Mount/Wing Left
+    path: Mount/WingLeft
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -149,7 +149,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Mount/Wing Right
+    path: Mount/WingRight
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -296,7 +296,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Mount/Wing Left
+    path: Mount/WingLeft
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -339,7 +339,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Mount/Wing Right
+    path: Mount/WingRight
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 20
@@ -377,7 +377,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2152013791
+      path: 2984932248
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -386,7 +386,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3778376131
+      path: 163318428
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -404,7 +404,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2152013791
+      path: 2984932248
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -413,7 +413,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3778376131
+      path: 163318428
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -1072,10 +1072,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Mount/Wing Left
+    path: Mount/WingLeft
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1111,10 +1111,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: Mount/Wing Left
+    path: Mount/WingLeft
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1150,10 +1150,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: Mount/Wing Left
+    path: Mount/WingLeft
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1198,10 +1198,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Mount/Wing Left
+    path: Mount/WingLeft
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1246,10 +1246,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Mount/Wing Left
+    path: Mount/WingLeft
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1294,10 +1294,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Mount/Wing Left
+    path: Mount/WingLeft
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1333,10 +1333,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Mount/Wing Right
+    path: Mount/WingRight
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1372,10 +1372,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: Mount/Wing Right
+    path: Mount/WingRight
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1411,10 +1411,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: Mount/Wing Right
+    path: Mount/WingRight
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1459,10 +1459,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Mount/Wing Right
+    path: Mount/WingRight
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1507,10 +1507,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Mount/Wing Right
+    path: Mount/WingRight
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -1555,10 +1555,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Mount/Wing Right
+    path: Mount/WingRight
     classID: 4
     script: {fileID: 0}
-    flags: 16
+    flags: 0
   m_EulerEditorCurves:
   - serializedVersion: 2
     curve:
@@ -1640,7 +1640,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Mount/Wing Left
+    path: Mount/WingLeft
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1652,7 +1652,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Mount/Wing Left
+    path: Mount/WingLeft
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1664,7 +1664,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Mount/Wing Left
+    path: Mount/WingLeft
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1676,7 +1676,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Mount/Wing Right
+    path: Mount/WingRight
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1688,7 +1688,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Mount/Wing Right
+    path: Mount/WingRight
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1700,7 +1700,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Mount/Wing Right
+    path: Mount/WingRight
     classID: 4
     script: {fileID: 0}
     flags: 0
