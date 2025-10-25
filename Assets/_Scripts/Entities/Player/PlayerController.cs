@@ -148,7 +148,7 @@ public class PlayerController : MyMonoBehaviour
     {
         if (this.animator == null)
         {
-            this.animator = GetComponentInChildren<Animator>();
+            this.animator = this.transform.Find("Model").GetComponent<Animator>();
         }
         this.animator.SetFloat("MoveX", 1);
     }

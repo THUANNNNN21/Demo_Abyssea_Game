@@ -44,7 +44,7 @@ public class BurnController : MyMonoBehaviour
         if (this.model != null) return;
         else
         {
-            this.model = this.transform.Find("Model").gameObject;
+            this.model = this.transform.Find("BurnFX").gameObject;
         }
     }
     private void LoadActiveBurn()

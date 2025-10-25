@@ -27,10 +27,14 @@ public class ActiveBurn : Cooldown
         {
             if (this.burnController == null) return;
             {
-                this.burnController.Model.SetActive(true);
-                this.burnController.Burn.gameObject.SetActive(true);
+                this.Active();
                 this.ResetCooldown();
             }
         }
+    }
+    private void Active()
+    {
+        this.burnController.Model.SetActive(true);
+        this.burnController.Burn.gameObject.SetActive(true);
     }
 }
