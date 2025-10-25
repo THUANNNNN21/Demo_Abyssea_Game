@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class HealController : MyMonoBehaviour
 {
-    [SerializeField] private PlayerController playerController;
-    public PlayerController PlayerController { get => playerController; }
+    [SerializeField] private SkillController skillController;
+    public SkillController SkillController { get => skillController; }
     [SerializeField] private Heal heal;
     public Heal Heal { get => heal; }
     [SerializeField] private ActiveHeal activeHeal;
@@ -20,11 +20,11 @@ public class HealController : MyMonoBehaviour
     }
     private void LoadPlayerController()
     {
-        if (this.playerController != null) return;
+        if (this.skillController != null) return;
         else
         {
-            this.playerController = this.GetComponentInParent<PlayerController>();
-            Debug.LogWarning(this.gameObject.name + ": Load PlayerController");
+            this.skillController = this.GetComponentInParent<SkillController>();
+            Debug.LogWarning(this.gameObject.name + ": Load SkillController");
         }
     }
     private void LoadHeal()

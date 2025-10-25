@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Warp : Cooldown
 {
-    [SerializeField] private PlayerController playerController;
-    public PlayerController PlayerController { get => playerController; }
+    [SerializeField] private SkillController skillController;
+    public SkillController SkillController { get => skillController; }
     private Vector3 warpDirection;
     [SerializeField] private float warpDistance = 5f;
     // [SerializeField] private int assignedSkillIndex = 1;
@@ -14,9 +14,9 @@ public class Warp : Cooldown
     }
     private void LoadPlayerController()
     {
-        if (this.playerController == null)
+        if (this.skillController == null)
         {
-            this.playerController = this.GetComponentInParent<PlayerController>();
+            this.skillController = this.GetComponentInParent<SkillController>();
         }
     }
     // private void OnEnable()
@@ -50,15 +50,15 @@ public class Warp : Cooldown
     public void StartWarp()
     {
         if (!this.isReady) return;
-        this.playerController.Animator.SetBool("warp", true);
+        this.skillController.PlayerController.Animator.SetBool("warp", true);
     }
     public void WarpFinish()
     {
-        this.playerController.Animator.SetBool("warp", false);
+        this.skillController.PlayerController.Animator.SetBool("warp", false);
     }
     public void Warping()
     {
-        Transform obj = this.transform.parent;
+        Transform obj = this.skillController.PlayerController.transform;
         Vector3 newPos = obj.position;
         newPos += warpDirection.normalized * this.warpDistance;
         obj.position = newPos;

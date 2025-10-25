@@ -4,6 +4,6 @@ public class AbleToSelectBurn : AbleToSelect
 {
     public override void OnSelect()
     {
-        PlayerController.Instance.BurnController.ActiveBurn.StartBurn();
+        PlayerController.Instance.SkillController.BurnController.ActiveBurn.StartBurn();
     }
 }

@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MyMonoBehaviour
@@ -30,9 +30,6 @@ public class PlayerController : MyMonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     public PlayerMovement PlayerMovement { get => playerMovement; }
 
-    [SerializeField] private PlayerShooting playerShooting;
-    public PlayerShooting PlayerShooting { get => playerShooting; }
-
     [SerializeField] private PlayerImpact playerImpact;
     public PlayerImpact PlayerImpact { get => playerImpact; }
 
@@ -42,13 +39,15 @@ public class PlayerController : MyMonoBehaviour
     [SerializeField] private DamageSender damSender;
     public DamageSender DamSender { get => damSender; }
 
-    [SerializeField] private Warp warp;
-    public Warp Warp { get => warp; }
-
     [SerializeField] private Animator animator;
     public Animator Animator { get => animator; }
-    [SerializeField] private BurnController burnController;
-    public BurnController BurnController { get => burnController; }
+    [SerializeField] private ChangeModel changeModel;
+    public ChangeModel ChangeModel { get => changeModel; }
+    [SerializeField] private HealController healController;
+    public HealController HealController { get => healController; }
+
+    [SerializeField] private SkillController skillController;
+    public SkillController SkillController { get => skillController; }
     #endregion
 
     #region Initialization
@@ -57,14 +56,13 @@ public class PlayerController : MyMonoBehaviour
         base.LoadComponents();
         this.LoadPlayerSO();
         this.LoadPlayerDamReceiver();
+        this.LoadDamSender();
         this.LoadPlayerMovement();
-        this.LoadPlayerShooting();
         this.LoadPlayerImpact();
         this.LoadInventoryController();
-        this.LoadDamSender();
-        this.LoadWarp();
-        this.LoadBurnController();
         this.LoadAnimator();
+        this.LoadChangeModel();
+        this.LoadSkillController();
     }
 
     protected override void LoadValues()
@@ -76,88 +74,73 @@ public class PlayerController : MyMonoBehaviour
         this.playerImpact.SetImpactRange(playerSO.attackRange);
         this.playerImpact.SetDelayTime(playerSO.attackDelay);
         this.inventoryController.ItemLooter.SetLootRange(playerSO.lootRange);
+        this.animator.SetFloat("MoveX", 1);
     }
     #endregion
 
     #region Component Loading Methods
     private void LoadPlayerSO()
     {
-        if (this.playerSO == null)
-        {
-            this.playerSO = Resources.Load<PlayerSO>("_SO/PlayerSO/" + this.name);
-        }
+        if (this.playerSO != null) return;
+        this.playerSO = Resources.Load<PlayerSO>("_SO/PlayerSO/" + this.name);
+        Debug.LogWarning(this.gameObject.name + ": Load PlayerSO");
     }
 
     private void LoadPlayerDamReceiver()
     {
-        if (this.playerDamReceiver == null)
-        {
-            this.playerDamReceiver = GetComponentInChildren<PlayerDamReceiver>();
-        }
+        if (this.playerDamReceiver != null) return;
+        this.playerDamReceiver = GetComponentInChildren<PlayerDamReceiver>();
+        Debug.LogWarning(this.gameObject.name + ": Load PlayerDamReceiver");
     }
 
     private void LoadPlayerMovement()
     {
-        if (this.playerMovement == null)
-        {
-            this.playerMovement = GetComponentInChildren<PlayerMovement>();
-        }
+        if (this.playerMovement != null) return;
+        this.playerMovement = GetComponentInChildren<PlayerMovement>();
+        Debug.LogWarning(this.gameObject.name + ": Load PlayerMovement");
     }
 
-    private void LoadPlayerShooting()
-    {
-        if (this.playerShooting == null)
-        {
-            this.playerShooting = GetComponentInChildren<PlayerShooting>();
-        }
-    }
 
     private void LoadPlayerImpact()
     {
-        if (this.playerImpact == null)
-        {
-            this.playerImpact = GetComponentInChildren<PlayerImpact>();
-        }
+        if (this.playerImpact != null) return;
+        this.playerImpact = GetComponentInChildren<PlayerImpact>();
+        Debug.LogWarning(this.gameObject.name + ": Load PlayerImpact");
     }
 
     private void LoadInventoryController()
     {
-        if (this.inventoryController == null)
-        {
-            this.inventoryController = GetComponentInChildren<InventoryController>();
-        }
+        if (this.inventoryController != null) return;
+        this.inventoryController = GetComponentInChildren<InventoryController>();
+        Debug.LogWarning(this.gameObject.name + ": Load InventoryController");
     }
 
     private void LoadDamSender()
     {
-        if (this.damSender == null)
-        {
-            this.damSender = GetComponentInChildren<DamageSender>();
-        }
-    }
-
-    private void LoadWarp()
-    {
-        if (this.warp == null)
-        {
-            this.warp = GetComponentInChildren<Warp>();
-        }
+        if (this.damSender != null) return;
+        this.damSender = GetComponentInChildren<DamageSender>();
+        Debug.LogWarning(this.gameObject.name + ": Load DamSender");
     }
 
     private void LoadAnimator()
     {
-        if (this.animator == null)
-        {
-            this.animator = this.transform.Find("Model").GetComponent<Animator>();
-        }
-        this.animator.SetFloat("MoveX", 1);
+        if (this.animator != null) return;
+        this.animator = this.transform.Find("Model").GetComponent<Animator>();
+        Debug.LogWarning(this.gameObject.name + ": Load Animator");
     }
-    private void LoadBurnController()
+
+    private void LoadChangeModel()
     {
-        if (this.burnController == null)
-        {
-            this.burnController = GetComponentInChildren<BurnController>();
-        }
+        if (this.changeModel != null) return;
+        this.changeModel = GetComponentInChildren<ChangeModel>();
+        Debug.LogWarning(this.gameObject.name + ": Load ChangeModel");
+    }
+
+    private void LoadSkillController()
+    {
+        if (this.skillController != null) return;
+        this.skillController = GetComponentInChildren<SkillController>();
+        Debug.LogWarning(this.gameObject.name + ": Load SkillController");
     }
     #endregion
 }

@@ -34,7 +34,7 @@ public class ActiveBurn : Cooldown
     }
     private void Active()
     {
-        this.burnController.Model.SetActive(true);
-        this.burnController.Burn.gameObject.SetActive(true);
+        this.burnController.Fx.SetActive(true);
+        this.burnController.Burn.StartBurn();
     }
 }

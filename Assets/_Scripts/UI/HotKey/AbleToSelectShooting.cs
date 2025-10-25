@@ -4,6 +4,6 @@ public class AbleToSelectShooting : AbleToSelect
 {
     public override void OnSelect()
     {
-        PlayerController.Instance.PlayerShooting.SpawnWithCooldown();
+        PlayerController.Instance.SkillController.PlayerShooting.SpawnWithCooldown();
     }
 }

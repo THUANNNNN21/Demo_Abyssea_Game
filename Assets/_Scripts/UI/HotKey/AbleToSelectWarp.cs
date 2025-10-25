@@ -4,6 +4,6 @@ public class AbleToSelectWarp : AbleToSelect
 {
     public override void OnSelect()
     {
-        PlayerController.Instance.Warp.StartWarp();
+        PlayerController.Instance.SkillController.Warp.StartWarp();
     }
 }

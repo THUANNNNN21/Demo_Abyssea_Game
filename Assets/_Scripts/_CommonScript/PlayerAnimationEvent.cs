@@ -27,10 +27,10 @@ public class PlayerAnimationEvent : MyMonoBehaviour
     }
     public void OnWarpAnimationComplete()
     {
-        this.playerController.Warp.WarpFinish();
+        this.playerController.SkillController.Warp.WarpFinish();
     }
     public void OnWarpAnimationPlay()
     {
-        this.playerController.Warp.Warping();
+        this.playerController.SkillController.Warp.Warping();
     }
 }

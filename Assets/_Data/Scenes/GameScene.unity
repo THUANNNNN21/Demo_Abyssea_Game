@@ -962,7 +962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6edd629747514367b388b343d871016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealController
-  playerController: {fileID: 519011901}
+  skillController: {fileID: 0}
   heal: {fileID: 1248779198}
   activeHeal: {fileID: 1735416373}
   healFX: {fileID: 1898471952}
@@ -1622,7 +1622,7 @@ Transform:
   - {fileID: 376096214}
   - {fileID: 875671747}
   - {fileID: 1185701808}
-  - {fileID: 1180778824}
+  - {fileID: 2109573196}
   - {fileID: 2141980351}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1641,20 +1641,20 @@ MonoBehaviour:
   playerSO: {fileID: 11400000, guid: 9776d833ed0394840900335af9ff8c26, type: 2}
   playerDamReceiver: {fileID: 376096219}
   playerMovement: {fileID: 1693061212}
-  playerShooting: {fileID: 839868577}
   playerImpact: {fileID: 875671748}
   inventoryController: {fileID: 1185701809}
   damSender: {fileID: 376096218}
-  warp: {fileID: 1180778825}
-  animator: {fileID: 0}
-  burnController: {fileID: 828422158}
+  animator: {fileID: 8765611468073613857}
+  changeModel: {fileID: 426207991}
+  healController: {fileID: 0}
+  skillController: {fileID: 2141980352}
 --- !u!1001 &547418121
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 519011900}
+    m_TransformParent: {fileID: 2141980351}
     m_Modifications:
     - target: {fileID: 2550983388444989129, guid: f04f675080d6a4b0abeecfca96618a62, type: 3}
       propertyPath: m_Name
@@ -1997,7 +1997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &588775102
 Transform:
   m_ObjectHideFlags: 0
@@ -2025,15 +2025,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddacc54ca60543f0b5ee5fe3b2c6710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Burn
-  timer: 0
-  delayTime: 1
-  isReady: 1
   burnController: {fileID: 828422158}
   circleCollider2D: {fileID: 588775105}
   rb2D: {fileID: 588775104}
   enemiesInRange: []
   burnDamage: 5
   burningTime: 6
+  tickRate: 1
 --- !u!50 &588775104
 Rigidbody2D:
   serializedVersion: 5
@@ -2752,6 +2750,7 @@ Transform:
   m_Children:
   - {fileID: 2059245993}
   - {fileID: 588775102}
+  - {fileID: 2107993490}
   m_Father: {fileID: 2141980351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &828422158
@@ -2766,10 +2765,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e681d7df089f42eda4d95a60cc7a97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BurnController
-  playerController: {fileID: 519011901}
-  model: {fileID: 2059245992}
+  skillController: {fileID: 2141980352}
+  fx: {fileID: 2059245992}
   burn: {fileID: 588775103}
-  activeBurn: {fileID: 0}
+  activeBurn: {fileID: 2107993491}
 --- !u!114 &839868577 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6800213830035322963, guid: f04f675080d6a4b0abeecfca96618a62, type: 3}
@@ -2900,7 +2899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerImpact
   timer: 0
-  delayTime: 2
+  delayTime: 3
   isReady: 1
   col2D: {fileID: 875671750}
   rb2D: {fileID: 875671749}
@@ -3280,8 +3279,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1611258511}
   m_HandleRect: {fileID: 1611258510}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3805,7 +3804,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 519011900}
+  m_Father: {fileID: 2141980351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1180778825
 MonoBehaviour:
@@ -3820,9 +3819,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Warp
   timer: 0
-  delayTime: 2
+  delayTime: 0
   isReady: 1
-  playerController: {fileID: 519011901}
+  skillController: {fileID: 2141980352}
   warpDistance: 5
 --- !u!1 &1185701807
 GameObject:
@@ -6297,7 +6296,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 43, y: 43, z: 1}
+  m_LocalScale: {x: 18, y: 18, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 828422157}
@@ -6349,7 +6348,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -1856536094542967094, guid: 906f2788fbdb248408dbbad82f91f79c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6472,6 +6471,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066752997}
   m_CullTransparentMesh: 1
+--- !u!1 &2107993489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2107993490}
+  - component: {fileID: 2107993491}
+  m_Layer: 10
+  m_Name: ActiveBurn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2107993490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107993489}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 828422157}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2107993491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107993489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954c4e1f6dad44ea5bb6417de62a38d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActiveBurn
+  timer: 0
+  delayTime: 0
+  isReady: 1
+  burnController: {fileID: 828422158}
 --- !u!1 &2109573195
 GameObject:
   m_ObjectHideFlags: 0
@@ -6505,7 +6552,7 @@ Transform:
   - {fileID: 1933394412}
   - {fileID: 994115087}
   - {fileID: 1264157040}
-  m_Father: {fileID: 2141980351}
+  m_Father: {fileID: 519011900}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2109573197
 MonoBehaviour:
@@ -6563,6 +6610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2141980351}
+  - component: {fileID: 2141980352}
   m_Layer: 3
   m_Name: Skills
   m_TagString: Untagged
@@ -6583,12 +6631,29 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1180778824}
+  - {fileID: 547418122}
   - {fileID: 828422157}
   - {fileID: 312265256}
-  - {fileID: 2109573196}
-  - {fileID: 547418122}
   m_Father: {fileID: 519011900}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2141980352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141980350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32e1f15c821841f297671d4ff942a46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillController
+  playerController: {fileID: 519011901}
+  playerShooting: {fileID: 839868577}
+  warp: {fileID: 1180778825}
+  burnController: {fileID: 828422158}
+  healController: {fileID: 312265257}
 --- !u!1 &274884302416627308
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class BurnController : MyMonoBehaviour
 {
-    [SerializeField] private PlayerController playerController;
-    public PlayerController PlayerController { get => playerController; }
-    [SerializeField] private GameObject model;
-    public GameObject Model { get => model; }
+    [SerializeField] private SkillController skillController;
+    public SkillController SkillController { get => skillController; }
+    [SerializeField] private GameObject fx;
+    public GameObject Fx { get => fx; }
     [SerializeField] private Burn burn;
     public Burn Burn { get => burn; }
     [SerializeField] private ActiveBurn activeBurn;
@@ -16,19 +16,19 @@ public class BurnController : MyMonoBehaviour
         this.LoadPlayerController();
         this.LoadActiveBurn();
         this.LoadBurn();
-        this.LoadModel();
+        this.LoadFx();
     }
     protected override void LoadValues()
     {
         base.LoadValues();
-        this.burn.DisableSelf();
+        this.Fx.SetActive(false);
     }
     private void LoadPlayerController()
     {
-        if (this.playerController != null) return;
+        if (this.skillController != null) return;
         else
         {
-            this.playerController = this.GetComponentInParent<PlayerController>();
+            this.skillController = this.GetComponentInParent<SkillController>();
         }
     }
     private void LoadBurn()
@@ -39,12 +39,12 @@ public class BurnController : MyMonoBehaviour
             this.burn = this.GetComponentInChildren<Burn>();
         }
     }
-    private void LoadModel()
+    private void LoadFx()
     {
-        if (this.model != null) return;
+        if (this.fx != null) return;
         else
         {
-            this.model = this.transform.Find("BurnFX").gameObject;
+            this.fx = this.transform.Find("BurnFX").gameObject;
         }
     }
     private void LoadActiveBurn()
