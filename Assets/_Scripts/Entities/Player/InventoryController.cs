@@ -16,6 +16,7 @@ public class InventoryController : MyMonoBehaviour
         this.itemLooter = GetComponentInChildren<ItemLooter>();
     }
     [SerializeField] private int maxSlot = 20;
+    public int MaxSlot { get => maxSlot; }
     [SerializeField] private List<ItemInInventory> listItems;
     public List<ItemInInventory> ListItems { get => listItems; }
     public bool AddItem(ItemInInventory itemInInventory, int itemLevel, int addCount)

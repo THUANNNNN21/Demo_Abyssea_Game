@@ -150,6 +150,7 @@ public class PlayerController : MyMonoBehaviour
         {
             this.animator = GetComponentInChildren<Animator>();
         }
+        this.animator.SetFloat("MoveX", 1);
     }
     private void LoadBurnController()
     {

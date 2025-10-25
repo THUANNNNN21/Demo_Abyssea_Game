@@ -4,7 +4,6 @@ public class Warp : Cooldown
 {
     [SerializeField] private PlayerController playerController;
     public PlayerController PlayerController { get => playerController; }
-    [SerializeField] private bool isWarping = false;
     private Vector3 warpDirection;
     [SerializeField] private float warpDistance = 5f;
     // [SerializeField] private int assignedSkillIndex = 1;
@@ -51,13 +50,11 @@ public class Warp : Cooldown
     public void StartWarp()
     {
         if (!this.isReady) return;
-        if (isWarping) return;
-        this.isWarping = true;
-        this.playerController.Animator.SetTrigger("warp");
+        this.playerController.Animator.SetBool("warp", true);
     }
     public void WarpFinish()
     {
-        this.isWarping = false;
+        this.playerController.Animator.SetBool("warp", false);
     }
     public void Warping()
     {
@@ -69,7 +66,6 @@ public class Warp : Cooldown
     }
     private void CheckWarpPosition()
     {
-        if (isWarping) return;
         if (!isReady) return;
         Vector3 mouseWorldPos = InputManager.Instance.GetMouseWorldPosition();
         Vector3 playerPos = this.transform.position;

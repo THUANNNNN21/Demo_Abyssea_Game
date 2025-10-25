@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NormalEnemy
   m_EditorClassIdentifier: 
   enemyName: 
-  maxHP: 100
+  maxHP: 5000
   damage: 2
   speed: 10
   maxDistance: 500

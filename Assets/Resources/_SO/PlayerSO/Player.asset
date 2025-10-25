@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHP: 500
   damage: 30
   attackRange: 0.5
-  attackDelay: 1
+  attackDelay: 3
   speed: 10
   inventorySize: 20
   lootRange: 0.8

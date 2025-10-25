@@ -7,8 +7,6 @@ public class PlayerImpact : Impact
     public PlayerController PlayerController { get => playerController; }
     [SerializeField] private List<Transform> enemiesInRange = new();
 
-    // ✅ Animation state tracking
-    private bool isAttacking = false;
 
     private void LoadPlayerController()
     {
@@ -32,15 +30,15 @@ public class PlayerImpact : Impact
     }
     private void StartAttack()
     {
-        if (this.isReady && enemiesInRange.Count > 0 && !isAttacking)
+        if (this.isReady && enemiesInRange.Count > 0)
         {
-            isAttacking = true;
-            this.playerController.Animator.SetTrigger("attack");
+            this.playerController.Animator.SetBool("attack", true);
+            this.ResetCooldown();
         }
     }
     public void CompleteAttack()
     {
-        isAttacking = false;
+        this.playerController.Animator.SetBool("attack", false);
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -77,10 +75,9 @@ public class PlayerImpact : Impact
             if (enemy != null)
             {
                 this.SendDamage(enemy);
+                Debug.Log("PlayerImpact: Attacked " + enemy.name);
             }
         }
-
-        this.ResetCooldown();
     }
 
     private void SendDamage(Transform target)

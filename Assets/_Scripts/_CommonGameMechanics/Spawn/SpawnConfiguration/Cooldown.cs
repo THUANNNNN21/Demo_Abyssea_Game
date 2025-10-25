@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class Cooldown : MyMonoBehaviour
 {
     [Header("Cooldown Settings")]
-    private float timer;
+    [SerializeField] private float timer;
     [SerializeField] protected float delayTime;
     public float DelayTime { get => delayTime; }
     [SerializeField] protected bool isReady = true;

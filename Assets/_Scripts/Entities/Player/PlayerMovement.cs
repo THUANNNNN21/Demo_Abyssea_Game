@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement : MyMonoBehaviour
 {
-    [SerializeField] private PlayerController shipController;
-    public PlayerController ShipController { get => shipController; }
+    [SerializeField] private PlayerController playerController;
+    public PlayerController PlayerController { get => playerController; }
     [Header("Movement Settings")]
     [SerializeField] float speed;
     public float Speed { get => speed; }
@@ -15,14 +15,14 @@ public class PlayerMovement : MyMonoBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadShipController();
+        this.LoadPlayerController();
     }
 
-    private void LoadShipController()
+    private void LoadPlayerController()
     {
-        if (this.shipController == null)
+        if (this.playerController == null)
         {
-            this.shipController = GetComponentInParent<PlayerController>();
+            this.playerController = GetComponentInParent<PlayerController>();
         }
     }
 
@@ -44,7 +44,7 @@ public class PlayerMovement : MyMonoBehaviour
     }
     private void OnMoveInputReceived(Vector2 input)
     {
-        moveInput = input;
+        this.moveInput = input;
     }
 
     private void UpdateAxisFromInput()
@@ -67,17 +67,20 @@ public class PlayerMovement : MyMonoBehaviour
 
     private void RotateController()
     {
-        if (horizontal > 0)
+        if (!Mathf.Approximately(horizontal, 0))
         {
-            this.transform.parent.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (horizontal < 0)
-        {
-            this.transform.parent.localScale = new Vector3(1, 1, 1);
+            if (horizontal > 0)
+            {
+                this.playerController.Animator.SetFloat("MoveX", 1);
+            }
+            else if (horizontal < 0)
+            {
+                this.playerController.Animator.SetFloat("MoveX", -1);
+            }
         }
     }
 
-    public void SetSpeed(int speed)
+    public void SetSpeed(float speed)
     {
         this.speed = speed;
     }

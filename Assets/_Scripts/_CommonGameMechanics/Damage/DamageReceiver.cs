@@ -39,8 +39,9 @@ public class DamageReceiver : MyMonoBehaviour
 
     public void SetHPMax(int max)
     {
+        int delta = max - this.healthMax;
         this.healthMax = max;
-        this.Health = max;
+        this.Health += delta;
     }
     public void ResetHealth()
     {
@@ -51,7 +52,6 @@ public class DamageReceiver : MyMonoBehaviour
         }
         else
         {
-
             Debug.LogWarning($"Cannot reset health: healthMax is {healthMax} for {gameObject.name}");
         }
     }
