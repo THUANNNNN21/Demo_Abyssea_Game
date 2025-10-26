@@ -34,19 +34,21 @@ public class UIInventory : MyMonoBehaviour
     {
         this.Close();
         this.ShowSlotItems();
-        this.ShowInventory(); // ✅ Uncomment để hiển thị items
+        this.ShowInventory();
     }
     private void SubscribeEvents()
     {
         InventoryDrop.AfterDropItem += ShowInventory;
         ItemLooter.AfterPickupItem += ShowInventory;
         ItemUpgrade.AfterUpgradeItem += ShowInventory;
+        LevelUp.OnLevelUp += ShowInventory;
     }
     void OnDestroy()
     {
         InventoryDrop.AfterDropItem -= ShowInventory;
         ItemLooter.AfterPickupItem -= ShowInventory;
         ItemUpgrade.AfterUpgradeItem -= ShowInventory;
+        LevelUp.OnLevelUp -= ShowInventory;
     }
     public virtual void Toggle()
     {
@@ -71,7 +73,10 @@ public class UIInventory : MyMonoBehaviour
             }
         }
     }
-
+    private void ShowInventory(int level)
+    {
+        this.ShowInventory();
+    }
     public void ShowInventory()
     {
         // ✅ Get sorted items directly from InventoryController

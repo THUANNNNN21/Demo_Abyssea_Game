@@ -41,10 +41,9 @@ public class PlayerController : MyMonoBehaviour
 
     [SerializeField] private Animator animator;
     public Animator Animator { get => animator; }
+
     [SerializeField] private ChangeModel changeModel;
     public ChangeModel ChangeModel { get => changeModel; }
-    [SerializeField] private HealController healController;
-    public HealController HealController { get => healController; }
 
     [SerializeField] private SkillController skillController;
     public SkillController SkillController { get => skillController; }

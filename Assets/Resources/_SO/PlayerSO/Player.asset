@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5955a82dd39fa449881ffa8ec7926401, type: 3}
+  m_Script: {fileID: 11500000, guid: 4eee86bc40b20474f912454c3269f433, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
   playerName: Player
-  maxHP: 500
-  damage: 30
+  maxHP: 300
+  damage: 20
   attackRange: 0.5
-  attackDelay: 3
+  attackDelay: 1
   speed: 10
   inventorySize: 20
   lootRange: 0.8

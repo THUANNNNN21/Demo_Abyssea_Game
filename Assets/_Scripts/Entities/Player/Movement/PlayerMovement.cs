@@ -63,6 +63,7 @@ public class PlayerMovement : MyMonoBehaviour
         }
 
         this.transform.parent.position += speed * Time.fixedDeltaTime * direction;
+        Debug.DrawRay(this.transform.parent.position, direction, Color.red);
     }
 
     private void RotateController()
