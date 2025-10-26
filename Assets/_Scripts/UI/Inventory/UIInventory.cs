@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class UIInventory : MyMonoBehaviour
 {
     [SerializeField] private UIInventoryController uiInventoryController;
     public UIInventoryController UIInventoryController => uiInventoryController;
-    [SerializeField] protected InventorySort inventorySort = InventorySort.ByName;
 
     private static UIInventory instance;
     public static UIInventory Instance => instance;
@@ -35,7 +33,8 @@ public class UIInventory : MyMonoBehaviour
     void Start()
     {
         this.Close();
-        this.ShowInventory();
+        this.ShowSlotItems();
+        this.ShowInventory(); // ✅ Uncomment để hiển thị items
     }
     private void SubscribeEvents()
     {
@@ -57,12 +56,29 @@ public class UIInventory : MyMonoBehaviour
     {
         this.uiInventoryController.gameObject.SetActive(false);
     }
+    private void ShowSlotItems()
+    {
+        this.uiInventoryController.UISlotInventorySpawner.ClearItems();
+        int maxSlot = PlayerController.Instance.InventoryController.MaxSlot;
+        Debug.Log($"Spawning {maxSlot} slots");
+
+        for (int i = 0; i < maxSlot; i++)
+        {
+            GameObject slot = this.uiInventoryController.UISlotInventorySpawner.SpawnItem();
+            if (slot != null)
+            {
+                Debug.Log($"Spawned slot {i}: {slot.name}");
+            }
+        }
+    }
+
     public void ShowInventory()
     {
+        // ✅ Get sorted items directly from InventoryController
+        List<ItemInInventory> sortedItems = PlayerController.Instance.InventoryController.GetSortedItems();
+        Debug.Log($"ShowInventory called. Items count: {sortedItems.Count}");
 
-        List<ItemInInventory> items = PlayerController.Instance.InventoryController.ListItems;
-
-        if (items.Count == 0)
+        if (sortedItems.Count == 0)
         {
             this.ClearItems();
             return;
@@ -70,45 +86,21 @@ public class UIInventory : MyMonoBehaviour
 
         this.ClearItems();
 
-        // ✅ Sort TRƯỚC - hiệu quả nhất cho small lists
-        List<ItemInInventory> sortedItems = this.SortItems(items);
-
-        // ✅ Spawn theo thứ tự đã sort
         foreach (ItemInInventory item in sortedItems)
         {
-            if (item != null) // ✅ Extra safety
+            if (item != null)
             {
-                this.uiInventoryController.UIInventorySpawner.SpawnItem(item);
+                GameObject spawnedItem = this.uiInventoryController.UIInventorySpawner.SpawnItem(item);
+                if (spawnedItem != null)
+                {
+                    Debug.Log($"Spawned item: {item.itemSO.itemID}");
+                }
             }
         }
     }
     private void ClearItems()
     {
         this.uiInventoryController.UIInventorySpawner.ClearItems();
-    }
-    // ✅ Optimized sorting algorithm
-    private List<ItemInInventory> SortItems(List<ItemInInventory> items)
-    {
-        if (items == null || items.Count <= 1) return items ?? new List<ItemInInventory>();
-
-        switch (this.inventorySort)
-        {
-            case InventorySort.ByName:
-                // ✅ Sort by ItemID.ToString() (itemName)
-                return items
-                    .Where(item => item?.itemSO != null) // Filter valid items
-                    .OrderBy(item => item.itemSO.itemID.ToString())
-                    .ToList();
-
-            case InventorySort.ByCount:
-                return items
-                    .Where(item => item != null)
-                    .OrderBy(item => item.itemsCount)
-                    .ToList();
-
-            default:
-                return items.Where(item => item != null).ToList();
-        }
     }
 }
 

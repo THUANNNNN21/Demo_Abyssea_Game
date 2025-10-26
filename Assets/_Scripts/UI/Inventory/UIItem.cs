@@ -4,26 +4,20 @@ using UnityEngine;
 
 public class UIItem : MyMonoBehaviour
 {
-    [SerializeField] private Image backgroundImage;
-    public Image BackgroundImage => backgroundImage;
     [SerializeField] private Image itemImage;
     public Image ItemImage => itemImage;
     [SerializeField] private TextMeshProUGUI itemNameText;
     public TextMeshProUGUI ItemNameText => itemNameText;
     [SerializeField] private TextMeshProUGUI itemCountText;
     public TextMeshProUGUI ItemCountText => itemCountText;
+    [SerializeField] AbleToSelect ableToSelect;
+    public AbleToSelect AbleToSelect => ableToSelect;
     protected override void LoadComponents()
     {
-        this.LoadBackgroundImage();
         this.LoadItemImage();
         this.LoadItemNameText();
         this.LoadItemCountText();
-    }
-    private void LoadBackgroundImage()
-    {
-        if (this.backgroundImage != null) return;
-        this.backgroundImage = transform.Find("Background").GetComponent<Image>();
-        Debug.LogWarning($"[{this.gameObject.name}] BackgroundImage not found, please check again!");
+        this.LoadAbleToSelect();
     }
     private void LoadItemImage()
     {
@@ -43,16 +37,29 @@ public class UIItem : MyMonoBehaviour
         Debug.LogWarning($"[{this.gameObject.name}] ItemCountText not found, please check again!");
         this.itemCountText = transform.Find("ItemCount").GetComponent<TextMeshProUGUI>();
     }
+    private void LoadAbleToSelect()
+    {
+        if (this.ableToSelect != null) return;
+        this.ableToSelect = GetComponentInChildren<AbleToSelect>();
+        Debug.LogWarning($"[{this.gameObject.name}] AbleToSelect not found, please check again!");
+    }
     public void SetItemName(string name)
     {
         this.ItemNameText.text = name;
     }
-    public void SetItemCount(int count)
+    public void SetItemCount(int count, int maxCount)
     {
-        this.ItemCountText.text = count.ToString();
+        this.ItemCountText.text = $"{count}/{maxCount}";
     }
     public void SetItemSprite(Sprite sprite)
     {
         this.ItemImage.sprite = sprite;
+    }
+    public void SetAbleToSelectSkill(SkillType skillType)
+    {
+        if (this.AbleToSelect != null)
+        {
+            this.AbleToSelect.SkillType = skillType;
+        }
     }
 }

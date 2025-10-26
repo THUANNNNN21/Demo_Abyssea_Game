@@ -5,24 +5,25 @@ using UnityEngine.UI;
 public class DragItem : MyMonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] Transform originalParent;
-    [SerializeField] private Image image;
-    public Image Image => image;
+    public Transform OriginalParent => originalParent;
+    [SerializeField] private Image itemImage;
+    public Image ItemImage => itemImage;
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadImage();
+        this.LoadItemImage();
     }
-    private void LoadImage()
+    private void LoadItemImage()
     {
-        if (this.image != null) return;
-        this.image = GetComponent<Image>();
-        Debug.LogWarning($"Load Image in {this.name} ", this);
+        if (this.itemImage != null) return;
+        this.itemImage = transform.Find("ItemImage").GetComponent<Image>();
+        Debug.LogWarning($"[{this.gameObject.name}] ItemImage not found, please check again!");
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
         this.originalParent = this.transform.parent;
         this.transform.SetParent(HotKeyController.Instance.transform);
-        image.raycastTarget = false;
+        itemImage.raycastTarget = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -34,9 +35,9 @@ public class DragItem : MyMonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public void OnEndDrag(PointerEventData eventData)
     {
         this.transform.SetParent(this.originalParent);
-        image.raycastTarget = true;
+        itemImage.raycastTarget = true;
     }
-    public void SetOriginnalParent(Transform parent)
+    public void SetOriginalParent(Transform parent)
     {
         this.originalParent = parent;
     }

@@ -19,14 +19,6 @@ public class Warp : Cooldown
             this.skillController = this.GetComponentInParent<SkillController>();
         }
     }
-    // private void OnEnable()
-    // {
-    //     InputManager.OnItemCast += this.OnMouseClickReceived;
-    // }
-    // private void OnDisable()
-    // {
-    //     InputManager.OnItemCast -= this.OnMouseClickReceived;
-    // }
     void Update()
     {
         this.CheckWarpPosition();
@@ -34,18 +26,6 @@ public class Warp : Cooldown
     void FixedUpdate()
     {
         this.Timing();
-    }
-    private void OnMouseClickReceived(int skillIndex)
-    {
-        // if (skillIndex == assignedSkillIndex)
-        // {
-        //     Debug.Log($"PlayerWarping: Casting skill {skillIndex + 1}");
-        //     this.StartWarp();
-        // }
-        // else
-        // {
-        //     Debug.Log($"PlayerWarping: Ignoring skill {skillIndex + 1} (not assigned to this warper)");
-        // }
     }
     public void StartWarp()
     {

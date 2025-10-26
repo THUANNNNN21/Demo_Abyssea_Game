@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 490683922850745478}
   m_Layer: 8
   m_Name: DamageManager
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -383,7 +383,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c204887a8f49541f095c00a05ebb3e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
   delayTime: 0
+  isReady: 1
   col2D: {fileID: 5184629867552076549}
   rb2D: {fileID: 2199345033117386682}
   enemyController: {fileID: 6306081411485733408}
@@ -436,7 +438,7 @@ MonoBehaviour:
   target: {fileID: 0}
   playerController: {fileID: 0}
   enemyController: {fileID: 6306081411485733408}
-  minDistanceToTarget: 5
+  minDistanceToTarget: 0
   maxDistanceToTarget: 10
   stopBuffer: 1
   distance: 0

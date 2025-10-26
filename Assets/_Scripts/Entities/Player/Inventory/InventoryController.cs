@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class InventoryController : MyMonoBehaviour
 {
@@ -19,6 +20,16 @@ public class InventoryController : MyMonoBehaviour
     public int MaxSlot { get => maxSlot; }
     [SerializeField] private List<ItemInInventory> listItems;
     public List<ItemInInventory> ListItems { get => listItems; }
+    [SerializeField] private InventorySort inventorySort = InventorySort.ByName;
+    public InventorySort InventorySort
+    {
+        get => inventorySort;
+        set
+        {
+            inventorySort = value;
+            SortItems(); // Auto-sort when changed
+        }
+    }
     public bool AddItem(ItemInInventory itemInInventory, int itemLevel, int addCount)
     {
         ItemSO itemSO = this.GetItemByID(itemInInventory.itemSO.itemID);
@@ -62,6 +73,8 @@ public class InventoryController : MyMonoBehaviour
             }
             if (addRemain < 1) break;
         }
+
+        SortInventory(); // ✅ Sort after adding items
         return true;
     }
     private ItemSO GetItemByID(ItemID itemID)
@@ -208,6 +221,7 @@ public class InventoryController : MyMonoBehaviour
             itemInInventory.itemsCount -= deduct;
         }
         this.ClearEmptyItem();
+        SortInventory(); // ✅ Sort after removing items
     }
     private void ClearEmptyItem()
     {
@@ -222,5 +236,40 @@ public class InventoryController : MyMonoBehaviour
     public void SetMaxSlot(int maxSlot)
     {
         this.maxSlot = maxSlot;
+    }
+
+    public List<ItemInInventory> GetSortedItems()
+    {
+        return SortItems();
+    }
+
+    private List<ItemInInventory> SortItems()
+    {
+        if (listItems == null || listItems.Count <= 1)
+            return listItems ?? new List<ItemInInventory>();
+        List<ItemInInventory> sorted = inventorySort switch
+        {
+            InventorySort.ByName => listItems
+                                .Where(item => item?.itemSO != null)
+                                .OrderBy(item => item.itemSO.itemID.ToString())
+                                .ToList(),
+            InventorySort.ByCount => listItems
+                                .Where(item => item != null)
+                                .OrderBy(item => item.itemsCount)
+                                .ToList(),
+            _ => listItems.Where(item => item != null).ToList(),
+        };
+        return sorted;
+    }
+
+    // Optional: Sort in-place
+    public void SortInventory()
+    {
+        listItems = SortItems();
+    }
+
+    void Start()
+    {
+        SortInventory(); // ✅ Sort on start
     }
 }

@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(DespawnObject))]
-public class UIInventorySpawner : SpawnObject
+public class UIItemSpawner : SpawnObject
 {
     [SerializeField] private UIInventoryController uiInventoryController;
     public UIInventoryController UIInventoryController => uiInventoryController;
@@ -11,7 +11,6 @@ public class UIInventorySpawner : SpawnObject
     protected override void LoadComponents()
     {
         this.LoadController();
-        this.LoadSpawner();
         this.LoadPoolObject();
         this.LoadPrefabToSpawn();
         this.LoadSpawnPoint();
@@ -22,13 +21,6 @@ public class UIInventorySpawner : SpawnObject
         if (this.uiInventoryController == null)
         {
             this.uiInventoryController = this.GetComponentInParent<UIInventoryController>();
-        }
-    }
-    private void LoadSpawner()
-    {
-        if (this.Spawnner == null)
-        {
-            this.Spawnner = this.uiInventoryController.ContentHolder;
         }
     }
     private void LoadPoolObject()
@@ -61,18 +53,52 @@ public class UIInventorySpawner : SpawnObject
     }
     public GameObject SpawnItem(ItemInInventory item)
     {
+        // Tìm slot trống trong ContentHolder (slot đã được spawn bởi UISlotSpawner)
+        Transform emptySlot = this.FindEmptySlot();
+        if (emptySlot == null)
+        {
+            Debug.LogWarning("Không tìm thấy slot trống!");
+            return null;
+        }
+
+        // Tạm thời set Spawnner là slot trống
+        this.Spawnner = emptySlot.gameObject;
         GameObject itemObj = this.SpawnAndReturn();
+
         UIItem uiItem = itemObj.GetComponentInChildren<UIItem>();
         uiItem.SetItemName(item.itemSO.itemID.ToString());
-        uiItem.SetItemCount(item.itemsCount);
+        uiItem.SetItemCount(item.itemsCount, item.itemSO.defaultMaxStack);
         uiItem.SetItemSprite(item.itemSO.sprite);
+        uiItem.SetAbleToSelectSkill(item.itemSO.skillType);
+
         return itemObj;
+    }
+
+    private Transform FindEmptySlot()
+    {
+        foreach (Transform slot in this.uiInventoryController.ContentHolder.transform)
+        {
+            // Kiểm tra slot có component ItemSlot và chưa có item (childCount == 0)
+            if (slot.GetComponent<ItemSlot>() != null && slot.childCount == 0)
+            {
+                return slot;
+            }
+        }
+        return null;
     }
     public void ClearItems()
     {
-        foreach (Transform item in this.Spawnner.transform)
+        // Xóa items từ tất cả các slots trong ContentHolder
+        foreach (Transform slot in this.uiInventoryController.ContentHolder.transform)
         {
-            this.DespawnObject.ReturnObject(item.gameObject);
+            if (slot.GetComponent<ItemSlot>() != null)
+            {
+                // Xóa tất cả items trong slot này
+                foreach (Transform item in slot)
+                {
+                    this.DespawnObject.ReturnObject(item.gameObject);
+                }
+            }
         }
     }
     // void Start()

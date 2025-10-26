@@ -18,18 +18,11 @@ public class ActiveHeal : Cooldown
             this.healController = GetComponentInParent<HealController>();
         }
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            this.Active();
-        }
-    }
     void FixedUpdate()
     {
         this.Timing();
     }
-    public void StartBurn()
+    public void StartHeal()
     {
         if (this.isReady)
         {
