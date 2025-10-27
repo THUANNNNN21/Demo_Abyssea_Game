@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MyMonoBehaviour
 {
-    #region Singleton Pattern
+    #region Singleton
     private static PlayerController instance;
     public static PlayerController Instance => instance;
 
@@ -19,37 +19,32 @@ public class PlayerController : MyMonoBehaviour
     }
     #endregion
 
-    #region Component References
+    #region Inspector Fields
     [Header("References Settings")]
     [SerializeField] private PlayerSO playerSO;
-    public PlayerSO PlayerSO { get => playerSO; }
-
     [SerializeField] private PlayerDamReceiver playerDamReceiver;
-    public PlayerDamReceiver PlayerDamReceiver { get => playerDamReceiver; }
-
     [SerializeField] private PlayerMovement playerMovement;
-    public PlayerMovement PlayerMovement { get => playerMovement; }
-
     [SerializeField] private PlayerImpact playerImpact;
-    public PlayerImpact PlayerImpact { get => playerImpact; }
-
     [SerializeField] private InventoryController inventoryController;
-    public InventoryController InventoryController { get => inventoryController; }
-
     [SerializeField] private DamageSender damSender;
-    public DamageSender DamSender { get => damSender; }
-
     [SerializeField] private Animator animator;
-    public Animator Animator { get => animator; }
-
     [SerializeField] private ChangeModel changeModel;
-    public ChangeModel ChangeModel { get => changeModel; }
-
     [SerializeField] private SkillController skillController;
-    public SkillController SkillController { get => skillController; }
     #endregion
 
-    #region Initialization
+    #region Properties
+    public PlayerSO PlayerSO => playerSO;
+    public PlayerDamReceiver PlayerDamReceiver => playerDamReceiver;
+    public PlayerMovement PlayerMovement => playerMovement;
+    public PlayerImpact PlayerImpact => playerImpact;
+    public InventoryController InventoryController => inventoryController;
+    public DamageSender DamSender => damSender;
+    public Animator Animator => animator;
+    public ChangeModel ChangeModel => changeModel;
+    public SkillController SkillController => skillController;
+    #endregion
+
+    #region Unity Methods
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -68,7 +63,7 @@ public class PlayerController : MyMonoBehaviour
     {
         this.playerDamReceiver.SetHPMax(playerSO.maxHP);
         this.playerMovement.SetSpeed(playerSO.speed);
-        this.inventoryController.SetMaxSlot(playerSO.inventorySize);
+        this.inventoryController.Inventory.SetMaxSlot(playerSO.inventorySize);
         this.damSender.SetDamage(playerSO.damage);
         this.playerImpact.SetImpactRange(playerSO.attackRange);
         this.playerImpact.SetDelayTime(playerSO.attackDelay);
@@ -77,7 +72,7 @@ public class PlayerController : MyMonoBehaviour
     }
     #endregion
 
-    #region Component Loading Methods
+    #region Load Methods
     private void LoadPlayerSO()
     {
         if (this.playerSO != null) return;
@@ -98,7 +93,6 @@ public class PlayerController : MyMonoBehaviour
         this.playerMovement = GetComponentInChildren<PlayerMovement>();
         Debug.LogWarning(this.gameObject.name + ": Load PlayerMovement");
     }
-
 
     private void LoadPlayerImpact()
     {

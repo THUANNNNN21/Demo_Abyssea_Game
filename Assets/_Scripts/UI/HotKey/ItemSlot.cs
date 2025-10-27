@@ -39,15 +39,19 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
         if (droppedObject.TryGetComponent<DragItem>(out var dragItem))
         {
             InventoryController inventoryCtlr = PlayerController.Instance.InventoryController;
-            inventoryCtlr.SetItemSlotType(dragItem.ID, this.isHotKeySlot);
+            inventoryCtlr.Inventory.SetItemSlotType(dragItem.ID, this.isHotKeySlot);
 
+            Transform originalParent = dragItem.OriginalParent;
             // Nếu là slot drop, thực hiện drop item
             if (isDropable)
             {
-                InventoryDrop inventoryDrop = PlayerController.Instance.GetComponentInChildren<InventoryDrop>();
+                dragItem.transform.SetParent(originalParent);
+                dragItem.ItemImage.raycastTarget = true;
+                InventoryDrop inventoryDrop = PlayerController.Instance.InventoryController.InventoryDrop;
                 if (inventoryDrop != null)
                 {
                     inventoryDrop.DropItem(dragItem.ID);
+                    Debug.Log(dragItem.transform.parent);
                     Debug.Log("Item dropped!");
                 }
                 return;
@@ -65,16 +69,17 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
                         Debug.Log("Items upgraded");
                         return;
                     }
-
-                    Transform originalParent = dragItem.OriginalParent;
                     existingDragItem.SetOriginalParent(originalParent);
                     existingDragItem.transform.SetParent(originalParent);
-                    inventoryCtlr.SetItemSlotType(existingDragItem.ID, originalParent.GetComponent<ItemSlot>().isHotKeySlot);
+                    Debug.Log("existingDragItem new parent: " + existingDragItem.transform.parent);
+                    inventoryCtlr.Inventory.SetItemSlotType(existingDragItem.ID, originalParent.GetComponent<ItemSlot>().isHotKeySlot);
                     dragItem.SetOriginalParent(this.transform);
+
                     return;
                 }
             }
             dragItem.SetOriginalParent(this.transform);
+            Debug.Log("dragItem new parent: " + dragItem.transform.parent);
         }
     }
 }

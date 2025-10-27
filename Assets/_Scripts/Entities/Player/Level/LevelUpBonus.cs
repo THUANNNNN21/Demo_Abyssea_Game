@@ -61,8 +61,8 @@ public class LevelUpBonus : MyMonoBehaviour
 
     private void BonusInventorySize()
     {
-        int newInventorySize = LevelController.PlayerController.InventoryController.MaxSlot + 1;
-        this.LevelController.PlayerController.InventoryController.SetMaxSlot(newInventorySize);
+        int newInventorySize = LevelController.PlayerController.InventoryController.Inventory.MaxSlot + 1;
+        this.LevelController.PlayerController.InventoryController.Inventory.SetMaxSlot(newInventorySize);
     }
 
     private void SizeGrowth(int currentLevel)

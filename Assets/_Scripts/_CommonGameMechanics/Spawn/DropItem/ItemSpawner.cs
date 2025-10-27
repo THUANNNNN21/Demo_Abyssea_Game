@@ -116,10 +116,10 @@ public class ItemSpawner : SpawnObject
     }
     private GameObject GetPrefabInInventory(ItemInInventory itemInInventory)
     {
-        ItemID targetID = itemInInventory.itemSO.itemID;
+        ItemName targetID = itemInInventory.itemSO.itemName;
         foreach (var prefab in this.listPrefabs)
         {
-            if (prefab.GetComponent<ItemController>().ItemInInventory.itemSO.itemID == targetID)
+            if (prefab.GetComponent<ItemController>().ItemInInventory.itemSO.itemName == targetID)
             {
                 this.prefabToSpawn = prefab;
                 return prefab;

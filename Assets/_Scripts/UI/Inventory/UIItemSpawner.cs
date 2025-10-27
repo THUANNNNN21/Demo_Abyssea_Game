@@ -85,7 +85,7 @@ public class UIItemSpawner : SpawnObject
     }
     private void SetUIItem(UIItem uiItem, ItemInInventory item)
     {
-        uiItem.SetItemName(item.itemSO.itemID.ToString());
+        uiItem.SetItemName(item.itemSO.itemName.ToString());
         uiItem.SetItemCount(item.itemsCount, item.itemSO.defaultMaxStack);
         uiItem.SetItemSprite(item.itemSO.sprite);
         uiItem.SetAbleToSelectSkill(item.itemSO.skillType);
@@ -138,7 +138,6 @@ public class UIItemSpawner : SpawnObject
         for (int i = hotKeyTransform.childCount - 1; i >= 0; i--)
         {
             Transform child = hotKeyTransform.GetChild(i);
-            // Kiểm tra nếu là item inventory (có UIItem component)
             if (child.GetComponent<UIItem>() != null)
             {
                 Debug.Log($"Despawning hotkey item: {child.gameObject.name}");

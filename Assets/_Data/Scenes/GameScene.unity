@@ -620,7 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec82c97872664b399ea0ec4cbcc1b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DropPoint
-  inventoryController: {fileID: 1185701809}
+  inventoryController: {fileID: 0}
 --- !u!1 &245612067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7291d619d74e24d9780c941197201761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemUpgrade
-  inventoryController: {fileID: 1185701809}
+  inventoryController: {fileID: 0}
 --- !u!1 &395582771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,9 +1414,6 @@ MonoBehaviour:
   baseMount: {fileID: 21300000, guid: f8199ebe27bcc4522afc26d026b52770, type: 2}
   baseBody: {fileID: 21300000, guid: ca2fc9088b3eb4bdeb253953ce5fd73c, type: 2}
   baseWing: {fileID: 21300000, guid: 50354e8237e3c46b5a69b9dd48917f21, type: 2}
-  testMountSprite: {fileID: 0}
-  testBodySprite: {fileID: 0}
-  testWingSprite: {fileID: 0}
 --- !u!1 &428350390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,7 +1626,7 @@ MonoBehaviour:
   playerDamReceiver: {fileID: 376096219}
   playerMovement: {fileID: 1693061212}
   playerImpact: {fileID: 875671751}
-  inventoryController: {fileID: 1185701809}
+  inventoryController: {fileID: 0}
   damSender: {fileID: 376096218}
   animator: {fileID: 8765611468073613857}
   changeModel: {fileID: 426207991}
@@ -2597,7 +2594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03efdf2a08d6411fb9491360e9648c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDrop
-  inventoryController: {fileID: 1185701809}
+  inventoryController: {fileID: 0}
   dropPoint: {fileID: 195460221}
 --- !u!1 &828422156
 GameObject:
@@ -3473,7 +3470,7 @@ GameObject:
   - component: {fileID: 1185701808}
   - component: {fileID: 1185701809}
   m_Layer: 3
-  m_Name: Inventory
+  m_Name: InventoryCtrl
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3492,9 +3489,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1649463668}
   - {fileID: 1235507578}
   - {fileID: 377061873}
   - {fileID: 809370862}
+  - {fileID: 1462302337}
   m_Father: {fileID: 519011900}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1185701809
@@ -3510,10 +3509,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryController
   itemLooter: {fileID: 1235507582}
-  itemUpgrade: {fileID: 0}
-  maxSlot: 20
-  listItems: []
-  inventorySort: 1
+  itemUpgrade: {fileID: 377061874}
+  inventory: {fileID: 1649463669}
+  inventorySort: {fileID: 1462302338}
+  inventoryDrop: {fileID: 809370863}
 --- !u!1 &1217134155
 GameObject:
   m_ObjectHideFlags: 0
@@ -3919,7 +3918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba0924effc5141b3842c44053d28313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemLooter
-  inventoryController: {fileID: 1185701809}
+  inventoryController: {fileID: 0}
   rb: {fileID: 1235507580}
   lootingCollider: {fileID: 1235507581}
   nearbyItems: []
@@ -4867,6 +4866,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1462302336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1462302337}
+  - component: {fileID: 1462302338}
+  m_Layer: 3
+  m_Name: InventorySort
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1462302337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462302336}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1185701808}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1462302338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462302336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88c53896ab87f4a2e888cbd694b17fd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventorySort
+  inventoryController: {fileID: 1185701809}
+  invSortType: 1
 --- !u!1 &1464020538
 GameObject:
   m_ObjectHideFlags: 0
@@ -5109,6 +5154,53 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1649463667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649463668}
+  - component: {fileID: 1649463669}
+  m_Layer: 3
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1649463668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649463667}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1185701808}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1649463669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649463667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b9398894db14a059d1d950024d75ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  inventoryController: {fileID: 0}
+  maxSlot: 20
+  listItems: []
 --- !u!1 &1655975588
 GameObject:
   m_ObjectHideFlags: 0
@@ -6908,7 +7000,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 274884302429217011}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 713e6619f92cd4a96981071b69157d15, type: 3}
+  m_Script: {fileID: 11500000, guid: a0bb846b1ddd74739b297cd91ae7f021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationEvent
   playerController: {fileID: 519011901}

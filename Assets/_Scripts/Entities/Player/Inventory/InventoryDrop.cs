@@ -43,13 +43,13 @@ public class InventoryDrop : MyMonoBehaviour
     }
     private void DropByID(string id, GameObject dropPoint)
     {
-        ItemInInventory itemInInventory = this.InventoryController.ListItems.Find(item => item.ID == id);
+        ItemInInventory itemInInventory = this.InventoryController.Inventory.ListItems.Find(item => item.ID == id);
         if (itemInInventory == null)
         {
             return;
         }
         ItemSpawner.Instance.DropItemInInventory(itemInInventory, dropPoint);
-        InventoryController.DeductItem(itemInInventory.itemSO.itemID, itemInInventory.upgradeLevel, 1);
+        InventoryController.Inventory.DeductItem(itemInInventory.itemSO.itemName, itemInInventory.upgradeLevel, 1);
     }
     // private void DropByIndex(int index, GameObject dropPoint)
     // {

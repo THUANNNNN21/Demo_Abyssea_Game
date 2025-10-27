@@ -135,7 +135,7 @@ public class ItemLooter : MyMonoBehaviour
         if (ableToPickup == null) return false;
 
         var itemInInventory = ableToPickup.GetItemInInventory();
-        return this.inventoryController.AddItem(
+        return this.inventoryController.Inventory.AddItem(
             itemInInventory,
             itemInInventory.upgradeLevel,
             1

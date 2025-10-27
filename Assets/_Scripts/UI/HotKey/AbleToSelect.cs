@@ -122,7 +122,7 @@ public class AbleToSelect : MonoBehaviour
         if (item != null && item.itemType == ItemType.Equipment)
         {
             this.equipmentItem = item;
-            Debug.Log($"[AbleToSelect] Equipment set to: {item.itemID}");
+            Debug.Log($"[AbleToSelect] Equipment set to: {item.itemName}");
         }
         else
         {

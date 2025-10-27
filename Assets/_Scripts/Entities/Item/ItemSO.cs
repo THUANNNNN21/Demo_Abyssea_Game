@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemSO", menuName = "Scriptable Objects/ItemSO")]
 public class ItemSO : ScriptableObject
 {
-    public ItemID itemID = ItemID.None;
+    public ItemName itemName = ItemName.None;
     public ItemType itemType = ItemType.None;
 
     [Header("Equipment Settings")]

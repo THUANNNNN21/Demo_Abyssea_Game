@@ -37,7 +37,7 @@ public class ItemUpgrade : MyMonoBehaviour
     // }
     public bool UpgradeItem(string id)
     {
-        ItemInInventory itemInInventory = this.InventoryController.GetItemByID(id);
+        ItemInInventory itemInInventory = this.InventoryController.Inventory.GetItemByID(id);
         if (itemInInventory == null)
         {
             Debug.Log("Item not found");
@@ -53,7 +53,7 @@ public class ItemUpgrade : MyMonoBehaviour
         if (!this.ItemUpgradeable(upgradeLevels, itemInInventory.ID)) return false;
         if (!this.HaveEnoughIngredients(itemInInventory.upgradeLevel, upgradeLevels)) return false;
         this.DeductIngredients(itemInInventory.upgradeLevel, upgradeLevels);
-        this.InventoryController.AddItem(itemInInventory, itemInInventory.upgradeLevel + 1, 1);
+        this.InventoryController.Inventory.AddItem(itemInInventory, itemInInventory.upgradeLevel + 1, 1);
         AfterUpgradeItem?.Invoke();
         return true;
     }
@@ -72,7 +72,7 @@ public class ItemUpgrade : MyMonoBehaviour
     {
         if (upgradeLevels == null) return false;
         if (upgradeLevels.Count < 1) return false;
-        ItemInInventory itemInInventory = this.InventoryController.GetItemByID(id);
+        ItemInInventory itemInInventory = this.InventoryController.Inventory.GetItemByID(id);
         if (itemInInventory == null) return false;
         if (itemInInventory.upgradeLevel >= upgradeLevels.Count)
         {
@@ -85,15 +85,15 @@ public class ItemUpgrade : MyMonoBehaviour
     {
         int itemCount;
         int itemLevel;
-        ItemID ingredientID;
+        ItemName ingredientID;
         if (currentUpgradeLevel > upgradeLevels.Count) return false;
         ItemRecipe currentLevel = upgradeLevels[currentUpgradeLevel];
         foreach (ItemIngredient ingredient in currentLevel.ingredients)
         {
-            ingredientID = ingredient.itemSO.itemID;
+            ingredientID = ingredient.itemSO.itemName;
             itemCount = ingredient.amount;
             itemLevel = ingredient.itemLevel;
-            if (!InventoryController.ItemCheck(ingredientID, itemLevel, itemCount)) return false;
+            if (!InventoryController.Inventory.ItemCheck(ingredientID, itemLevel, itemCount)) return false;
         }
         return true;
     }
@@ -101,14 +101,14 @@ public class ItemUpgrade : MyMonoBehaviour
     {
         int itemCount;
         int itemLevel;
-        ItemID ingredientID;
+        ItemName ingredientID;
         ItemRecipe currentLevel = upgradeLevels[currentUpgradeLevel];
         foreach (ItemIngredient ingredient in currentLevel.ingredients)
         {
-            ingredientID = ingredient.itemSO.itemID;
+            ingredientID = ingredient.itemSO.itemName;
             itemCount = ingredient.amount;
             itemLevel = ingredient.itemLevel;
-            this.InventoryController.DeductItem(ingredientID, itemLevel, itemCount);
+            this.InventoryController.Inventory.DeductItem(ingredientID, itemLevel, itemCount);
         }
     }
 }

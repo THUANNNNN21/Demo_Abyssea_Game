@@ -21,16 +21,4 @@ public class ProjectileAnimmationEvent : MyMonoBehaviour
     {
         this.projectileController.DespawnByDistance.HandleDespawn();
     }
-    // public void OnAppearAnimationComplete()
-    // {
-    //     this.projectileController.ObjAppearing.FullyAppeared();
-    // }
-    // public void OnShootAnimationComplete()
-    // {
-    //     for (int i = 0; i < this.projectileController.EnemyShooting.Count; i++)
-    //     {
-    //         var shooting = this.projectileController.EnemyShooting[i];
-    //         shooting.TriggerOnStopShooting();
-    //     }
-    // }
 }

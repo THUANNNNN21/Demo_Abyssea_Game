@@ -2,28 +2,28 @@ using UnityEngine;
 
 public class PlayerMovement : MyMonoBehaviour
 {
+    #region Inspector Fields
     [SerializeField] private PlayerController playerController;
-    public PlayerController PlayerController { get => playerController; }
     [Header("Movement Settings")]
-    [SerializeField] float speed;
-    public float Speed { get => speed; }
+    [SerializeField] private float speed;
+    #endregion
 
+    #region Properties
+    public PlayerController PlayerController => playerController;
+    public float Speed => speed;
+    #endregion
+
+    #region Private Fields
     private Vector2 moveInput;
     private float horizontal;
     private float vertical;
+    #endregion
 
+    #region Unity Methods
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadPlayerController();
-    }
-
-    private void LoadPlayerController()
-    {
-        if (this.playerController == null)
-        {
-            this.playerController = GetComponentInParent<PlayerController>();
-        }
     }
 
     private void OnEnable()
@@ -36,12 +36,25 @@ public class PlayerMovement : MyMonoBehaviour
         InputManager.OnMoveInput -= OnMoveInputReceived;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         this.UpdateAxisFromInput();
         this.MovementByAxis();
         this.RotateController();
     }
+    #endregion
+
+    #region Load Methods
+    private void LoadPlayerController()
+    {
+        if (this.playerController == null)
+        {
+            this.playerController = GetComponentInParent<PlayerController>();
+        }
+    }
+    #endregion
+
+    #region Input Methods
     private void OnMoveInputReceived(Vector2 input)
     {
         this.moveInput = input;
@@ -52,7 +65,9 @@ public class PlayerMovement : MyMonoBehaviour
         this.horizontal = moveInput.x;
         this.vertical = moveInput.y;
     }
+    #endregion
 
+    #region Movement Methods
     private void MovementByAxis()
     {
         Vector3 direction = new(horizontal, vertical, 0f);
@@ -63,7 +78,6 @@ public class PlayerMovement : MyMonoBehaviour
         }
 
         this.transform.parent.position += speed * Time.fixedDeltaTime * direction;
-        Debug.DrawRay(this.transform.parent.position, direction, Color.red);
     }
 
     private void RotateController()
@@ -80,14 +94,12 @@ public class PlayerMovement : MyMonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region Public Methods
     public void SetSpeed(float speed)
     {
         this.speed = speed;
     }
-
-    public Vector2 GetMoveInput()
-    {
-        return moveInput;
-    }
+    #endregion
 }

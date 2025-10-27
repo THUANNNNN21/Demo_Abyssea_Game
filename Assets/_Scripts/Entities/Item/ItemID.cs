@@ -1,4 +1,4 @@
-public enum ItemID
+public enum ItemName
 {
     None,
     Wing,

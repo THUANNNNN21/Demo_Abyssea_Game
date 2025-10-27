@@ -2,18 +2,29 @@ using UnityEngine;
 
 public class ChangeModel : MyMonoBehaviour
 {
+    #region Inspector Fields
     [SerializeField] private SpriteRenderer mountModel;
-    public SpriteRenderer MountModel { get => mountModel; }
     [SerializeField] private SpriteRenderer bodyModel;
-    public SpriteRenderer BodyModel { get => bodyModel; }
     [SerializeField] private SpriteRenderer leftWingModel;
-    public SpriteRenderer LeftWingModel { get => leftWingModel; }
     [SerializeField] private SpriteRenderer rightWingModel;
-    public SpriteRenderer RightWingModel { get => rightWingModel; }
     [SerializeField] private Sprite baseMount;
     [SerializeField] private Sprite baseBody;
     [SerializeField] private Sprite baseWing;
 
+    // [Header("Test Change Model")]
+    // [SerializeField] private Sprite testMountSprite;
+    // [SerializeField] private Sprite testBodySprite;
+    // [SerializeField] private Sprite testWingSprite;
+    #endregion
+
+    #region Properties
+    public SpriteRenderer MountModel { get => mountModel; }
+    public SpriteRenderer BodyModel { get => bodyModel; }
+    public SpriteRenderer LeftWingModel { get => leftWingModel; }
+    public SpriteRenderer RightWingModel { get => rightWingModel; }
+    #endregion
+
+    #region Unity Methods
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -31,6 +42,9 @@ public class ChangeModel : MyMonoBehaviour
         this.ChangeBodySprite(baseBody);
         this.ChangeWingSprite(baseWing);
     }
+    #endregion
+
+    #region Load Methods
     private void LoadDefaultModel()
     {
         baseMount = Resources.Load<Sprite>("Sprites/Mount/Mount0");
@@ -65,7 +79,9 @@ public class ChangeModel : MyMonoBehaviour
         this.rightWingModel = this.mountModel.transform.Find("WingRight").GetComponent<SpriteRenderer>();
         Debug.LogWarning(this.gameObject.name + ": Load RightWingModel");
     }
+    #endregion
 
+    #region Change Sprite Methods
     public void ChangeMountSprite(Sprite newSprite)
     {
         if (newSprite == null)
@@ -74,7 +90,6 @@ public class ChangeModel : MyMonoBehaviour
             return;
         }
         this.mountModel.sprite = newSprite;
-        // Debug.Log($"[ChangeModel] Changed Mount to: {newSprite.name}");
     }
 
     public void ChangeBodySprite(Sprite newSprite)
@@ -85,7 +100,6 @@ public class ChangeModel : MyMonoBehaviour
             return;
         }
         this.bodyModel.sprite = newSprite;
-        // Debug.Log($"[ChangeModel] Changed Body to: {newSprite.name}");
     }
 
     public void ChangeWingSprite(Sprite newSprite)
@@ -97,10 +111,10 @@ public class ChangeModel : MyMonoBehaviour
         }
         this.leftWingModel.sprite = newSprite;
         this.rightWingModel.sprite = newSprite;
-        // Debug.Log($"[ChangeModel] Changed Wing to: {newSprite.name}");
     }
+    #endregion
 
-    // NEW METHOD: Equip item dựa theo ItemModelType
+    #region Equip/Unequip Methods
     public void EquipItem(ItemSO itemSO)
     {
         if (itemSO == null)
@@ -111,13 +125,13 @@ public class ChangeModel : MyMonoBehaviour
 
         if (itemSO.itemType != ItemType.Equipment)
         {
-            Debug.LogWarning($"[ChangeModel] Item {itemSO.itemID} is not equipment!");
+            Debug.LogWarning($"[ChangeModel] Item {itemSO.itemName} is not equipment!");
             return;
         }
 
         if (itemSO.sprite == null)
         {
-            Debug.LogError($"[ChangeModel] Item {itemSO.itemID} has no sprite!");
+            Debug.LogError($"[ChangeModel] Item {itemSO.itemName} has no sprite!");
             return;
         }
 
@@ -125,17 +139,14 @@ public class ChangeModel : MyMonoBehaviour
         {
             case ItemModelType.Mount:
                 ChangeMountSprite(itemSO.sprite);
-                // Debug.Log($"[ChangeModel] Equipped Mount: {itemSO.itemID}");
                 break;
 
             case ItemModelType.Body:
                 ChangeBodySprite(itemSO.sprite);
-                // Debug.Log($"[ChangeModel] Equipped Body: {itemSO.itemID}");
                 break;
 
             case ItemModelType.Wing:
                 ChangeWingSprite(itemSO.sprite);
-                // Debug.Log($"[ChangeModel] Equipped Wing: {itemSO.itemID}");
                 break;
 
             default:
@@ -144,25 +155,20 @@ public class ChangeModel : MyMonoBehaviour
         }
     }
 
-    // NEW METHOD: Unequip và reset về default
     public void UnequipItem(ItemModelType modelType)
     {
         switch (modelType)
         {
             case ItemModelType.Mount:
                 ChangeMountSprite(this.baseMount);
-                // Debug.Log("[ChangeModel] Unequipped Mount");
                 break;
 
             case ItemModelType.Body:
                 ChangeBodySprite(this.baseBody);
-                ChangeBodySprite(baseBody);
-                // Debug.Log("[ChangeModel] Unequipped Body");
                 break;
 
             case ItemModelType.Wing:
                 ChangeWingSprite(this.baseWing);
-                // Debug.Log("[ChangeModel] Unequipped Wing");
                 break;
 
             default:
@@ -170,28 +176,26 @@ public class ChangeModel : MyMonoBehaviour
                 break;
         }
     }
+    #endregion
 
-    [Header("Test Change Model")]
-    [SerializeField] private Sprite testMountSprite;
-    [SerializeField] private Sprite testBodySprite;
-    [SerializeField] private Sprite testWingSprite;
+    #region Test Methods
+    // [ContextMenu("Test Change Wing")]
+    // public void TestChangeWing()
+    // {
+    //     this.testWingSprite = Resources.Load<Sprite>("Sprites/Wing/Wing1");
+    //     this.ChangeWingSprite(testWingSprite);
+    // }
 
-    [ContextMenu("Test Change Wing")]
-    public void TestChangeWing()
-    {
-        this.testWingSprite = Resources.Load<Sprite>("Sprites/Wing/Wing1");
-        this.ChangeWingSprite(testWingSprite);
-    }
+    // [ContextMenu("Test Change Body")]
+    // public void TestChangeBody()
+    // {
+    //     this.ChangeBodySprite(testBodySprite);
+    // }
 
-    [ContextMenu("Test Change Body")]
-    public void TestChangeBody()
-    {
-        this.ChangeBodySprite(testBodySprite);
-    }
-
-    [ContextMenu("Test Change Mount")]
-    public void TestChangeMount()
-    {
-        this.ChangeMountSprite(testMountSprite);
-    }
+    // [ContextMenu("Test Change Mount")]
+    // public void TestChangeMount()
+    // {
+    //     this.ChangeMountSprite(testMountSprite);
+    // }
+    #endregion
 }
