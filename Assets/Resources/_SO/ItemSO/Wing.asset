@@ -14,28 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 1
   itemType: 1
+  itemModelType: 3
   sprite: {fileID: -1578093663, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
-  skillType: 2
+  skillType: 4
   defaultMaxStack: 3
   levelUpRecipes:
   - ingredients:
     - itemSO: {fileID: 11400000}
       amount: 1
       itemLevel: 0
-    - itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
+    - itemSO: {fileID: 11400000}
       amount: 1
       itemLevel: 0
   - ingredients:
     - itemSO: {fileID: 11400000}
       amount: 1
       itemLevel: 1
-    - itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
+    - itemSO: {fileID: 11400000}
       amount: 1
       itemLevel: 1
   - ingredients:
     - itemSO: {fileID: 11400000}
       amount: 1
       itemLevel: 2
-    - itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
+    - itemSO: {fileID: 11400000}
       amount: 1
       itemLevel: 2

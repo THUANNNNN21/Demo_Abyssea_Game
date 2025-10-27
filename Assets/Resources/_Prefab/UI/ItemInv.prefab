@@ -319,6 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbleToSelect
   skillType: 0
+  equipmentItem: {fileID: 0}
 --- !u!1 &7153118093566038213
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +386,7 @@ MonoBehaviour:
   itemNameText: {fileID: 6631200093182103644}
   itemCountText: {fileID: 6676157551007348228}
   ableToSelect: {fileID: 2666776569261969625}
+  dragItem: {fileID: 3038721315421744223}
 --- !u!114 &3038721315421744223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DragItem
   originalParent: {fileID: 0}
   itemImage: {fileID: 2487876786022851577}
+  id: 
 --- !u!1 &8989344716074897012
 GameObject:
   m_ObjectHideFlags: 0

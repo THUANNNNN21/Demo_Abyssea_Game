@@ -12,12 +12,15 @@ public class UIItem : MyMonoBehaviour
     public TextMeshProUGUI ItemCountText => itemCountText;
     [SerializeField] AbleToSelect ableToSelect;
     public AbleToSelect AbleToSelect => ableToSelect;
+    [SerializeField] private DragItem dragItem;
+    public DragItem DragItem => dragItem;
     protected override void LoadComponents()
     {
         this.LoadItemImage();
         this.LoadItemNameText();
         this.LoadItemCountText();
         this.LoadAbleToSelect();
+        this.LoadDragItem();
     }
     private void LoadItemImage()
     {
@@ -43,6 +46,12 @@ public class UIItem : MyMonoBehaviour
         this.ableToSelect = GetComponentInChildren<AbleToSelect>();
         Debug.LogWarning($"[{this.gameObject.name}] AbleToSelect not found, please check again!");
     }
+    private void LoadDragItem()
+    {
+        if (this.dragItem != null) return;
+        this.dragItem = GetComponent<DragItem>();
+        Debug.LogWarning($"[{this.gameObject.name}] DragItem not found, please check again!");
+    }
     public void SetItemName(string name)
     {
         this.ItemNameText.text = name;
@@ -60,6 +69,24 @@ public class UIItem : MyMonoBehaviour
         if (this.AbleToSelect != null)
         {
             this.AbleToSelect.SkillType = skillType;
+        }
+    }
+    public void SetAbleToSelectEquipment(ItemSO equipmentItem)
+    {
+        if (this.AbleToSelect != null)
+        {
+            this.AbleToSelect.EquipmentItem = equipmentItem;
+        }
+    }
+    public void SetID(string id)
+    {
+        this.dragItem.SetID(id);
+    }
+    public void SetCurrentLevel(int level)
+    {
+        if (this.dragItem != null)
+        {
+            this.dragItem.SetCurrentLevel(level);
         }
     }
 }

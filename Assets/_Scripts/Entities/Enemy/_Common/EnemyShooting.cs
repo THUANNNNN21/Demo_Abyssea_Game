@@ -84,7 +84,7 @@ public class EnemyShooting : Shooting, IShootingObservable
             if (minions[i] == null || !minions[i].gameObject.activeSelf)
             {
                 minions.RemoveAt(i);
-                Debug.Log($"Removed inactive minion at index {i}");
+                // Debug.Log($"Removed inactive minion at index {i}");
             }
         }
     }

@@ -65,7 +65,7 @@ public class Burn : MyMonoBehaviour
         isBurning = true;
         burnTimer = 0f;
         tickTimer = 0f;
-        Debug.Log($"Bắt đầu burn trong {burningTime} giây");
+        // Debug.Log($"Bắt đầu burn trong {burningTime} giây");
     }
     private void BurningProcess()
     {
@@ -132,7 +132,7 @@ public class Burn : MyMonoBehaviour
     private void SendDamage(Transform enemy)
     {
         this.BurnController.SkillController.PlayerController.DamSender.SendDamage(enemy, this.burnDamage);
-        Debug.Log($"Đốt {enemy.name} gây {burnDamage} sát thương");
+        // Debug.Log($"Đốt {enemy.name} gây {burnDamage} sát thương");
     }
     public void SetRange(float range)
     {

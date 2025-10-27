@@ -47,7 +47,7 @@ public class LevelUp : MyMonoBehaviour
         this.ResetCurrentExp();
         this.PlayAniLevelUp();
         this.UpdateNextLevelExpRequirement();
-        Debug.Log($"Level Up: {currentLevel - 1} --> {currentLevel}!!!");
+        // Debug.Log($"Level Up: {currentLevel - 1} --> {currentLevel}!!!");
         OnLevelUp?.Invoke(currentLevel);
     }
     private void ResetCurrentExp()

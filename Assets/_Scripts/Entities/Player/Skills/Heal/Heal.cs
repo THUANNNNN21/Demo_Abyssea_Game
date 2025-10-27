@@ -38,7 +38,7 @@ public class Heal : MyMonoBehaviour
         healTimer = 0f;
         tickTimer = 0f;
 
-        Debug.Log($"Bắt đầu heal trong {healDuration} giây, hồi {healPercentPerSecond}% máu/giây");
+        // Debug.Log($"Bắt đầu heal trong {healDuration} giây, hồi {healPercentPerSecond}% máu/giây");
     }
 
     private void HealingProcess()
@@ -55,7 +55,7 @@ public class Heal : MyMonoBehaviour
             int healAmount = Mathf.RoundToInt(healMax * (healPercentPerSecond / 100f));
             healController.SkillController.PlayerController.PlayerDamReceiver.Add(healAmount);
 
-            Debug.Log($"Hồi {healAmount} HP ({healPercentPerSecond}%). HP hiện tại: {healController.SkillController.PlayerController.PlayerDamReceiver.Health}/{healController.SkillController.PlayerController.PlayerDamReceiver.HealthMax}");
+            // Debug.Log($"Hồi {healAmount} HP ({healPercentPerSecond}%). HP hiện tại: {healController.SkillController.PlayerController.PlayerDamReceiver.Health}/{healController.SkillController.PlayerController.PlayerDamReceiver.HealthMax}");
 
             tickTimer -= 1f;
         }
@@ -66,7 +66,7 @@ public class Heal : MyMonoBehaviour
             isHealing = false;
             healTimer = 0f;
             tickTimer = 0f;
-            Debug.Log("Kết thúc heal");
+            // Debug.Log("Kết thúc heal");
             this.healController.ActiveHeal.StopHeal();
         }
     }

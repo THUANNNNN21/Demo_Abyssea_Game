@@ -29,19 +29,9 @@ public class InventoryDrop : MyMonoBehaviour
             this.dropPoint = this.GetDropPoint();
         }
     }
-    private void OnEnable()
+    public void DropItem(string id)
     {
-        InputManager.OnDropItem += DropItem;
-    }
-    private void OnDisable()
-    {
-        InputManager.OnDropItem -= DropItem;
-    }
-    private void DropItem(int itemPosition)
-    {
-        if (itemPosition < 1 || itemPosition > 9) return;
-        int itemIndex = itemPosition - 1;
-        this.DropByIndex(itemIndex, this.GetDropPoint());
+        this.DropByID(id, this.dropPoint);
         AfterDropItem?.Invoke();
     }
     private GameObject GetDropPoint()
@@ -51,14 +41,24 @@ public class InventoryDrop : MyMonoBehaviour
             return dropPoint.gameObject;
         return null;
     }
-    private void DropByIndex(int index, GameObject dropPoint)
+    private void DropByID(string id, GameObject dropPoint)
     {
-        if (index > InventoryController.ListItems.Count - 1)
+        ItemInInventory itemInInventory = this.InventoryController.ListItems.Find(item => item.ID == id);
+        if (itemInInventory == null)
         {
             return;
         }
-        ItemInInventory itemInInventory = this.InventoryController.ListItems[index];
         ItemSpawner.Instance.DropItemInInventory(itemInInventory, dropPoint);
         InventoryController.DeductItem(itemInInventory.itemSO.itemID, itemInInventory.upgradeLevel, 1);
     }
+    // private void DropByIndex(int index, GameObject dropPoint)
+    // {
+    //     if (index > InventoryController.ListItems.Count - 1)
+    //     {
+    //         return;
+    //     }
+    //     ItemInInventory itemInInventory = this.InventoryController.ListItems[index];
+    //     ItemSpawner.Instance.DropItemInInventory(itemInInventory, dropPoint);
+    //     InventoryController.DeductItem(itemInInventory.itemSO.itemID, itemInInventory.upgradeLevel, 1);
+    // }
 }

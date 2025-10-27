@@ -70,7 +70,7 @@ public class InputManager : MonoBehaviour
 
             if (positionActions[i] == null)
             {
-                Debug.LogWarning($"Action '{actionName}' not found in Input Actions");
+                // Debug.LogWarning($"Action '{actionName}' not found in Input Actions");
             }
         }
     }

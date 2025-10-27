@@ -80,7 +80,7 @@ public class ItemSpawner : SpawnObject
                     listDroppedItems.Add(item);
                 }
             }
-            Debug.Log($"Item: {item.itemInInventory.itemSO.name} - Rate: {rate} - ItemRate: {itemRate}");
+            // Debug.Log($"Item: {item.itemInInventory.itemSO.name} - Rate: {rate} - ItemRate: {itemRate}");
             if (rate <= itemRate)
             {
                 listDroppedItems.Add(item);

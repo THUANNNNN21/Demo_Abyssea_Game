@@ -62,15 +62,15 @@ public class UIInventory : MyMonoBehaviour
     {
         this.uiInventoryController.UISlotInventorySpawner.ClearItems();
         int maxSlot = PlayerController.Instance.InventoryController.MaxSlot;
-        Debug.Log($"Spawning {maxSlot} slots");
+        // Debug.Log($"Spawning {maxSlot} slots");
 
         for (int i = 0; i < maxSlot; i++)
         {
             GameObject slot = this.uiInventoryController.UISlotInventorySpawner.SpawnItem();
-            if (slot != null)
-            {
-                Debug.Log($"Spawned slot {i}: {slot.name}");
-            }
+            // if (slot != null)
+            // {
+            //     Debug.Log($"Spawned slot {i}: {slot.name}");
+            // }
         }
     }
     private void ShowInventory(int level)
@@ -81,7 +81,7 @@ public class UIInventory : MyMonoBehaviour
     {
         // ✅ Get sorted items directly from InventoryController
         List<ItemInInventory> sortedItems = PlayerController.Instance.InventoryController.GetSortedItems();
-        Debug.Log($"ShowInventory called. Items count: {sortedItems.Count}");
+        // Debug.Log($"ShowInventory called. Items count: {sortedItems.Count}");
 
         if (sortedItems.Count == 0)
         {
@@ -96,16 +96,17 @@ public class UIInventory : MyMonoBehaviour
             if (item != null)
             {
                 GameObject spawnedItem = this.uiInventoryController.UIInventorySpawner.SpawnItem(item);
-                if (spawnedItem != null)
-                {
-                    Debug.Log($"Spawned item: {item.itemSO.itemID}");
-                }
+                // if (spawnedItem != null)
+                // {
+                //     Debug.Log($"Spawned item: {item.itemSO.itemID}");
+                // }
             }
         }
     }
     private void ClearItems()
     {
         this.uiInventoryController.UIInventorySpawner.ClearItems();
+        Debug.Log("Cleared all items in UI Inventory");
     }
 }
 

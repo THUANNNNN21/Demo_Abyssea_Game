@@ -6,15 +6,25 @@ public class InventoryController : MyMonoBehaviour
 {
     [SerializeField] private ItemLooter itemLooter;
     public ItemLooter ItemLooter { get => itemLooter; }
+    [SerializeField] private ItemUpgrade itemUpgrade;
+    public ItemUpgrade ItemUpgrade { get => itemUpgrade; }
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadItemLooter();
+        this.LoadItemUpgrade();
     }
     private void LoadItemLooter()
     {
         if (this.itemLooter != null) return;
         this.itemLooter = GetComponentInChildren<ItemLooter>();
+        Debug.LogWarning(this.gameObject.name + ": Load ItemLooter");
+    }
+    private void LoadItemUpgrade()
+    {
+        if (this.itemUpgrade != null) return;
+        this.itemUpgrade = GetComponentInChildren<ItemUpgrade>();
+        Debug.LogWarning(this.gameObject.name + ": Load ItemUpgrade");
     }
     [SerializeField] private int maxSlot = 20;
     public int MaxSlot { get => maxSlot; }
@@ -32,7 +42,18 @@ public class InventoryController : MyMonoBehaviour
     }
     public bool AddItem(ItemInInventory itemInInventory, int itemLevel, int addCount)
     {
+        // Debug.Log($"[InventoryController] Trying to add: {itemInInventory.itemSO.itemID} | Level: {itemLevel} | Count: {addCount}");
+
         ItemSO itemSO = this.GetItemByID(itemInInventory.itemSO.itemID);
+
+        if (itemSO == null)
+        {
+            // Debug.LogError($"[InventoryController] ItemSO not found for ItemID: {itemInInventory.itemSO.itemID}");
+            return false; // ❌ Đây là lỗi
+        }
+
+        // Debug.Log($"[InventoryController] Found ItemSO: {itemSO.name}");
+
         ItemInInventory itemExist;
         ItemID itemID = itemInInventory.itemSO.itemID;
         int addRemain = addCount;
@@ -79,12 +100,23 @@ public class InventoryController : MyMonoBehaviour
     }
     private ItemSO GetItemByID(ItemID itemID)
     {
+        // Debug.Log($"[InventoryController] Searching for ItemID: {itemID}");
+
         var itemsSO = Resources.LoadAll("_SO/ItemSO", typeof(ItemSO));
+
+        // Debug.Log($"[InventoryController] Found {itemsSO.Length} items in Resources");
+
         foreach (ItemSO item in itemsSO)
         {
+            // Debug.Log($"  - Checking: {item.name} (ItemID: {item.itemID})");
+
             if (item.itemID != itemID) continue;
+
+            // Debug.Log($"[InventoryController] ✅ Match found: {item.name}");
             return item;
         }
+
+        // Debug.LogWarning($"[InventoryController] ❌ No ItemSO found for ItemID: {itemID}");
         return null;
     }
     private ItemInInventory GetItemNotFullStack(ItemID itemID, int itemLevel)
@@ -267,9 +299,28 @@ public class InventoryController : MyMonoBehaviour
     {
         listItems = SortItems();
     }
-
+    public void SetItemSlotType(string itemID, bool isHotKeySlot)
+    {
+        ItemInInventory item = listItems.FirstOrDefault(i => i.ID == itemID);
+        if (item != null)
+        {
+            item.isOnHotKeySlot = isHotKeySlot;
+            // Debug.Log($"[InventoryController] Set ItemID: {itemID} to isOnHotKeySlot: {isHotKeySlot}");
+        }
+    }
     void Start()
     {
         SortInventory(); // ✅ Sort on start
+    }
+    public ItemInInventory GetItemByID(string id)
+    {
+        foreach (ItemInInventory item in this.ListItems)
+        {
+            if (item.ID == id)
+            {
+                return item;
+            }
+        }
+        return null;
     }
 }

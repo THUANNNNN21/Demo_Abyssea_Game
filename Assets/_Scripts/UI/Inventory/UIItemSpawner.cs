@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(DespawnObject))]
@@ -53,6 +54,11 @@ public class UIItemSpawner : SpawnObject
     }
     public GameObject SpawnItem(ItemInInventory item)
     {
+        if (item.isOnHotKeySlot == true)
+        {
+            Debug.LogWarning("Item đang ở HotKeySlot, không thể spawn trong Inventory!");
+            return null;
+        }
         // Tìm slot trống trong ContentHolder (slot đã được spawn bởi UISlotSpawner)
         Transform emptySlot = this.FindEmptySlot();
         if (emptySlot == null)
@@ -64,16 +70,29 @@ public class UIItemSpawner : SpawnObject
         // Tạm thời set Spawnner là slot trống
         this.Spawnner = emptySlot.gameObject;
         GameObject itemObj = this.SpawnAndReturn();
-
         UIItem uiItem = itemObj.GetComponentInChildren<UIItem>();
+        this.SetUIItem(uiItem, item);
+
+        // UIItem uiItem = itemObj.GetComponentInChildren<UIItem>();
+        // uiItem.SetItemName(item.itemSO.itemID.ToString());
+        // uiItem.SetItemCount(item.itemsCount, item.itemSO.defaultMaxStack);
+        // uiItem.SetItemSprite(item.itemSO.sprite);
+        // uiItem.SetAbleToSelectSkill(item.itemSO.skillType);
+        // uiItem.SetAbleToSelectEquipment(item.itemSO);
+        // uiItem.SetID(item.ID);
+
+        return itemObj;
+    }
+    private void SetUIItem(UIItem uiItem, ItemInInventory item)
+    {
         uiItem.SetItemName(item.itemSO.itemID.ToString());
         uiItem.SetItemCount(item.itemsCount, item.itemSO.defaultMaxStack);
         uiItem.SetItemSprite(item.itemSO.sprite);
         uiItem.SetAbleToSelectSkill(item.itemSO.skillType);
-
-        return itemObj;
+        uiItem.SetAbleToSelectEquipment(item.itemSO);
+        uiItem.SetID(item.ID);
+        uiItem.SetCurrentLevel(item.upgradeLevel);
     }
-
     private Transform FindEmptySlot()
     {
         foreach (Transform slot in this.uiInventoryController.ContentHolder.transform)
@@ -88,6 +107,7 @@ public class UIItemSpawner : SpawnObject
     }
     public void ClearItems()
     {
+        this.ClearDirectItemsInHotKey();
         // Xóa items từ tất cả các slots trong ContentHolder
         foreach (Transform slot in this.uiInventoryController.ContentHolder.transform)
         {
@@ -96,9 +116,35 @@ public class UIItemSpawner : SpawnObject
                 // Xóa tất cả items trong slot này
                 foreach (Transform item in slot)
                 {
+                    Debug.Log($"Despawning item: {item.gameObject.name}");
                     this.DespawnObject.ReturnObject(item.gameObject);
                 }
             }
+        }
+    }
+    public void ClearDirectItemsInHotKey()
+    {
+        // Tìm đối tượng duy nhất chứa HotKeyController
+        HotKeyController hotKeyController = GameObject.FindFirstObjectByType<HotKeyController>();
+        if (hotKeyController == null)
+        {
+            Debug.LogWarning("Không tìm thấy HotKeyController!");
+            return;
+        }
+
+        Transform hotKeyTransform = hotKeyController.transform;
+
+        // Xoá các con trực tiếp là item inventory
+        for (int i = hotKeyTransform.childCount - 1; i >= 0; i--)
+        {
+            Transform child = hotKeyTransform.GetChild(i);
+            // Kiểm tra nếu là item inventory (có UIItem component)
+            if (child.GetComponent<UIItem>() != null)
+            {
+                Debug.Log($"Despawning hotkey item: {child.gameObject.name}");
+                this.DespawnObject.ReturnObject(child.gameObject);
+            }
+            // Không xoá các item nằm sâu hơn (trong các con của con)
         }
     }
     // void Start()

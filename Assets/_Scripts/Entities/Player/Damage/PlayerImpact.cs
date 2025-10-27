@@ -75,7 +75,7 @@ public class PlayerImpact : Impact
             if (enemy != null)
             {
                 this.SendDamage(enemy);
-                Debug.Log("PlayerImpact: Attacked " + enemy.name);
+                // Debug.Log("PlayerImpact: Attacked " + enemy.name);
             }
         }
     }

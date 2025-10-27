@@ -18,7 +18,6 @@ public class PlayerDamReceiver : DamageReceiver
     protected override void OnDead()
     {
         base.OnDead();
-        Time.timeScale = 0f; // Pause the game
         Debug.LogWarning("Player has died. Game Over.");
     }
 }

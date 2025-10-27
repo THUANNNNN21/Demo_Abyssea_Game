@@ -8,6 +8,10 @@ public class DragItem : MyMonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public Transform OriginalParent => originalParent;
     [SerializeField] private Image itemImage;
     public Image ItemImage => itemImage;
+    [SerializeField] private string id;
+    public string ID => id;
+    [SerializeField] private int currentLevel;
+    public int CurrentLevel => currentLevel;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -40,5 +44,13 @@ public class DragItem : MyMonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public void SetOriginalParent(Transform parent)
     {
         this.originalParent = parent;
+    }
+    public void SetID(string id)
+    {
+        this.id = id;
+    }
+    public void SetCurrentLevel(int level)
+    {
+        this.currentLevel = level;
     }
 }

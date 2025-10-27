@@ -22,13 +22,13 @@ public class OnSelectSlot : MyMonoBehaviour
     private void OnEnable()
     {
         InputManager.OnItemSelected += HandleItemSelected;
-        InputManager.OnItemCast += HandleItemCast; // ✅ Add this line
+        InputManager.OnItemCast += HandleItemCast;
     }
 
     private void OnDisable()
     {
         InputManager.OnItemSelected -= HandleItemSelected;
-        InputManager.OnItemCast -= HandleItemCast; // ✅ Add this line
+        InputManager.OnItemCast -= HandleItemCast;
     }
 
     private void HandleItemSelected(int index)
@@ -40,12 +40,12 @@ public class OnSelectSlot : MyMonoBehaviour
         else Debug.LogWarning($"Invalid item index selected: {index + 1}", this);
     }
 
-    // ✅ Handle mouse click - only call selected item
+    // Cast chỉ dùng skill, không đổi equipment
     private void HandleItemCast()
     {
         if (currentSelectedItem != null)
         {
-            currentSelectedItem.OnSelect();
+            currentSelectedItem.CastSkill(); // ✅ Chỉ cast skill
         }
         else
         {
@@ -61,10 +61,14 @@ public class OnSelectSlot : MyMonoBehaviour
         if (ableToSelect == null)
         {
             currentSelectedItem = null;
+            Debug.LogWarning($"No AbleToSelect found in slot {slotNumber}");
         }
         else
         {
             currentSelectedItem = ableToSelect;
+
+            // ✅ Khi select, đổi equipment ngay
+            currentSelectedItem.EquipItem();
         }
     }
 }

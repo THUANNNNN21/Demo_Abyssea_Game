@@ -10,6 +10,7 @@ public class ItemInInventory
     public int upgradeLevel;
     public int maxStack;
     public int itemsCount;
+    public bool isOnHotKeySlot;
     public static string RandomID()
     {
         return RandomStringGenorator.Generate(26);

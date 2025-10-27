@@ -18,25 +18,31 @@ public class ItemUpgrade : MyMonoBehaviour
         if (this.inventoryController != null) return;
         inventoryController = GetComponentInParent<InventoryController>();
     }
-    private void OnEnable()
+    // public bool UpgradeItem(int itemIndex)
+    // {
+    //     if (itemIndex >= this.InventoryController.ListItems.Count || itemIndex < 0) return false;
+    //     ItemInInventory itemInInventory = this.InventoryController.ListItems[itemIndex];
+    //     if (itemInInventory.itemSO.itemType != ItemType.Equipment)
+    //     {
+    //         Debug.Log("Item is not equipment");
+    //         return false;
+    //     }
+    //     if (itemInInventory.itemsCount < 1) return false;
+    //     List<ItemRecipe> upgradeLevels = itemInInventory.itemSO.levelUpRecipes;
+    //     if (!this.ItemUpgradeable(upgradeLevels, itemIndex)) return false;
+    //     if (!this.HaveEnoughIngredients(itemInInventory.upgradeLevel, upgradeLevels)) return false;
+    //     this.DeductIngredients(itemInInventory.upgradeLevel, upgradeLevels);
+    //     this.InventoryController.AddItem(itemInInventory, itemInInventory.upgradeLevel + 1, 1);
+    //     return true;
+    // }
+    public bool UpgradeItem(string id)
     {
-        InputManager.OnUpgradeItem += HandleUpgradeItem;
-    }
-    private void OnDisable()
-    {
-        InputManager.OnUpgradeItem -= HandleUpgradeItem;
-    }
-    private void HandleUpgradeItem(int itemPosition)
-    {
-        if (itemPosition < 1 || itemPosition > 9) return;
-        int itemIndex = itemPosition - 1;
-        this.UpgradeItem(itemIndex);
-        AfterUpgradeItem?.Invoke();
-    }
-    public bool UpgradeItem(int itemIndex)
-    {
-        if (itemIndex >= this.InventoryController.ListItems.Count || itemIndex < 0) return false;
-        ItemInInventory itemInInventory = this.InventoryController.ListItems[itemIndex];
+        ItemInInventory itemInInventory = this.InventoryController.GetItemByID(id);
+        if (itemInInventory == null)
+        {
+            Debug.Log("Item not found");
+            return false;
+        }
         if (itemInInventory.itemSO.itemType != ItemType.Equipment)
         {
             Debug.Log("Item is not equipment");
@@ -44,17 +50,31 @@ public class ItemUpgrade : MyMonoBehaviour
         }
         if (itemInInventory.itemsCount < 1) return false;
         List<ItemRecipe> upgradeLevels = itemInInventory.itemSO.levelUpRecipes;
-        if (!this.ItemUpgradeable(upgradeLevels, itemIndex)) return false;
+        if (!this.ItemUpgradeable(upgradeLevels, itemInInventory.ID)) return false;
         if (!this.HaveEnoughIngredients(itemInInventory.upgradeLevel, upgradeLevels)) return false;
         this.DeductIngredients(itemInInventory.upgradeLevel, upgradeLevels);
         this.InventoryController.AddItem(itemInInventory, itemInInventory.upgradeLevel + 1, 1);
+        AfterUpgradeItem?.Invoke();
         return true;
     }
-    private bool ItemUpgradeable(List<ItemRecipe> upgradeLevels, int itemIndex)
+    // private bool ItemUpgradeable(List<ItemRecipe> upgradeLevels, int itemIndex)
+    // {
+    //     if (upgradeLevels == null) return false;
+    //     if (upgradeLevels.Count < 1) return false;
+    //     if (this.InventoryController.ListItems[itemIndex].upgradeLevel >= upgradeLevels.Count)
+    //     {
+    //         Debug.Log("Max level reached");
+    //         return false;
+    //     }
+    //     return true;
+    // }
+    private bool ItemUpgradeable(List<ItemRecipe> upgradeLevels, string id)
     {
         if (upgradeLevels == null) return false;
         if (upgradeLevels.Count < 1) return false;
-        if (this.InventoryController.ListItems[itemIndex].upgradeLevel >= upgradeLevels.Count)
+        ItemInInventory itemInInventory = this.InventoryController.GetItemByID(id);
+        if (itemInInventory == null) return false;
+        if (itemInInventory.upgradeLevel >= upgradeLevels.Count)
         {
             Debug.Log("Max level reached");
             return false;
