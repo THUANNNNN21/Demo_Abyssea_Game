@@ -586,7 +586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 195460222}
   - component: {fileID: 195460223}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: DropPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -910,7 +910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 312265256}
   - component: {fileID: 312265257}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1156,7 +1156,7 @@ GameObject:
   - component: {fileID: 376096217}
   - component: {fileID: 376096218}
   - component: {fileID: 376096219}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Damage
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1208,7 +1208,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6e91b2901414845a4ada57a84f1208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageSender
-  damage: 300
+  damage: 20
 --- !u!114 &376096219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1253,7 +1253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 377061873}
   - component: {fileID: 377061874}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: ItemUpgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1373,7 +1373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426207990}
   - component: {fileID: 426207991}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: ChangeModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1581,9 @@ GameObject:
   m_Component:
   - component: {fileID: 519011900}
   - component: {fileID: 519011901}
-  m_Layer: 3
+  - component: {fileID: 519011903}
+  - component: {fileID: 519011902}
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1626,11 +1628,84 @@ MonoBehaviour:
   playerDamReceiver: {fileID: 376096219}
   playerMovement: {fileID: 1693061212}
   playerImpact: {fileID: 875671751}
-  inventoryController: {fileID: 0}
+  inventoryController: {fileID: 1185701809}
   damSender: {fileID: 376096218}
   animator: {fileID: 8765611468073613857}
   changeModel: {fileID: 426207991}
   skillController: {fileID: 2141980352}
+--- !u!61 &519011902
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519011899}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.05251026, y: -0.2800553}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.1050205, y: 0.5449104}
+  m_EdgeRadius: 0
+--- !u!50 &519011903
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519011899}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1000
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1001 &555788760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1869,7 +1944,7 @@ GameObject:
   - component: {fileID: 588775105}
   - component: {fileID: 588775104}
   - component: {fileID: 588775106}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Burning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2559,7 +2634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 809370862}
   - component: {fileID: 809370863}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: ItemDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2606,7 +2681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 828422157}
   - component: {fileID: 828422158}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Burn
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -2731,7 +2806,7 @@ GameObject:
   - component: {fileID: 875671750}
   - component: {fileID: 875671749}
   - component: {fileID: 875671751}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Impact
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3252,7 +3327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994115087}
   - component: {fileID: 994115088}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: LevelUpBonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3305,6 +3380,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711d70093c9174d71835afa30601927f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSlot
+--- !u!1001 &1027344862
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1120374859379949814, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.4238834
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120374859379949814, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.6281626
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120374859379949814, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120374859379949814, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120374859379949814, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120374859379949814, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120374859379949814, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120374859379949814, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120374859379949814, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120374859379949814, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642428094254244692, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_Name
+      value: NormalEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642428094254244692, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
 --- !u!1001 &1087577698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3420,7 +3556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1180778824}
   - component: {fileID: 1180778825}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Warp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3451,14 +3587,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1180778823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71de6bdfa89b145df82a5e5194b912fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 1095db8437066410d8a629c157a8343e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Warp
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWarp
   timer: 0
   delayTime: 0
   isReady: 1
-  skillController: {fileID: 2141980352}
   warpDistance: 5
+  skillController: {fileID: 2141980352}
 --- !u!1 &1185701807
 GameObject:
   m_ObjectHideFlags: 0
@@ -3469,7 +3605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1185701808}
   - component: {fileID: 1185701809}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: InventoryCtrl
   m_TagString: Inventory
   m_Icon: {fileID: 0}
@@ -3821,7 +3957,7 @@ GameObject:
   - component: {fileID: 1235507581}
   - component: {fileID: 1235507580}
   - component: {fileID: 1235507582}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: ItemLooter
   m_TagString: Inventory
   m_Icon: {fileID: 0}
@@ -3932,7 +4068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1248779197}
   - component: {fileID: 1248779198}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Healing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3981,7 +4117,7 @@ GameObject:
   - component: {fileID: 1264157042}
   - component: {fileID: 1264157041}
   - component: {fileID: 1264157043}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: LevelFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4876,7 +5012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462302337}
   - component: {fileID: 1462302338}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: InventorySort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5164,7 +5300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1649463668}
   - component: {fileID: 1649463669}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5294,7 +5430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1693061211}
   - component: {fileID: 1693061212}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5329,7 +5465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerController: {fileID: 519011901}
-  speed: 10
+  speed: 12
 --- !u!212 &1712213465 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5398743867046132711, guid: 0dc7eaf01d7e24880b52c3c660312b3f, type: 3}
@@ -5515,7 +5651,7 @@ GameObject:
   - component: {fileID: 1898471953}
   - component: {fileID: 1898471955}
   - component: {fileID: 1898471954}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: HealFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5684,7 +5820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1933394412}
   - component: {fileID: 1933394413}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: LevelUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5943,7 +6079,7 @@ GameObject:
   - component: {fileID: 2059245993}
   - component: {fileID: 2059245995}
   - component: {fileID: 2059245994}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: BurnFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6281,7 +6417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2107993490}
   - component: {fileID: 2107993491}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: ActiveBurn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6329,7 +6465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2109573196}
   - component: {fileID: 2109573197}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6401,6 +6537,143 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871217197}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2141693074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2141693076}
+  - component: {fileID: 2141693075}
+  - component: {fileID: 2141693077}
+  m_Layer: 10
+  m_Name: characters_188
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &2141693075
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141693074}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 1357091964, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.01, y: 2.1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 1
+--- !u!4 &2141693076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141693074}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.7365, y: -0.7107, z: 0}
+  m_LocalScale: {x: 1.6139575, y: 2.0594, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2141693077
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141693074}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.07375598, y: 0.16280866}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.49034733, y: 0.13802457}
+    oldSize: {x: 2.01, y: 2.1}
+    newSize: {x: 2.01, y: 2.1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.8236842, y: 0.82567537}
+  m_EdgeRadius: 0
 --- !u!1 &2141980350
 GameObject:
   m_ObjectHideFlags: 0
@@ -6411,7 +6684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2141980351}
   - component: {fileID: 2141980352}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Skills
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6451,7 +6724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillController
   playerController: {fileID: 519011901}
   playerShooting: {fileID: 7145510723532323382}
-  warp: {fileID: 1180778825}
+  warp: {fileID: 0}
   burnController: {fileID: 828422158}
   healController: {fileID: 312265257}
 --- !u!1 &274884302416627308
@@ -6464,7 +6737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 274884302416627311}
   - component: {fileID: 274884302416627310}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WingLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6528,7 +6801,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &274884302416627311
 Transform:
   m_ObjectHideFlags: 0
@@ -6572,7 +6845,7 @@ GameObject:
   - component: {fileID: 274884302429217010}
   - component: {fileID: 8765611468073613857}
   - component: {fileID: 8765611468073613858}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6636,7 +6909,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &274884302480476914
 Transform:
   m_ObjectHideFlags: 0
@@ -6665,13 +6938,26 @@ GameObject:
   m_Component:
   - component: {fileID: 274884302480476914}
   - component: {fileID: 274884302480476877}
-  m_Layer: 0
+  - component: {fileID: 274884302480476916}
+  m_Layer: 10
   m_Name: Mount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!210 &274884302480476916
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274884302480476915}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 1
 --- !u!212 &274884303341836440
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6755,7 +7041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 274884303341836441}
   - component: {fileID: 274884303341836440}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WingRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6845,7 +7131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 274884303744615245}
   - component: {fileID: 274884303744615244}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6927,7 +7213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7145510723532323381}
   - component: {fileID: 7145510723532323382}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Shooting
   m_TagString: Untagged
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
@@ -7027,3 +7313,5 @@ SceneRoots:
   - {fileID: 1280610444}
   - {fileID: 292610024115018339}
   - {fileID: 2088507737}
+  - {fileID: 2141693076}
+  - {fileID: 1027344862}

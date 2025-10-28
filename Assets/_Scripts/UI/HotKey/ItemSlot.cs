@@ -1,9 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ItemSlot : MyMonoBehaviour, IDropHandler
 {
     [SerializeField] private bool isHotKeySlot = false;
+    public bool IsHotKeySlot => isHotKeySlot;
     [SerializeField] private bool isDropable = false;
     protected override void LoadComponents()
     {
@@ -61,7 +63,6 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
                 Debug.Log("Item dropped!");
                 return;
             }
-
             if (this.transform.childCount > 0)
             {
                 Transform existingItem = this.transform.GetChild(0);
@@ -74,17 +75,21 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
                         Debug.Log("Items upgraded");
                         return;
                     }
-                    existingDragItem.SetOriginalParent(originalParent);
-                    existingDragItem.transform.SetParent(originalParent);
-                    Debug.Log("existingDragItem new parent: " + existingDragItem.transform.parent);
-                    inventoryCtlr.Inventory.SetItemSlotType(existingDragItem.ID, beginSlot.isHotKeySlot);
+                    else
+                    {
+
+                        existingDragItem.SetOriginalParent(originalParent);
+                        existingDragItem.transform.SetParent(originalParent);
+                        Debug.Log("existingDragItem new parent: " + existingDragItem.transform.parent);
+                        inventoryCtlr.Inventory.SetItemSlotType(existingDragItem.ID, beginSlot.isHotKeySlot);
+                    }
                     dragItem.SetOriginalParent(this.transform);
 
                     return;
                 }
             }
-            dragItem.SetOriginalParent(this.transform);
-            Debug.Log("dragItem new parent: " + dragItem.transform.parent);
         }
+        dragItem.SetOriginalParent(this.transform);
+        Debug.Log("dragItem new parent: " + dragItem.transform.parent);
     }
 }

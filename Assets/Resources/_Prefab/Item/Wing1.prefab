@@ -53,6 +53,7 @@ MonoBehaviour:
     upgradeLevel: 0
     maxStack: 0
     itemsCount: 1
+    isOnHotKeySlot: 0
   despawnObject: {fileID: 5783317629572053019}
   spriteRenderer: {fileID: 94215865263035153}
 --- !u!114 &5783317629572053019
@@ -157,7 +158,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.79, y: 0.73}
+  m_Size: {x: 0.66, y: 0.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

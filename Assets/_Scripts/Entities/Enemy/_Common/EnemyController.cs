@@ -15,6 +15,8 @@ public class EnemyController : MyMonoBehaviour
 
     [SerializeField] private EnemyDamReceiver enemyDamReceiver;
     public EnemyDamReceiver EnemyDamReceiver { get => enemyDamReceiver; }
+    [SerializeField] private EnemyImpact enemyImpact;
+    public EnemyImpact EnemyImpact { get => enemyImpact; }
 
     [SerializeField] private DespawnByDistance despawnByDistance;
     public DespawnByDistance DespawnByDistance { get => despawnByDistance; }
@@ -28,6 +30,8 @@ public class EnemyController : MyMonoBehaviour
     public EnemySO EnemySO { get => enemySO; }
     [SerializeField] private Animator animator;
     public Animator Animator { get => animator; }
+    [SerializeField] private EnemyWarp warp;
+    public EnemyWarp Warp { get => warp; }
     [SerializeField] private EnemyLevelUp enemyLevelUp;
     public EnemyLevelUp EnemyLevelUp { get => enemyLevelUp; }
     [SerializeField] private List<EnemyShooting> enemyShooting;
@@ -38,6 +42,7 @@ public class EnemyController : MyMonoBehaviour
         this.LoadModel();
         this.LoadDamageSender();
         this.LoadDamageReceiver();
+        this.LoadEnemyImpact();
         this.LoadSO();
         this.LoadMovement();
         this.LoadDespawnByDistance();
@@ -47,6 +52,16 @@ public class EnemyController : MyMonoBehaviour
         this.LoadEnemyLevelUp();
         this.LoadShootingStateTracker();
         this.LoadListEnemyShooting();
+        this.LoadWarp();
+    }
+    private void LoadEnemyImpact()
+    {
+        if (this.enemyImpact != null) return;
+        else
+        {
+            this.enemyImpact = this.GetComponentInChildren<EnemyImpact>();
+            Debug.LogWarning($"LoadEnemyImpact: {this.gameObject.name}");
+        }
     }
     private void LoadModel()
     {
@@ -133,6 +148,15 @@ public class EnemyController : MyMonoBehaviour
         if (this.enemyShooting == null || this.enemyShooting.Count == 0)
         {
             this.enemyShooting = new List<EnemyShooting>(GetComponentsInChildren<EnemyShooting>());
+        }
+    }
+    private void LoadWarp()
+    {
+        if (this.warp != null) return;
+        else
+        {
+            this.warp = this.GetComponentInChildren<EnemyWarp>();
+            Debug.LogWarning($"LoadWarp: {this.gameObject.name}");
         }
     }
     protected override void LoadValues()

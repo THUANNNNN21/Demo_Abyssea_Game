@@ -17,13 +17,15 @@ public class PlayerMovement : MyMonoBehaviour
     private Vector2 moveInput;
     private float horizontal;
     private float vertical;
+    private Rigidbody2D rb;
     #endregion
 
     #region Unity Methods
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadPlayerController();
+        LoadPlayerController();
+        LoadRigidbody2D();
     }
 
     private void OnEnable()
@@ -38,18 +40,26 @@ public class PlayerMovement : MyMonoBehaviour
 
     private void FixedUpdate()
     {
-        this.UpdateAxisFromInput();
-        this.MovementByAxis();
-        this.RotateController();
+        UpdateAxisFromInput();
+        MovementByAxis();
+        RotateController();
     }
     #endregion
 
     #region Load Methods
     private void LoadPlayerController()
     {
-        if (this.playerController == null)
+        if (playerController == null)
         {
-            this.playerController = GetComponentInParent<PlayerController>();
+            playerController = GetComponentInParent<PlayerController>();
+        }
+    }
+
+    private void LoadRigidbody2D()
+    {
+        if (rb == null)
+        {
+            rb = transform.parent.GetComponentInParent<Rigidbody2D>();
         }
     }
     #endregion
@@ -57,13 +67,13 @@ public class PlayerMovement : MyMonoBehaviour
     #region Input Methods
     private void OnMoveInputReceived(Vector2 input)
     {
-        this.moveInput = input;
+        moveInput = input;
     }
 
     private void UpdateAxisFromInput()
     {
-        this.horizontal = moveInput.x;
-        this.vertical = moveInput.y;
+        horizontal = moveInput.x;
+        vertical = moveInput.y;
     }
     #endregion
 
@@ -77,7 +87,8 @@ public class PlayerMovement : MyMonoBehaviour
             direction.Normalize();
         }
 
-        this.transform.parent.position += speed * Time.fixedDeltaTime * direction;
+        Vector3 newPosition = transform.parent.position + speed * Time.fixedDeltaTime * direction;
+        rb.MovePosition(newPosition);
     }
 
     private void RotateController()
@@ -86,11 +97,11 @@ public class PlayerMovement : MyMonoBehaviour
         {
             if (horizontal > 0)
             {
-                this.playerController.Animator.SetFloat("MoveX", 1);
+                playerController.Animator.SetFloat("MoveX", 1);
             }
             else if (horizontal < 0)
             {
-                this.playerController.Animator.SetFloat("MoveX", -1);
+                playerController.Animator.SetFloat("MoveX", -1);
             }
         }
     }

@@ -53,6 +53,7 @@ MonoBehaviour:
     upgradeLevel: 0
     maxStack: 3
     itemsCount: 1
+    isOnHotKeySlot: 0
   despawnObject: {fileID: 2428324512033071078}
   spriteRenderer: {fileID: 4016973381470316062}
 --- !u!114 &2428324512033071078

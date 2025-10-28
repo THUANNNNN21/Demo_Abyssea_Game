@@ -9,8 +9,8 @@ public class SkillController : MyMonoBehaviour
     [SerializeField] private PlayerShooting playerShooting;
     public PlayerShooting PlayerShooting { get => playerShooting; }
 
-    [SerializeField] private Warp warp;
-    public Warp Warp { get => warp; }
+    [SerializeField] private PlayerWarp warp;
+    public PlayerWarp Warp { get => warp; }
 
     [SerializeField] private BurnController burnController;
     public BurnController BurnController { get => burnController; }
@@ -48,7 +48,7 @@ public class SkillController : MyMonoBehaviour
     private void LoadWarp()
     {
         if (this.warp != null) return;
-        this.warp = GetComponentInChildren<Warp>();
+        this.warp = GetComponentInChildren<PlayerWarp>();
         Debug.LogWarning(this.gameObject.name + ": Load Warp");
     }
 

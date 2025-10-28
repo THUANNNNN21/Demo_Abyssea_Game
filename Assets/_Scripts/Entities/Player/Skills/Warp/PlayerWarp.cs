@@ -1,12 +1,9 @@
 using UnityEngine;
 
-public class Warp : Cooldown
+public class PlayerWarp : Warp
 {
     [SerializeField] private SkillController skillController;
     public SkillController SkillController { get => skillController; }
-    private Vector3 warpDirection;
-    [SerializeField] private float warpDistance = 5f;
-    // [SerializeField] private int assignedSkillIndex = 1;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -38,13 +35,9 @@ public class Warp : Cooldown
     }
     public void Warping()
     {
-        Transform obj = this.skillController.PlayerController.transform;
-        Vector3 newPos = obj.position;
-        newPos += warpDirection.normalized * this.warpDistance;
-        obj.position = newPos;
-        this.ResetCooldown();
+        this.Warping(this.skillController.PlayerController.transform);
     }
-    private void CheckWarpPosition()
+    protected override void CheckWarpPosition()
     {
         if (!isReady) return;
         Vector3 mouseWorldPos = InputManager.Instance.GetMouseWorldPosition();

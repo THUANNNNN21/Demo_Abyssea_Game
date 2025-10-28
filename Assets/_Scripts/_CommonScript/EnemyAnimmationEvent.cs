@@ -38,4 +38,21 @@ public class EnemyAnimmationEvent : MyMonoBehaviour
             shooting.TriggerOnStopShooting();
         }
     }
+    public void OnAttackAnimationPlay()
+    {
+        this.enemyController.EnemyImpact.AttackAllPlayers();
+    }
+    public void OnAttackAnimationComplete()
+    {
+        this.enemyController.EnemyImpact.CompleteAttack();
+    }
+    public void OnWarpAnimationComplete()
+    {
+        this.enemyController.Warp.WarpFinish();
+    }
+
+    public void OnWarpAnimationPlay()
+    {
+        this.enemyController.Warp.Warping();
+    }
 }

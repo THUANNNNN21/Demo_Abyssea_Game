@@ -5,7 +5,7 @@ public class EnemyMovement : FollowPlayerMovement
 {
     [Header("Normal Enemy Movement Settings")]
     [SerializeField] private EnemyController enemyController;
-    public EnemyController EnemyController { get => enemyController; }
+    public EnemyController EnemyController => enemyController;
     [SerializeField] private float minDistanceToTarget = 0.5f;
     [SerializeField] private float maxDistanceToTarget = 2.0f;
     [SerializeField] private float stopBuffer = 0.1f;
@@ -14,125 +14,121 @@ public class EnemyMovement : FollowPlayerMovement
     private AppearanceStateTracker moveAfterAppear;
     private ShootingStateTracker shootingStateTracker;
     private float horizontal;
+    private Rigidbody2D rb;
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadEnemyController();
-        this.LoadMoveAfterAppear();
-        this.LoadShootingStateTracker();
+        LoadEnemyController();
+        LoadMoveAfterAppear();
+        LoadShootingStateTracker();
+        LoadRigidbody2D();
     }
+
     private void LoadMoveAfterAppear()
     {
-        this.moveAfterAppear = this.enemyController.AfterAppear;
+        moveAfterAppear = enemyController.AfterAppear;
     }
+
     private void LoadShootingStateTracker()
     {
-        this.shootingStateTracker = this.enemyController.ShootingStateTracker;
+        shootingStateTracker = enemyController.ShootingStateTracker;
     }
+
     protected void LoadEnemyController()
     {
-        if (this.enemyController == null)
+        if (enemyController == null)
         {
-            this.enemyController = transform.parent.GetComponentInParent<EnemyController>();
+            enemyController = transform.parent.GetComponentInParent<EnemyController>();
         }
     }
+
+    private void LoadRigidbody2D()
+    {
+        if (rb == null)
+        {
+            rb = transform.parent.GetComponentInParent<Rigidbody2D>();
+        }
+    }
+
     protected override void LoadValues()
     {
         base.LoadValues();
-        this.SetSpeed(enemyController.EnemySO.speed);
+        SetSpeed(enemyController.EnemySO.speed);
     }
+
     void FixedUpdate()
     {
-        if (this.MoveAfterAppear() && this.MoveAfterShoot())
+        if (MoveAfterAppear() && MoveAfterShoot())
         {
-            this.LookAtTarget();
-            this.Moving();
+            LookAtTarget();
+            Moving();
         }
     }
+
     protected override void Moving()
     {
-        this.MoveByDistance();
+        MoveByDistance();
     }
+
     private void MoveByDistance()
     {
-        if (this.target == null) return;
+        if (target == null) return;
 
-        this.distance = Vector3.Distance(transform.parent.position, target.position);
+        distance = Vector3.Distance(transform.parent.position, target.position);
 
-        if (!isWithinRange)
+        // Move towards target if farther than minimum distance
+        if (distance > minDistanceToTarget)
         {
-            // ✅ Đang ở xa → tiến lại gần
-            if (this.distance > this.minDistanceToTarget + stopBuffer)
-            {
-                this.MoveTowardsTarget();
-            }
-            else
-            {
-                // ✅ Đã vào vùng an toàn
-                isWithinRange = true;
-            }
+            MoveTowardsTarget();
         }
-        else
-        {
-            // ✅ Đang trong vùng → kiểm tra cần di chuyển
-            if (this.distance > this.maxDistanceToTarget)
-            {
-                isWithinRange = false;
-                this.MoveTowardsTarget();
-            }
-            else if (this.distance < this.minDistanceToTarget - stopBuffer)
-            {
-                this.MoveAwayFromTarget();
-            }
-            // Nếu trong khoảng [minDistance-buffer, maxDistance] → đứng yên
-        }
+        // Otherwise, stay still
     }
+
     private void MoveTowardsTarget()
     {
-        Vector3 newPosition = this.transform.parent.position + this.speed * Time.fixedDeltaTime * this.direction;
-        this.transform.parent.position = newPosition;
-        this.RotateController();
+        Vector3 newPosition = transform.parent.position + speed * Time.fixedDeltaTime * direction;
+        rb.MovePosition(newPosition);
+        RotateController();
     }
-    private void MoveAwayFromTarget()
-    {
-        Vector3 newPosition = this.transform.parent.position - 100 * Time.fixedDeltaTime * this.direction;
-        this.transform.parent.position = newPosition;
-        this.RotateController();
-    }
+
     private void NameAxis()
     {
-        this.horizontal = this.direction.x;
+        horizontal = direction.x;
     }
+
     private bool MoveAfterAppear()
     {
-        if (this.moveAfterAppear != null)
+        if (moveAfterAppear != null)
         {
-            return this.moveAfterAppear.HasAppeared;
+            return moveAfterAppear.HasAppeared;
         }
         return true;
     }
+
     private bool MoveAfterShoot()
     {
-        if (this.shootingStateTracker != null)
+        if (shootingStateTracker != null)
         {
-            return !this.shootingStateTracker.IsShooting;
+            return !shootingStateTracker.IsShooting;
         }
         return true;
     }
+
     private void RotateController()
     {
-        this.NameAxis();
-        Vector3 currentScale = this.transform.parent.localScale;
+        NameAxis();
+        Vector3 currentScale = transform.parent.localScale;
 
         if (horizontal < 0)
         {
-            currentScale.x = Mathf.Abs(currentScale.x); // Đảm bảo X dương
+            currentScale.x = Mathf.Abs(currentScale.x);
         }
         else if (horizontal > 0)
         {
-            currentScale.x = -Mathf.Abs(currentScale.x); // Đảm bảo X âm
+            currentScale.x = -Mathf.Abs(currentScale.x);
         }
 
-        this.transform.parent.localScale = currentScale;
+        transform.parent.localScale = currentScale;
     }
 }
