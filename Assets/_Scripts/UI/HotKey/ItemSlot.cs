@@ -38,6 +38,7 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
         GameObject droppedObject = eventData.pointerDrag;
         if (droppedObject.TryGetComponent<DragItem>(out var dragItem))
         {
+            ItemSlot beginSlot = dragItem.OriginalParent.GetComponent<ItemSlot>();
             InventoryController inventoryCtlr = PlayerController.Instance.InventoryController;
             inventoryCtlr.Inventory.SetItemSlotType(dragItem.ID, this.isHotKeySlot);
 
@@ -45,15 +46,19 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
             // Nếu là slot drop, thực hiện drop item
             if (isDropable)
             {
+                if (beginSlot.isHotKeySlot)
+                {
+                    Debug.LogWarning("Item đang ở HotKeySlot, không thể drop!");
+                    dragItem.transform.SetParent(originalParent);
+                    dragItem.ItemImage.raycastTarget = true;
+                    return;
+                }
                 dragItem.transform.SetParent(originalParent);
                 dragItem.ItemImage.raycastTarget = true;
                 InventoryDrop inventoryDrop = PlayerController.Instance.InventoryController.InventoryDrop;
-                if (inventoryDrop != null)
-                {
-                    inventoryDrop.DropItem(dragItem.ID);
-                    Debug.Log(dragItem.transform.parent);
-                    Debug.Log("Item dropped!");
-                }
+                inventoryDrop.DropItem(dragItem.ID);
+                Debug.Log(dragItem.transform.parent);
+                Debug.Log("Item dropped!");
                 return;
             }
 
@@ -63,7 +68,7 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
                 if (existingItem.TryGetComponent<DragItem>(out var existingDragItem))
                 {
                     if (dragItem.ItemImage.sprite.name == existingDragItem.ItemImage.sprite.name &&
-                        dragItem.CurrentLevel == existingDragItem.CurrentLevel)
+                        dragItem.CurrentLevel == existingDragItem.CurrentLevel && beginSlot.isHotKeySlot == false && this.isHotKeySlot == false)
                     {
                         inventoryCtlr.ItemUpgrade.UpgradeItem(existingDragItem.ID);
                         Debug.Log("Items upgraded");
@@ -72,7 +77,7 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
                     existingDragItem.SetOriginalParent(originalParent);
                     existingDragItem.transform.SetParent(originalParent);
                     Debug.Log("existingDragItem new parent: " + existingDragItem.transform.parent);
-                    inventoryCtlr.Inventory.SetItemSlotType(existingDragItem.ID, originalParent.GetComponent<ItemSlot>().isHotKeySlot);
+                    inventoryCtlr.Inventory.SetItemSlotType(existingDragItem.ID, beginSlot.isHotKeySlot);
                     dragItem.SetOriginalParent(this.transform);
 
                     return;

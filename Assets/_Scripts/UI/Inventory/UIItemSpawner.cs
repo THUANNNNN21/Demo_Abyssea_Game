@@ -97,10 +97,22 @@ public class UIItemSpawner : SpawnObject
     {
         foreach (Transform slot in this.uiInventoryController.ContentHolder.transform)
         {
-            // Kiểm tra slot có component ItemSlot và chưa có item (childCount == 0)
-            if (slot.GetComponent<ItemSlot>() != null && slot.childCount == 0)
+            if (slot.GetComponent<ItemSlot>() != null)
             {
-                return slot;
+                // Nếu slot không có item hoặc tất cả item con đều đang inactive
+                bool allInactive = true;
+                foreach (Transform child in slot)
+                {
+                    if (child.gameObject.activeSelf)
+                    {
+                        allInactive = false;
+                        break;
+                    }
+                }
+                if (slot.childCount == 0 || allInactive)
+                {
+                    return slot;
+                }
             }
         }
         return null;

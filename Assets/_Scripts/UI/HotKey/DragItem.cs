@@ -23,6 +23,10 @@ public class DragItem : MyMonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         this.itemImage = transform.Find("ItemImage").GetComponent<Image>();
         Debug.LogWarning($"[{this.gameObject.name}] ItemImage not found, please check again!");
     }
+    void Start()
+    {
+        this.originalParent = this.transform.parent;
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         this.originalParent = this.transform.parent;
