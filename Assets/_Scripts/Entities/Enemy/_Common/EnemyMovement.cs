@@ -9,8 +9,10 @@ public class EnemyMovement : FollowPlayerMovement
     [SerializeField] private float minDistanceToTarget = 0.5f;
     [SerializeField] private float maxDistanceToTarget = 2.0f;
     [SerializeField] private float stopBuffer = 0.1f;
-    private bool isWithinRange = false;
     [SerializeField] protected float distance;
+    private float timer = 0f;
+    [SerializeField] private float timeToChangeTarget = 1f;
+    [SerializeField] private Transform dummyTarget;
     private AppearanceStateTracker moveAfterAppear;
     private ShootingStateTracker shootingStateTracker;
     private float horizontal;
@@ -20,6 +22,7 @@ public class EnemyMovement : FollowPlayerMovement
     {
         base.LoadComponents();
         LoadEnemyController();
+        LoadDummyTarget();
         LoadMoveAfterAppear();
         LoadShootingStateTracker();
         LoadRigidbody2D();
@@ -35,12 +38,23 @@ public class EnemyMovement : FollowPlayerMovement
         shootingStateTracker = enemyController.ShootingStateTracker;
     }
 
+    private void LoadDummyTarget()
+    {
+        if (dummyTarget == null)
+        {
+            dummyTarget = transform.Find("DummyTarget");
+            if (dummyTarget == null)
+            {
+                Debug.LogWarning("DummyTarget child not found. Please add a child GameObject named 'DummyTarget'.");
+            }
+        }
+    }
+
     protected void LoadEnemyController()
     {
-        if (enemyController == null)
-        {
-            enemyController = transform.parent.GetComponentInParent<EnemyController>();
-        }
+        if (enemyController != null) return;
+        enemyController = GetComponentInParent<EnemyController>();
+        Debug.LogWarning($"EnemyMovement: LoadEnemyController {transform.name}!");
     }
 
     private void LoadRigidbody2D()
@@ -54,16 +68,29 @@ public class EnemyMovement : FollowPlayerMovement
     protected override void LoadValues()
     {
         base.LoadValues();
-        SetSpeed(enemyController.EnemySO.speed);
+        SetSpeed(RandomSpeed());
     }
 
     void FixedUpdate()
     {
+        timer += Time.fixedDeltaTime;
+        if (timer >= timeToChangeTarget)
+        {
+            this.GetTarget();
+            timer = 0f;
+        }
         if (MoveAfterAppear() && MoveAfterShoot())
         {
             LookAtTarget();
             Moving();
         }
+    }
+
+    private float RandomSpeed()
+    {
+        float minSpeed = enemyController.EnemySO.speed - 1f;
+        float maxSpeed = enemyController.EnemySO.speed + 1f;
+        return Random.Range(minSpeed, maxSpeed);
     }
 
     protected override void Moving()
@@ -89,7 +116,7 @@ public class EnemyMovement : FollowPlayerMovement
     {
         Vector3 newPosition = transform.parent.position + speed * Time.fixedDeltaTime * direction;
         rb.MovePosition(newPosition);
-        RotateController();
+        // RotateController();
     }
 
     private void NameAxis()
@@ -119,7 +146,6 @@ public class EnemyMovement : FollowPlayerMovement
     {
         NameAxis();
         Vector3 currentScale = transform.parent.localScale;
-
         if (horizontal < 0)
         {
             currentScale.x = Mathf.Abs(currentScale.x);
@@ -130,5 +156,17 @@ public class EnemyMovement : FollowPlayerMovement
         }
 
         transform.parent.localScale = currentScale;
+    }
+
+    protected override void GetTarget()
+    {
+        if (PlayerController != null && dummyTarget != null)
+        {
+            Transform playerTransform = PlayerController.transform;
+            Vector3 randomOffset = Random.insideUnitCircle * 0.5f;
+            Vector3 newPosition = playerTransform.position + randomOffset;
+            dummyTarget.position = newPosition;
+            target = dummyTarget;
+        }
     }
 }

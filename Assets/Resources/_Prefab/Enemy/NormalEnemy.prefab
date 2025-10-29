@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   model: {fileID: 1110016720880264347}
-  movement: {fileID: 3194168064823755891}
+  movement: {fileID: 0}
   damageSender: {fileID: 490683922850745478}
   enemyDamReceiver: {fileID: 6608720017055543012}
   enemyImpact: {fileID: 8811131980809261240}
@@ -325,7 +325,7 @@ MonoBehaviour:
   shootingStateTracker: {fileID: 0}
   enemySO: {fileID: 11400000, guid: dfa56ed7502384740997a30b93d4837f, type: 2}
   animator: {fileID: 4876301868940158697}
-  warp: {fileID: 0}
+  warp: {fileID: 1748506076005193780}
   enemyLevelUp: {fileID: 0}
   enemyShooting: []
 --- !u!50 &6818488845505015164
@@ -351,9 +351,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!1 &7131013341256007152
 GameObject:
@@ -435,12 +435,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c204887a8f49541f095c00a05ebb3e6c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyImpact
   timer: 0
-  delayTime: 1
+  delayTime: 0
   isReady: 1
   col2D: {fileID: 5184629867552076549}
-  rb2D: {fileID: 0}
+  rb2D: {fileID: 6818488845505015164}
   enemyController: {fileID: 6306081411485733408}
   playersInRange: []
 --- !u!1 &7225144764762880346
@@ -452,7 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4023879685074676519}
-  - component: {fileID: 3194168064823755891}
+  - component: {fileID: 2100672148612629647}
   m_Layer: 10
   m_Name: Movement
   m_TagString: Untagged
@@ -472,10 +472,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7281424484075591198}
   m_Father: {fileID: 1120374859379949814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3194168064823755891
+--- !u!114 &2100672148612629647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -487,13 +488,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e225a1457ef4cccad614c5492fdaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  speed: 10
+  speed: 9.724001
   initialized: 0
   target: {fileID: 0}
   playerController: {fileID: 0}
   enemyController: {fileID: 6306081411485733408}
-  minDistanceToTarget: 0
+  minDistanceToTarget: 0.5
+  maxDistanceToTarget: 2
+  stopBuffer: 0.1
   distance: 0
+  dummyTarget: {fileID: 7281424484075591198}
+--- !u!1 &7607448413615224291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7281424484075591198}
+  m_Layer: 10
+  m_Name: DummyTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7281424484075591198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607448413615224291}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4023879685074676519}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3806601971031425943
 PrefabInstance:
   m_ObjectHideFlags: 0
