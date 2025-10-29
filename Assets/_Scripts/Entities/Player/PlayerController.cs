@@ -30,6 +30,7 @@ public class PlayerController : MyMonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private ChangeModel changeModel;
     [SerializeField] private SkillController skillController;
+    [SerializeField] private LevelController levelController;
     #endregion
 
     #region Properties
@@ -42,6 +43,7 @@ public class PlayerController : MyMonoBehaviour
     public Animator Animator => animator;
     public ChangeModel ChangeModel => changeModel;
     public SkillController SkillController => skillController;
+    public LevelController LevelController => levelController;
     #endregion
 
     #region Unity Methods
@@ -57,6 +59,7 @@ public class PlayerController : MyMonoBehaviour
         this.LoadAnimator();
         this.LoadChangeModel();
         this.LoadSkillController();
+        this.LoadLevelController();
     }
 
     protected override void LoadValues()
@@ -134,6 +137,12 @@ public class PlayerController : MyMonoBehaviour
         if (this.skillController != null) return;
         this.skillController = GetComponentInChildren<SkillController>();
         Debug.LogWarning(this.gameObject.name + ": Load SkillController");
+    }
+    private void LoadLevelController()
+    {
+        if (this.levelController != null) return;
+        this.levelController = GetComponentInChildren<LevelController>();
+        Debug.LogWarning(this.gameObject.name + ": Load LevelController");
     }
     #endregion
 }

@@ -73,14 +73,6 @@ public class UIItemSpawner : SpawnObject
         UIItem uiItem = itemObj.GetComponentInChildren<UIItem>();
         this.SetUIItem(uiItem, item);
 
-        // UIItem uiItem = itemObj.GetComponentInChildren<UIItem>();
-        // uiItem.SetItemName(item.itemSO.itemID.ToString());
-        // uiItem.SetItemCount(item.itemsCount, item.itemSO.defaultMaxStack);
-        // uiItem.SetItemSprite(item.itemSO.sprite);
-        // uiItem.SetAbleToSelectSkill(item.itemSO.skillType);
-        // uiItem.SetAbleToSelectEquipment(item.itemSO);
-        // uiItem.SetID(item.ID);
-
         return itemObj;
     }
     private void SetUIItem(UIItem uiItem, ItemInInventory item)
@@ -158,15 +150,15 @@ public class UIItemSpawner : SpawnObject
             // Không xoá các item nằm sâu hơn (trong các con của con)
         }
     }
-    // void Start()
-    // {
-    //     this.SpawnTest();
-    // }
-    // private void SpawnTest()
-    // {
-    //     for (int i = 0; i < 10; i++)
-    //     {
-    //         this.SpawnItem(null, i);
-    //     }
-    // }
 }
+// void Start()
+// {
+//     this.SpawnTest();
+// }
+// private void SpawnTest()
+// {
+//     for (int i = 0; i < 10; i++)
+//     {
+//         this.SpawnItem(null, i);
+//     }
+// }

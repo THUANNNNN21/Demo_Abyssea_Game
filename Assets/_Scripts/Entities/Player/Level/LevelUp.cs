@@ -30,6 +30,7 @@ public class LevelUp : MyMonoBehaviour
     }
     public void AddExp(int exp)
     {
+        Debug.Log($"Nhận được {exp} EXP. Tổng EXP hiện tại: {currentExp}/{expToNextLevel}");
         currentExp += exp;
         OnExpChanged?.Invoke(currentExp, expToNextLevel);
         while (this.CanLevelUp())

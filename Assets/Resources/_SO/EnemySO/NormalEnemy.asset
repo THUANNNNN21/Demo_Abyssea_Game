@@ -17,6 +17,7 @@ MonoBehaviour:
   damage: 2
   speed: 10
   maxDistance: 500
+  expReward: 100
   dropList:
   - itemInInventory:
       id: 
@@ -24,6 +25,7 @@ MonoBehaviour:
       upgradeLevel: 0
       maxStack: 1
       itemsCount: 1
+      isOnHotKeySlot: 0
     dropRate: 50
   - itemInInventory:
       id: 
@@ -31,5 +33,6 @@ MonoBehaviour:
       upgradeLevel: 0
       maxStack: 1
       itemsCount: 1
+      isOnHotKeySlot: 0
     dropRate: 30
   isDestroyWhenImpact: 0
