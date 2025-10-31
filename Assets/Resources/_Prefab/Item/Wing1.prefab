@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6854393314915213541}
   - component: {fileID: 5055719021671637006}
   - component: {fileID: 5783317629572053019}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Wing1
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,9 +84,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9030373407706435285}
   - component: {fileID: 94215865263035153}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,9 +175,9 @@ GameObject:
   - component: {fileID: 3125776174138810296}
   - component: {fileID: 1783648482119095646}
   - component: {fileID: 645451908807164974}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: AbleToPickup
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

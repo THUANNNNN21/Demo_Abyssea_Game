@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5139278626364142782}
   - component: {fileID: 7057317365582965467}
   - component: {fileID: 2428324512033071078}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Shell
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,9 +84,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4082062592347287842}
   - component: {fileID: 4016973381470316062}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,7 +226,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5572650887573983324, guid: f89d4b26c41464de6842eeeef4c9b487, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5572650887573983324, guid: f89d4b26c41464de6842eeeef4c9b487, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 719987035890370328, guid: f89d4b26c41464de6842eeeef4c9b487, type: 3}

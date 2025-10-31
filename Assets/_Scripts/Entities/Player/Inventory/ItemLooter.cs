@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+
 [RequireComponent(typeof(CircleCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
 public class ItemLooter : MyMonoBehaviour
 {
     public static event Action AfterPickupItem;
@@ -10,7 +10,7 @@ public class ItemLooter : MyMonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private CircleCollider2D lootingCollider;
 
-    [SerializeField] private List<AbleToPickup> nearbyItems = new();
+    [SerializeField] private List<GameObject> nearbyItems = new(); // Changed to List<GameObject> to use tag only
 
     protected override void LoadComponents()
     {
@@ -29,7 +29,7 @@ public class ItemLooter : MyMonoBehaviour
     private void LoadRigidbody2D()
     {
         if (this.rb != null) return;
-        this.rb = GetComponent<Rigidbody2D>();
+        this.rb = GetComponentInParent<Rigidbody2D>();
         this.rb.gravityScale = 0;
         this.rb.bodyType = RigidbodyType2D.Kinematic;
     }
@@ -54,22 +54,22 @@ public class ItemLooter : MyMonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<AbleToPickup>(out var ableToPickup))
+        if (collision.CompareTag("Item"))
         {
-            if (!nearbyItems.Contains(ableToPickup))
+            if (!nearbyItems.Contains(collision.gameObject))
             {
-                nearbyItems.Add(ableToPickup);
+                nearbyItems.Add(collision.gameObject);
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<AbleToPickup>(out var ableToPickup))
+        if (collision.CompareTag("Item"))
         {
-            if (nearbyItems.Contains(ableToPickup))
+            if (nearbyItems.Contains(collision.gameObject))
             {
-                nearbyItems.Remove(ableToPickup);
+                nearbyItems.Remove(collision.gameObject);
             }
         }
     }
@@ -89,7 +89,7 @@ public class ItemLooter : MyMonoBehaviour
         }
 
         // Tìm item gần nhất
-        AbleToPickup nearestItem = null;
+        GameObject nearestItem = null;
         float nearestDistance = float.MaxValue;
 
         foreach (var item in nearbyItems)
@@ -103,9 +103,10 @@ public class ItemLooter : MyMonoBehaviour
                 nearestItem = item;
             }
         }
-        if (nearestItem != null && IsAddItem(nearestItem))
+
+        if (nearestItem != null && nearestItem.TryGetComponent<AbleToPickup>(out var ableToPickup) && IsAddItem(ableToPickup))
         {
-            nearestItem.PickedUp();
+            ableToPickup.PickedUp();
             nearbyItems.Remove(nearestItem);
             Debug.Log($"Picked up: {nearestItem.transform.parent.name}");
         }
@@ -117,13 +118,13 @@ public class ItemLooter : MyMonoBehaviour
     //     if (nearbyItems.Count == 0) return;
 
     //     // Tạo copy để avoid modification during iteration
-    //     var itemsToPickup = new List<AbleToPickup>(nearbyItems);
+    //     var itemsToPickup = new List<GameObject>(nearbyItems);
 
     //     foreach (var item in itemsToPickup)
     //     {
-    //         if (item != null && IsAddItem(item))
+    //         if (item != null && item.TryGetComponent<AbleToPickup>(out var ableToPickup) && IsAddItem(ableToPickup))
     //         {
-    //             item.PickedUp();
+    //             ableToPickup.PickedUp();
     //             nearbyItems.Remove(item);
     //             Debug.Log($"Picked up: {item.name}");
     //         }
@@ -146,6 +147,7 @@ public class ItemLooter : MyMonoBehaviour
     {
         nearbyItems.RemoveAll(item => item == null);
     }
+
     public void SetLootRange(float range)
     {
         if (this.lootingCollider != null)

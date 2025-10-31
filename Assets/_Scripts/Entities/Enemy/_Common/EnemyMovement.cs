@@ -7,11 +7,9 @@ public class EnemyMovement : FollowPlayerMovement
     [SerializeField] private EnemyController enemyController;
     public EnemyController EnemyController => enemyController;
     [SerializeField] private float minDistanceToTarget = 0.5f;
-    [SerializeField] private float maxDistanceToTarget = 2.0f;
-    [SerializeField] private float stopBuffer = 0.1f;
     [SerializeField] protected float distance;
     private float timer = 0f;
-    [SerializeField] private float timeToChangeTarget = 1f;
+    [SerializeField] private float timeToChangeTarget = 0.5f;
     [SerializeField] private Transform dummyTarget;
     private AppearanceStateTracker moveAfterAppear;
     private ShootingStateTracker shootingStateTracker;
@@ -116,7 +114,7 @@ public class EnemyMovement : FollowPlayerMovement
     {
         Vector3 newPosition = transform.parent.position + speed * Time.fixedDeltaTime * direction;
         rb.MovePosition(newPosition);
-        // RotateController();
+        RotateController();
     }
 
     private void NameAxis()
@@ -144,18 +142,18 @@ public class EnemyMovement : FollowPlayerMovement
 
     private void RotateController()
     {
-        NameAxis();
-        Vector3 currentScale = transform.parent.localScale;
-        if (horizontal < 0)
+        this.NameAxis();
+        if (!Mathf.Approximately(horizontal, 0))
         {
-            currentScale.x = Mathf.Abs(currentScale.x);
+            if (horizontal > 0)
+            {
+                enemyController.Animator.SetFloat("MoveX", 1);
+            }
+            else if (horizontal < 0)
+            {
+                enemyController.Animator.SetFloat("MoveX", -1);
+            }
         }
-        else if (horizontal > 0)
-        {
-            currentScale.x = -Mathf.Abs(currentScale.x);
-        }
-
-        transform.parent.localScale = currentScale;
     }
 
     protected override void GetTarget()

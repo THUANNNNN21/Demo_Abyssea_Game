@@ -23,7 +23,7 @@ public class Inventory : MyMonoBehaviour
     private void LoadInventoryController()
     {
         if (this.inventoryController != null) return;
-        this.inventoryController = GetComponentInChildren<InventoryController>();
+        this.inventoryController = GetComponentInParent<InventoryController>();
         Debug.LogWarning(this.gameObject.name + ": Load InventoryController");
     }
     #endregion

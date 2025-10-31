@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0cb5b67a0bad4884a8b606507c0ccfd, type: 3}
-  m_Name: AbilitySummon
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 11500000, guid: ab129df5670f84d7292e05ef45ecec40, type: 3}
+  m_Name: SkillSO
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSO
   skillName: Skill
-  cooldownTime: 5
-  prefabToSpawnName: 3
+  cooldownTime: 2
+  prefabToSpawnName: 1

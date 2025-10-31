@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7426289812150834168}
   - component: {fileID: 5640510139587871893}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Movement
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3055494167477001756}
   - component: {fileID: 5971156944334790337}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Damage
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 3832016805538129542}
   - component: {fileID: 2886099642341669316}
   - component: {fileID: 4508044377247874461}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Model
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 6322795680522315721}
   - component: {fileID: 5412311745067969676}
   - component: {fileID: 4006055431043262321}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Rocket
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 4799866952251294970}
   - component: {fileID: 412176159408595195}
   - component: {fileID: 5430387403140170824}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Impact
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -401,6 +401,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b23aa84497b4a58aee85f570257a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
+  delayTime: 0
+  isReady: 1
   col2D: {fileID: 412176159408595195}
   rb2D: {fileID: 4799866952251294970}
   projectileController: {fileID: 4006055431043262321}
@@ -413,7 +416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4582477752611882524}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MouseTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}

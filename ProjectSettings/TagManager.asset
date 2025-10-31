@@ -9,6 +9,7 @@ TagManager:
   - Meteorite
   - Enemy
   - Inventory
+  - Item
   layers:
   - Default
   - TransparentFX

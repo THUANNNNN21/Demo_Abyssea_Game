@@ -39,7 +39,7 @@ public class DespawnObject : MyMonoBehaviour
         if (!poolObject.pool.Contains(obj.transform))
         {
             obj.SetActive(false);
-            var entity = obj.GetComponentInChildren<EntityMovement>();
+            var entity = obj.GetComponentInChildren<LockTargetMovement>();
             if (entity != null)
             {
                 entity.initialized = false;

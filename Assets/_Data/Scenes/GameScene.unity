@@ -1287,7 +1287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7291d619d74e24d9780c941197201761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemUpgrade
-  inventoryController: {fileID: 0}
+  inventoryController: {fileID: 1185701809}
 --- !u!1 &395582771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,7 +1688,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519011899}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -2524,11 +2524,11 @@ Camera:
   m_GameObject: {fileID: 760782453}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
@@ -2549,7 +2549,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -2670,7 +2670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03efdf2a08d6411fb9491360e9648c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryDrop
-  inventoryController: {fileID: 0}
+  inventoryController: {fileID: 1185701809}
   dropPoint: {fileID: 195460221}
 --- !u!1 &828422156
 GameObject:
@@ -3429,6 +3429,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1403815079087969160, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100672148612629647, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: minDistanceToTarget
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119578397432770000, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5642428094254244692, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
       propertyPath: m_Name
       value: NormalEnemy
@@ -3441,9 +3453,45 @@ PrefabInstance:
       propertyPath: warp
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6306081411485733408, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: movement
+      value: 
+      objectReference: {fileID: 1165130759}
+    - target: {fileID: 6306081411485733408, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: enemyImpact
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479639482046768285, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: skillSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 6b8e5cf33320e444baad14863c197036, type: 2}
+    - target: {fileID: 6479639482046768285, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479639482046768285, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: delayTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479639482046768285, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: poolObject
+      value: 
+      objectReference: {fileID: 1217134157}
+    - target: {fileID: 6479639482046768285, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: prefabToSpawn
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479639482046768285, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: shootAfterAppearing
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6818488845505015164, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
       propertyPath: m_BodyType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131013341256007152, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3555,6 +3603,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99f0d0017da69463eb721778dce3537e, type: 3}
+--- !u!114 &1165130759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2100672148612629647, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+  m_PrefabInstance: {fileID: 1027344862}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e225a1457ef4cccad614c5492fdaf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
 --- !u!1 &1180778823
 GameObject:
   m_ObjectHideFlags: 0
@@ -3653,6 +3712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b58b8dacbdcf425aae3520fa331cb9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryController
+  playerController: {fileID: 0}
   itemLooter: {fileID: 1235507582}
   itemUpgrade: {fileID: 377061874}
   inventory: {fileID: 1649463669}
@@ -3801,7 +3861,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   Spawnner: {fileID: 428350390}
   poolObject: {fileID: 1217134157}
-  objectsPerSpawn: 1
+  objectsPerSpawn: 0
   getRandomPoints: {fileID: 871217198}
   getRandomPrefabs: {fileID: 1229280443}
 --- !u!114 &1229280443
@@ -3964,7 +4024,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1235507578}
   - component: {fileID: 1235507581}
-  - component: {fileID: 1235507580}
   - component: {fileID: 1235507582}
   m_Layer: 10
   m_Name: ItemLooter
@@ -3988,33 +4047,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1185701808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1235507580
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235507577}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!58 &1235507581
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4063,8 +4095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba0924effc5141b3842c44053d28313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemLooter
-  inventoryController: {fileID: 0}
-  rb: {fileID: 1235507580}
+  inventoryController: {fileID: 1185701809}
+  rb: {fileID: 519011903}
   lootingCollider: {fileID: 1235507581}
   nearbyItems: []
 --- !u!1 &1248779196
@@ -4132,7 +4164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1264157040
 Transform:
   m_ObjectHideFlags: 0
@@ -6410,6 +6442,10 @@ PrefabInstance:
     - target: {fileID: 6854393314915213541, guid: 9ccb5669d39a14465ba66898872ebaaf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7110623094504191969, guid: 9ccb5669d39a14465ba66898872ebaaf, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

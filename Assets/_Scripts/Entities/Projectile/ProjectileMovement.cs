@@ -1,6 +1,7 @@
 using UnityEngine;
 public class ProjectileMovement : EntityFollowTarget
 {
+    private bool initialized = false;
     protected override void LoadComponents()
     {
         this.LoadTarget();

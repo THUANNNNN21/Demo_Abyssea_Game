@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: Player
   maxHP: 2000
-  damage: 10
+  damage: 0
   attackRange: 0.5
   attackDelay: 1
   speed: 10

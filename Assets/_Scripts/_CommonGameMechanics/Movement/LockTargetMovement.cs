@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class LockTargetMovement : FollowPlayerMovement
 {
+    public bool initialized = false;
     private void FixedUpdate()
     {
         this.LookAtTarget();

@@ -44,10 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aec65eaebf5483c8e9883d4e52ec50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
   delayTime: 3
+  isReady: 1
   prefabToSpawn: {fileID: 0}
   spawnPoint: {fileID: 3563656816880025934}
   Spawnner: {fileID: 0}
   poolObject: {fileID: 0}
-  prefabName: 
-  skillSO: {fileID: 11400000, guid: 3d8cc00da8b6f4986b1925f1f21fce5d, type: 2}
+  skillSO: {fileID: 11400000, guid: 6b8e5cf33320e444baad14863c197036, type: 2}
+  enemyController: {fileID: 0}
+  shootAfterAppearing: {fileID: 0}
+  animator: {fileID: 0}
+  isStoppingShooting: 0
+  minions: []
+  prefabsCanExist: 10

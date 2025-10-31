@@ -6,6 +6,8 @@ using System.Linq;
 public class InventoryController : MyMonoBehaviour
 {
     #region Properties
+    [SerializeField] private PlayerController playerController;
+    public PlayerController PlayerController { get => playerController; }
     [SerializeField] private ItemLooter itemLooter;
     public ItemLooter ItemLooter { get => itemLooter; }
     [SerializeField] private ItemUpgrade itemUpgrade;
@@ -29,11 +31,18 @@ public class InventoryController : MyMonoBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
+        this.LoadPlayerController();
         this.LoadInventory();
         this.LoadItemLooter();
         this.LoadItemUpgrade();
         this.LoadInventorySort();
         this.LoadInventoryDrop();
+    }
+    private void LoadPlayerController()
+    {
+        if (this.playerController != null) return;
+        this.playerController = GetComponentInParent<PlayerController>();
+        Debug.LogWarning(this.gameObject.name + ": Load PlayerController");
     }
     private void LoadItemLooter()
     {

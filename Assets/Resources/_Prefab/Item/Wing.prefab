@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 807573363837074163}
   - component: {fileID: 8451084219629133437}
   - component: {fileID: 1438014767941044053}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Wing
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +53,9 @@ MonoBehaviour:
     upgradeLevel: 0
     maxStack: 0
     itemsCount: 0
+    isOnHotKeySlot: 0
   despawnObject: {fileID: 1438014767941044053}
+  spriteRenderer: {fileID: 0}
 --- !u!114 &1438014767941044053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,9 +84,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2818533642519430040}
   - component: {fileID: 5398743867046132711}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,7 +226,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5572650887573983324, guid: f89d4b26c41464de6842eeeef4c9b487, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5572650887573983324, guid: f89d4b26c41464de6842eeeef4c9b487, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 719987035890370328, guid: f89d4b26c41464de6842eeeef4c9b487, type: 3}
