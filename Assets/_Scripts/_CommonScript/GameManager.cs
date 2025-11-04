@@ -21,6 +21,9 @@ public class GameManager : MyMonoBehaviour
     [Header("UI References")]
     [SerializeField] private TimerText timerText;
     [SerializeField] private ScoreText scoreText;
+    [SerializeField] private FinalScoreText finalScoreText;
+    GameObject UIGameOver;
+
     [Header("Game Settings")]
     public float matchTime = 60f; // Thời gian chơi (giây)
     [SerializeField] public float currentTime;
@@ -34,6 +37,8 @@ public class GameManager : MyMonoBehaviour
         base.LoadComponents();
         this.LoadTimerText();
         this.LoadScoreText();
+        this.LoadFinalScoreText();
+        this.LoadGameOverUI();
     }
     private void LoadTimerText()
     {
@@ -47,9 +52,22 @@ public class GameManager : MyMonoBehaviour
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         Debug.LogWarning("Load ScoreText: " + scoreText.name, gameObject);
     }
+    private void LoadFinalScoreText()
+    {
+        if (finalScoreText != null) return;
+        finalScoreText = GameObject.Find("FinalScoreText").GetComponent<FinalScoreText>();
+        Debug.LogWarning("Load FinalScoreText: " + finalScoreText.name, gameObject);
+    }
+    private void LoadGameOverUI()
+    {
+        if (UIGameOver != null) return;
+        UIGameOver = GameObject.Find("UIGameOver");
+        Debug.LogWarning("Load UIGameOver: " + UIGameOver.name, gameObject);
+    }
     void Start()
     {
         this.currentTime = this.matchTime;
+        this.UIGameOver.SetActive(false);
         this.timerText.UpdateTimerUI(this.currentTime);
         this.scoreText.UpdateScoreUI(this.score);
     }
@@ -76,6 +94,8 @@ public class GameManager : MyMonoBehaviour
     void EndGame()
     {
         this.isGameOver = true;
+        this.finalScoreText.UpdateFinalScoreUI(this.score);
+        this.UIGameOver.SetActive(true);
         Time.timeScale = 0; // Dừng game
     }
 

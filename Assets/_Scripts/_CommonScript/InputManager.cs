@@ -53,8 +53,6 @@ public class InputManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
-
         inputActions = new PlayerInputActions();
         SetupPositionActions();
     }
