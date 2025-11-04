@@ -10,6 +10,9 @@ public class EntityFollowTarget : EntityMovement
     }
     protected virtual void Moving()
     {
-        this.transform.parent.Translate(speed * Time.fixedDeltaTime * this.direction);
+        if (isMoving)
+        {
+            this.transform.parent.Translate(speed * Time.fixedDeltaTime * this.direction);
+        }
     }
 }

@@ -35,7 +35,7 @@ public class EnemyAnimmationEvent : MyMonoBehaviour
         for (int i = 0; i < this.enemyController.EnemyShooting.Count; i++)
         {
             var shooting = this.enemyController.EnemyShooting[i];
-            shooting.TriggerOnStopShooting();
+            shooting.TriggerOnShootComplete();
         }
     }
     public void OnAttackAnimationPlay()

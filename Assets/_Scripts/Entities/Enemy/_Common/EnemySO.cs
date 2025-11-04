@@ -10,6 +10,7 @@ public class EnemySO : ScriptableObject
     public float speed;
     public float maxDistance;
     public int expReward;
+    public int scoreReward;
     public List<ItemDropRate> dropList;
     public bool isDestroyWhenImpact = false;
 }

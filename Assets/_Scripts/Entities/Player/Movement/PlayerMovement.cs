@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class PlayerMovement : MyMonoBehaviour
+public class PlayerMovement : EntityMovement
 {
     #region Inspector Fields
     [SerializeField] private PlayerController playerController;
     [Header("Movement Settings")]
-    [SerializeField] private float speed;
     #endregion
 
     #region Properties
@@ -40,9 +39,9 @@ public class PlayerMovement : MyMonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateAxisFromInput();
-        MovementByAxis();
-        RotateController();
+        this.UpdateAxisFromInput();
+        this.Moving();
+        this.RotateController();
     }
     #endregion
 
@@ -78,6 +77,13 @@ public class PlayerMovement : MyMonoBehaviour
     #endregion
 
     #region Movement Methods
+    private void Moving()
+    {
+        if (isMoving)
+        {
+            MovementByAxis();
+        }
+    }
     private void MovementByAxis()
     {
         Vector3 direction = new(horizontal, vertical, 0f);
@@ -107,10 +113,4 @@ public class PlayerMovement : MyMonoBehaviour
     }
     #endregion
 
-    #region Public Methods
-    public void SetSpeed(float speed)
-    {
-        this.speed = speed;
-    }
-    #endregion
 }

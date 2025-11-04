@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: NormalEnemy
   m_EditorClassIdentifier: 
   enemyName: 
-  maxHP: 5000
+  maxHP: 200
   damage: 2
   speed: 10
   maxDistance: 500
   expReward: 100
+  scoreReward: 3
   dropList:
   - itemInInventory:
       id: 

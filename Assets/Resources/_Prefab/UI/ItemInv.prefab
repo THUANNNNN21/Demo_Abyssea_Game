@@ -402,6 +402,7 @@ MonoBehaviour:
   originalParent: {fileID: 0}
   itemImage: {fileID: 2487876786022851577}
   id: 
+  currentLevel: 0
 --- !u!1 &8989344716074897012
 GameObject:
   m_ObjectHideFlags: 0

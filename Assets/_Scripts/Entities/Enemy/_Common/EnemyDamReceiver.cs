@@ -30,6 +30,7 @@ public class EnemyDamReceiver : DamageReceiver
         if (this.isDead) return;
         base.OnDead();
         PlayerController.Instance.LevelController.LevelUp.AddExp(enemyController.EnemySO.expReward);
+        GameManager.Instance.AddScore(enemyController.EnemySO.scoreReward);
         enemyController.Animator.SetTrigger("isDestroyed");
     }
     public void DropItems()

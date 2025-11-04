@@ -28,10 +28,12 @@ public class PlayerWarp : Warp
     {
         if (!this.isReady) return;
         this.skillController.PlayerController.Animator.SetBool("warp", true);
+        skillController.PlayerController.PlayerMovement.SetIsMoving(false);
     }
     public void WarpFinish()
     {
         this.skillController.PlayerController.Animator.SetBool("warp", false);
+        skillController.PlayerController.PlayerMovement.SetIsMoving(true);
     }
     public void Warping()
     {

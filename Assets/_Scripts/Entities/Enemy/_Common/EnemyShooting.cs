@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class EnemyShooting : Shooting, IShootingObservable
 {
+    [Header("Enemy Shooting Components")]
     [SerializeField] private EnemyController enemyController;
     public EnemyController EnemyController => this.enemyController;
     [SerializeField] private AppearanceStateTracker shootAfterAppearing;
@@ -10,9 +11,8 @@ public class EnemyShooting : Shooting, IShootingObservable
     [Header("Animation Settings")]
     [SerializeField] private Animator animator;
     [SerializeField] private bool isStoppingShooting = false;
-    public bool IsStoppingShooting { get => isStoppingShooting; set => isStoppingShooting = value; }
     public event Action OnShooting;
-    public event Action OnStopShooting;
+    public event Action OnShootComplete;
     [SerializeField] protected List<Transform> minions;
     [SerializeField] protected int prefabsCanExist = 10;
     // public event Action OnDestroyed;
@@ -121,9 +121,9 @@ public class EnemyShooting : Shooting, IShootingObservable
     {
         OnShooting?.Invoke();
     }
-    public virtual void TriggerOnStopShooting()
+    public virtual void TriggerOnShootComplete()
     {
-        OnStopShooting?.Invoke();
+        OnShootComplete?.Invoke();
     }
     private bool CanShoot()
     {

@@ -66,7 +66,7 @@ public class EnemyMovement : FollowPlayerMovement
     protected override void LoadValues()
     {
         base.LoadValues();
-        SetSpeed(RandomSpeed());
+        this.SetSpeed(RandomSpeed());
     }
 
     void FixedUpdate()
@@ -93,7 +93,10 @@ public class EnemyMovement : FollowPlayerMovement
 
     protected override void Moving()
     {
-        MoveByDistance();
+        if (isMoving)
+        {
+            MoveByDistance();
+        }
     }
 
     private void MoveByDistance()

@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eee86bc40b20474f912454c3269f433, type: 3}
-  m_Name: Player
-  m_EditorClassIdentifier: 
-  playerName: Player
-  maxHP: 2000
-  damage: 25
-  attackRange: 0.5
-  attackDelay: 1
-  speed: 10
-  inventorySize: 20
-  lootRange: 0.8
+  m_Script: {fileID: 11500000, guid: ab129df5670f84d7292e05ef45ecec40, type: 3}
+  m_Name: Summon
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSO
+  skillName: Summon
+  cooldownTime: 4
+  prefabToSpawnName: 3

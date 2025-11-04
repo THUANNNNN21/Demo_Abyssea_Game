@@ -7,9 +7,7 @@ public class ShootingStateTracker : MyMonoBehaviour
 {
     [Header("Shooting States")]
     [SerializeField] private bool isShooting = false;
-    [SerializeField] private bool hasStoppedShooting = false;
     public bool IsShooting => isShooting;
-    public bool HasStoppedShooting => hasStoppedShooting;
 
     protected IShootingObservable subject;
 
@@ -29,18 +27,16 @@ public class ShootingStateTracker : MyMonoBehaviour
         if (subject != null)
         {
             subject.OnShooting += OnShooting;
-            subject.OnStopShooting += OnStopShooting;
+            subject.OnShootComplete += OnShootComplete;
         }
     }
     private void OnShooting()
     {
         isShooting = true;
-        hasStoppedShooting = false;
     }
 
-    private void OnStopShooting()
+    private void OnShootComplete()
     {
         isShooting = false;
-        hasStoppedShooting = true;
     }
 }
