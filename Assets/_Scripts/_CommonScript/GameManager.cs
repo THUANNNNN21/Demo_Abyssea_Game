@@ -22,6 +22,9 @@ public class GameManager : MyMonoBehaviour
     [SerializeField] private TimerText timerText;
     [SerializeField] private ScoreText scoreText;
     [SerializeField] private FinalScoreText finalScoreText;
+    [SerializeField] private GameObject UIInventory;
+    [SerializeField] private GameObject OpenInventoryBtn;
+    [SerializeField] private GameObject UIHotKeyBar;
     GameObject UIGameOver;
 
     [Header("Game Settings")]
@@ -39,6 +42,9 @@ public class GameManager : MyMonoBehaviour
         this.LoadScoreText();
         this.LoadFinalScoreText();
         this.LoadGameOverUI();
+        this.LoadInventoryUI();
+        this.LoadOpenInventoryButton();
+        this.LoadHotKeyBar();
     }
     private void LoadTimerText()
     {
@@ -63,6 +69,24 @@ public class GameManager : MyMonoBehaviour
         if (UIGameOver != null) return;
         UIGameOver = GameObject.Find("UIGameOver");
         Debug.LogWarning("Load UIGameOver: " + UIGameOver.name, gameObject);
+    }
+    private void LoadInventoryUI()
+    {
+        if (UIInventory != null) return;
+        UIInventory = GameObject.Find("UIInventoryController");
+        Debug.LogWarning("Load UIInventory: " + UIInventory.name, gameObject);
+    }
+    private void LoadOpenInventoryButton()
+    {
+        if (OpenInventoryBtn != null) return;
+        OpenInventoryBtn = GameObject.Find("OpenInventoryBtn");
+        Debug.LogWarning("Load OpenInventoryBtn: " + OpenInventoryBtn.name, gameObject);
+    }
+    private void LoadHotKeyBar()
+    {
+        if (UIHotKeyBar != null) return;
+        UIHotKeyBar = GameObject.Find("UIHotKey");
+        Debug.LogWarning("Load UIHotKeyBar: " + UIHotKeyBar.name, gameObject);
     }
     void Start()
     {
@@ -95,8 +119,15 @@ public class GameManager : MyMonoBehaviour
     {
         this.isGameOver = true;
         this.finalScoreText.UpdateFinalScoreUI(this.score);
-        this.UIGameOver.SetActive(true);
+        this.ShowGameOverUI();
         Time.timeScale = 0; // Dừng game
+    }
+    private void ShowGameOverUI()
+    {
+        this.UIGameOver.SetActive(true);
+        this.UIInventory.SetActive(false);
+        this.OpenInventoryBtn.SetActive(false);
+        this.UIHotKeyBar.SetActive(false);
     }
 
     // Gọi trong nút UI
@@ -104,5 +135,10 @@ public class GameManager : MyMonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void QuitToMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
     }
 }

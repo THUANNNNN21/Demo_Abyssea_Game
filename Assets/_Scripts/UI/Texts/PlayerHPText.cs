@@ -23,6 +23,6 @@ public class PlayerHPText : BaseText
     {
         string HP = this.playerController.PlayerDamReceiver.Health.ToString();
         string HPMax = this.playerController.PlayerDamReceiver.HealthMax.ToString();
-        this.uiText.text = "HP: " + HP + " / " + HPMax;
+        this.uiText.text = "HP " + HP;
     }
 }
