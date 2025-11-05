@@ -19,6 +19,8 @@ public class ProjectileAnimmationEvent : MyMonoBehaviour
     }
     public void OnDeathAnimationComplete()
     {
+        this.projectileController.ProjectileMovement.SetInitialized(false);
+        Debug.LogWarning("Projectile Despawned by Animation Event");
         this.projectileController.DespawnByDistance.HandleDespawn();
     }
 }

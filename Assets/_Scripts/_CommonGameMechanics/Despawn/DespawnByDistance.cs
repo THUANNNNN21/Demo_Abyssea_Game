@@ -25,8 +25,12 @@ public class DespawnByDistance : DespawnObject
         this.SetEndPosition(this.transform.position);
         if (Vector3.Distance(this.startPosition, this.endPosition) > maxDistance)
         {
-            // Assuming you have a method to handle despawning
-            this.HandleDespawn();
+            if (this.animator != null)
+            {
+                this.animator.SetTrigger("isDestroyed");
+            }
+            else
+                this.HandleDespawn();
         }
     }
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 public class ProjectileMovement : EntityFollowTarget
 {
-    private bool initialized = false;
+    [SerializeField] private bool initialized = false;
     protected override void LoadComponents()
     {
         this.LoadTarget();
@@ -28,6 +28,10 @@ public class ProjectileMovement : EntityFollowTarget
             base.LookAtTarget();
             this.initialized = true;
         }
+    }
+    public void SetInitialized(bool value)
+    {
+        this.initialized = value;
     }
     // protected override void MakeTrajectory()
     // {

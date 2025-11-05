@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class PlayerMovement : EntityMovement
 {
     #region Inspector Fields
@@ -86,14 +85,14 @@ public class PlayerMovement : EntityMovement
     }
     private void MovementByAxis()
     {
-        Vector3 direction = new(horizontal, vertical, 0f);
+        Vector2 direction = new(horizontal, vertical);
 
         if (direction.magnitude > 0.1f)
         {
             direction.Normalize();
         }
 
-        Vector3 newPosition = transform.parent.position + speed * Time.fixedDeltaTime * direction;
+        Vector2 newPosition = playerController.Rb.position + speed * Time.fixedDeltaTime * direction;
         rb.MovePosition(newPosition);
     }
 

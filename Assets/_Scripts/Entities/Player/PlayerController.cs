@@ -31,6 +31,7 @@ public class PlayerController : MyMonoBehaviour
     [SerializeField] private ChangeModel changeModel;
     [SerializeField] private SkillController skillController;
     [SerializeField] private LevelController levelController;
+    [SerializeField] private Rigidbody2D rb;
     #endregion
 
     #region Properties
@@ -44,6 +45,7 @@ public class PlayerController : MyMonoBehaviour
     public ChangeModel ChangeModel => changeModel;
     public SkillController SkillController => skillController;
     public LevelController LevelController => levelController;
+    public Rigidbody2D Rb => rb;
     #endregion
 
     #region Unity Methods
@@ -60,6 +62,7 @@ public class PlayerController : MyMonoBehaviour
         this.LoadChangeModel();
         this.LoadSkillController();
         this.LoadLevelController();
+        this.LoadRigidbody2D();
     }
 
     protected override void LoadValues()
@@ -143,6 +146,12 @@ public class PlayerController : MyMonoBehaviour
         if (this.levelController != null) return;
         this.levelController = GetComponentInChildren<LevelController>();
         Debug.LogWarning(this.gameObject.name + ": Load LevelController");
+    }
+    private void LoadRigidbody2D()
+    {
+        if (rb != null) return;
+        rb = GetComponent<Rigidbody2D>();
+        Debug.LogWarning(this.gameObject.name + ": Load Rigidbody2D");
     }
     #endregion
 }
