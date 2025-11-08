@@ -1,16 +1,9 @@
 using UnityEngine;
 
-public class MainMenuBtn : MonoBehaviour
+public class MainMenuBtn : BaseButton
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void OnClickButton()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameManager.Instance.QuitToMainMenu();
     }
 }

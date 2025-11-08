@@ -23,6 +23,14 @@ public abstract class BaseButton : MyMonoBehaviour
     protected virtual void AddOnClickEvent()
     {
         this.button.onClick.AddListener(OnClickButton);
+        this.button.onClick.AddListener(PlayClickSound);
     }
     protected abstract void OnClickButton();
+    private void PlayClickSound()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick, 1f);
+        }
+    }
 }

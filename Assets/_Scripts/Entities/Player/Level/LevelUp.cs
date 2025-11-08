@@ -48,6 +48,7 @@ public class LevelUp : MyMonoBehaviour
         this.ResetCurrentExp();
         this.PlayAniLevelUp();
         this.UpdateNextLevelExpRequirement();
+        SoundManager.Instance.PlaySound(SoundType.LevelUp, 1f);
         OnLevelUp?.Invoke(currentLevel);
     }
     private void ResetCurrentExp()

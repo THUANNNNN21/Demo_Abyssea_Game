@@ -58,10 +58,6 @@ public class EnemyImpact : Impact
             if (player != null)
             {
                 SendDamage(player);
-                if (EnemyController.EnemySO.isDestroyWhenImpact)
-                {
-                    DestroyWhenImpact();
-                }
                 EnemyController.EnemyDamReceiver.CheckDead();
             }
         }

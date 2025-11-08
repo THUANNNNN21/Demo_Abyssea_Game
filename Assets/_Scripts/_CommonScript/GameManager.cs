@@ -94,6 +94,12 @@ public class GameManager : MyMonoBehaviour
         this.UIGameOver.SetActive(false);
         this.timerText.UpdateTimerUI(this.currentTime);
         this.scoreText.UpdateScoreUI(this.score);
+
+        // Play gameplay background music
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound(SoundType.BackgroundGamePlay, 0.5f);
+        }
     }
 
     void Update()
@@ -114,7 +120,11 @@ public class GameManager : MyMonoBehaviour
         this.score += amount;
         this.scoreText.UpdateScoreUI(this.score);
     }
-
+    public void AddTime(float amount)
+    {
+        this.currentTime += amount;
+        this.timerText.UpdateTimerUI(this.currentTime);
+    }
     void EndGame()
     {
         this.isGameOver = true;
@@ -135,10 +145,18 @@ public class GameManager : MyMonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound(SoundType.BackgroundGamePlay, 0.5f);
+        }
     }
     public void QuitToMainMenu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound(SoundType.BackgroundMainMenu, 0.5f);
+        }
     }
 }

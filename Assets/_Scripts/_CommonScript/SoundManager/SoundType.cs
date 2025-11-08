@@ -1,0 +1,20 @@
+public enum SoundType
+{
+    BackgroundMainMenu,
+    BackgroundGamePlay,
+    PlayerAttack,
+    PlayerHurt,
+    PlayerShoot,
+    PlayerWarp,
+    PlayerBurn,
+    PlayerHeal,
+    LevelUp,
+    EnemyAttack,
+    EnemyDeath,
+    EnemyHurt,
+    EnemySpawn,
+    EnemyShoot,
+    ItemPickup,
+    GameOver,
+    ButtonClick
+}

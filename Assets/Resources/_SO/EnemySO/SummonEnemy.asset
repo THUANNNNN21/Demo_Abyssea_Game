@@ -19,8 +19,10 @@ MonoBehaviour:
   maxDistance: 500
   expReward: 20
   scoreReward: 5
+  timeReward: 0
   dropList:
-  - itemInInventory:
+  - name: Wing
+    itemInInventory:
       id: 
       itemSO: {fileID: 11400000, guid: e452abf546407468b920a37ad48ce935, type: 2}
       upgradeLevel: 2

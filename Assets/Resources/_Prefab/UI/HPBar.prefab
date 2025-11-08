@@ -415,7 +415,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1780986558634248352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,7 +446,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIFollowTarget
   speed: 10
-  initialized: 0
   target: {fileID: 0}
 --- !u!114 &3754879221091904042
 MonoBehaviour:
@@ -477,6 +476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DespawnObject
   poolObject: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &8905960583415602468
 GameObject:
   m_ObjectHideFlags: 0

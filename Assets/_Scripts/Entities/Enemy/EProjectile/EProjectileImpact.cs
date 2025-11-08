@@ -38,7 +38,7 @@ public class EProjectileImpact : MyMonoBehaviour
         {
             Debug.Log("Projectile hit the player!");
             projectileCtrl.DamSender.SendDamage(other.transform);
-            projectileCtrl.DespawnByDistance.HandleDespawn();
+            projectileCtrl.Animator.SetTrigger("isDestroyed");
         }
     }
 }

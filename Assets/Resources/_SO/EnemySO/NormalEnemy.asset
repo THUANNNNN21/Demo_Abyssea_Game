@@ -19,8 +19,10 @@ MonoBehaviour:
   maxDistance: 500
   expReward: 100
   scoreReward: 3
+  timeReward: 0
   dropList:
-  - itemInInventory:
+  - name: Wing
+    itemInInventory:
       id: 
       itemSO: {fileID: 11400000, guid: e452abf546407468b920a37ad48ce935, type: 2}
       upgradeLevel: 0
@@ -28,9 +30,19 @@ MonoBehaviour:
       itemsCount: 1
       isOnHotKeySlot: 0
     dropRate: 50
-  - itemInInventory:
+  - name: Shell
+    itemInInventory:
       id: 
       itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
+      upgradeLevel: 0
+      maxStack: 1
+      itemsCount: 1
+      isOnHotKeySlot: 0
+    dropRate: 30
+  - name: Wing1
+    itemInInventory:
+      id: 
+      itemSO: {fileID: 11400000, guid: 5ece5cf634d984825abee2e859252b69, type: 2}
       upgradeLevel: 0
       maxStack: 1
       itemsCount: 1

@@ -29,9 +29,14 @@ public class EnemyDamReceiver : DamageReceiver
     {
         if (this.isDead) return;
         base.OnDead();
+        this.AddAmount();
+        enemyController.Animator.SetTrigger("isDestroyed");
+    }
+    private void AddAmount()
+    {
         PlayerController.Instance.LevelController.LevelUp.AddExp(enemyController.EnemySO.expReward);
         GameManager.Instance.AddScore(enemyController.EnemySO.scoreReward);
-        enemyController.Animator.SetTrigger("isDestroyed");
+        GameManager.Instance.AddTime(enemyController.EnemySO.timeReward);
     }
     public void DropItems()
     {

@@ -55,13 +55,11 @@ public class EnemyWarp : Warp
         if (!isReady) return;
         if (isWarpToPlayer)
         {
-            Debug.Log("Warping to player");
-            warpDirection = playerPos - position; // Warp towards player
+            warpDirection = playerPos - position;
         }
         else
         {
-            Debug.Log("Warping away from player");
-            warpDirection = position - playerPos; // Warp away from player
+            warpDirection = position - playerPos;
         }
         this.StartWarp();
     }

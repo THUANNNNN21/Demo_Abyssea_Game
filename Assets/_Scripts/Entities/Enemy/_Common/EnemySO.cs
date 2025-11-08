@@ -11,6 +11,22 @@ public class EnemySO : ScriptableObject
     public float maxDistance;
     public int expReward;
     public int scoreReward;
+    public float timeReward;
+    public float targetRadius;
     public List<ItemDropRate> dropList;
-    public bool isDestroyWhenImpact = false;
+
+    private void OnValidate()
+    {
+        // Update names for all drop list items
+        if (dropList != null)
+        {
+            foreach (var item in dropList)
+            {
+                if (item != null)
+                {
+                    item.OnValidate();
+                }
+            }
+        }
+    }
 }

@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae91849ec46a4376ae4a70d752d16bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 13
+  speed: 20
   target: {fileID: 0}
-  playerController: {fileID: 0}
   initialized: 0
 --- !u!1 &4334742909083019393
 GameObject:
@@ -59,7 +58,7 @@ GameObject:
   - component: {fileID: 5781327767198667916}
   - component: {fileID: 5324317124460376810}
   - component: {fileID: 4809739097078101895}
-  - component: {fileID: 1948368663543993203}
+  - component: {fileID: 967259139961472519}
   m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
@@ -134,7 +133,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.66, y: 1.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -162,7 +161,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1948368663543993203
+--- !u!114 &967259139961472519
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,10 +170,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4334742909083019393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8168e6df160a647688fcf3385da3cdba, type: 3}
+  m_Script: {fileID: 11500000, guid: 25c1a0c3e568f493cb13914fc93e95be, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimmationEvent
-  enemyController: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::EPAnimation
+  eProjectileCtrl: {fileID: 103679729338349021}
 --- !u!1 &5244882432870522026
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +359,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5781327767198667916}
@@ -382,6 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DespawnByDistance
   poolObject: {fileID: 0}
+  animator: {fileID: 4809739097078101895}
   startPosition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
   maxDistance: 50
@@ -399,6 +399,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EProjectileCtrl
   projectileImpact: {fileID: 3693332192755200616}
-  damReceiver: {fileID: 0}
   damSender: {fileID: 5231311766188526703}
   despawnByDistance: {fileID: 1303986101263146929}
+  animator: {fileID: 0}

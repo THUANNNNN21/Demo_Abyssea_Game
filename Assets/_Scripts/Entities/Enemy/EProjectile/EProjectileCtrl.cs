@@ -8,12 +8,15 @@ public class EProjectileCtrl : MyMonoBehaviour
     public DamageSender DamSender => damSender;
     [SerializeField] private DespawnByDistance despawnByDistance;
     public DespawnByDistance DespawnByDistance => despawnByDistance;
+    [SerializeField] private Animator animator;
+    public Animator Animator => animator;
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadProjectileImpact();
         this.LoadDamageSender();
         this.LoadDespawnByDistance();
+        this.LoadAnimator();
     }
     private void LoadProjectileImpact()
     {
@@ -33,5 +36,11 @@ public class EProjectileCtrl : MyMonoBehaviour
         if (despawnByDistance != null) return;
         despawnByDistance = GetComponentInChildren<DespawnByDistance>();
         Debug.LogWarning($"Load DespawnByDistance in {gameObject.name}.");
+    }
+    private void LoadAnimator()
+    {
+        if (animator != null) return;
+        animator = GetComponentInChildren<Animator>();
+        Debug.LogWarning($"Load Animator in {gameObject.name}.");
     }
 }

@@ -50,6 +50,8 @@ public class HPBarSpawner : SpawnObject
     {
         this.spawnPoint = enemyController.transform;
         GameObject hpBar = this.SpawnAndReturn();
+        Debug.Log("Spawned HP Bar for " + enemyController.name);
+        if (hpBar == null) return;
         HPBar hpBarComponent = hpBar.GetComponent<HPBar>();
         hpBarComponent.SetEnemyController(enemyController);
     }

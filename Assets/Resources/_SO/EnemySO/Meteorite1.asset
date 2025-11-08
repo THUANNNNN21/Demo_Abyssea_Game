@@ -15,15 +15,19 @@ MonoBehaviour:
   enemyName: Meteorite1
   maxHP: 500
   damage: 20
-  speed: 13
+  speed: 20
   maxDistance: 150
+  expReward: 0
+  scoreReward: 0
+  timeReward: 0
+  targetRadius: 0
   dropList:
-  - itemInInventory:
+  - name: Shell
+    itemInInventory:
+      id: 
       itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
       upgradeLevel: 0
       maxStack: 3
       itemsCount: 1
-    dropChance: 0
-    minAmount: 0
-    maxAmount: 0
-  isDestroyWhenImpact: 1
+      isOnHotKeySlot: 0
+    dropRate: 0

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 public abstract class SpawnObject : Cooldown
 {
@@ -6,6 +7,8 @@ public abstract class SpawnObject : Cooldown
     [SerializeField] protected Transform spawnPoint;
     [SerializeField] protected GameObject Spawnner;
     public PoolObject poolObject;
+    [SerializeField] protected List<Transform> minions;
+    [SerializeField] protected int prefabsCanExist = 10;
 
     protected virtual GameObject GetObjectFromPool()
     {
@@ -33,6 +36,8 @@ public abstract class SpawnObject : Cooldown
     // Use this method to spawn and not return the object
     protected virtual void Spawn()
     {
+        this.ClearMinion();
+        if (this.minions.Count >= this.prefabsCanExist) return;
         GameObject obj = this.GetObjectFromPool();
         obj.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
         obj.SetActive(true);
@@ -41,10 +46,13 @@ public abstract class SpawnObject : Cooldown
         //     despawn.poolObject = this.poolObject;
         // }
         this.ResetAnimator(obj.GetComponentInChildren<Animator>());
+        minions.Add(obj.transform);
     }
     // Use this method to spawn and return the spawned object
     protected virtual GameObject SpawnAndReturn()
     {
+        this.ClearMinion();
+        if (this.minions.Count >= this.prefabsCanExist) return null;
         GameObject obj = this.GetObjectFromPool();
         obj.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
         obj.SetActive(true);
@@ -53,6 +61,7 @@ public abstract class SpawnObject : Cooldown
         //     despawn.poolObject = this.poolObject;
         // }
         this.ResetAnimator(obj.GetComponentInChildren<Animator>());
+        minions.Add(obj.transform);
         return obj;
     }
     protected virtual void ResetAnimator(Animator animator)
@@ -61,6 +70,16 @@ public abstract class SpawnObject : Cooldown
         {
             animator.Update(0);
             animator.ResetTrigger("isDestroyed");
+        }
+    }
+    private void ClearMinion()
+    {
+        for (int i = minions.Count - 1; i >= 0; i--)
+        {
+            if (minions[i] == null || !minions[i].gameObject.activeSelf)
+            {
+                minions.RemoveAt(i);
+            }
         }
     }
 }

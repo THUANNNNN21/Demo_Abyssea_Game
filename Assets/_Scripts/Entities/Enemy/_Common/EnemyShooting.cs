@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 public class EnemyShooting : Shooting, IShootingObservable
 {
@@ -11,10 +10,11 @@ public class EnemyShooting : Shooting, IShootingObservable
     [Header("Animation Settings")]
     [SerializeField] private Animator animator;
     [SerializeField] private bool isStoppingShooting = false;
+    [SerializeField] float distanceToPlayerForShoot = 20f;
     public event Action OnShooting;
     public event Action OnShootComplete;
-    [SerializeField] protected List<Transform> minions;
-    [SerializeField] protected int prefabsCanExist = 10;
+    // [SerializeField] protected List<Transform> minions;
+    // [SerializeField] protected int prefabsCanExist = 10;
     // public event Action OnDestroyed;
     protected override void LoadComponents()
     {
@@ -74,19 +74,7 @@ public class EnemyShooting : Shooting, IShootingObservable
     }
     void FixedUpdate()
     {
-        this.ClearMinion();
         this.Shoot();
-    }
-    private void ClearMinion()
-    {
-        for (int i = minions.Count - 1; i >= 0; i--)
-        {
-            if (minions[i] == null || !minions[i].gameObject.activeSelf)
-            {
-                minions.RemoveAt(i);
-                // Debug.Log($"Removed inactive minion at index {i}");
-            }
-        }
     }
     private void Shoot()
     {
@@ -98,7 +86,7 @@ public class EnemyShooting : Shooting, IShootingObservable
     }
     protected virtual void SpawnWithCooldown()
     {
-        if (this.isReady && this.minions.Count <= this.prefabsCanExist)
+        if (this.isReady && enemyController.EnemyCheckPlayer.CheckNearPlayer(this.distanceToPlayerForShoot))
         {
             if (isStoppingShooting)
             {
@@ -106,7 +94,6 @@ public class EnemyShooting : Shooting, IShootingObservable
             }
             this.PlayShootAnimation();
             GameObject enemy = this.SpawnAndReturn();
-            minions.Add(enemy.transform);
             this.ResetCooldown();
         }
     }
@@ -114,7 +101,7 @@ public class EnemyShooting : Shooting, IShootingObservable
     {
         if (animator != null)
         {
-            animator.SetTrigger("Shoot");
+            animator.SetTrigger("shoot");
         }
     }
     protected virtual void TriggerOnShooting()

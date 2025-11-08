@@ -12,6 +12,7 @@ public class ObjectFollowPlayer : FollowPlayerMovement
     {
         this.Moving();
     }
+
     protected override void Moving()
     {
         if (this.target == null) return;

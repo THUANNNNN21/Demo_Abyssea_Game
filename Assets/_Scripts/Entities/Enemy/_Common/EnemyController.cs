@@ -7,8 +7,8 @@ public class EnemyController : MyMonoBehaviour
     [SerializeField] private Transform model;
     public Transform Model { get => model; }
 
-    [SerializeField] private FollowPlayerMovement movement;
-    public FollowPlayerMovement Movement { get => movement; }
+    [SerializeField] private EnemyMovement movement;
+    public EnemyMovement Movement { get => movement; }
 
     [SerializeField] private EnemyDamSender damageSender;
     public EnemyDamSender DamageSender { get => damageSender; }
@@ -36,6 +36,8 @@ public class EnemyController : MyMonoBehaviour
     public EnemyLevelUp EnemyLevelUp { get => enemyLevelUp; }
     [SerializeField] private List<EnemyShooting> enemyShooting;
     public List<EnemyShooting> EnemyShooting { get => enemyShooting; }
+    [SerializeField] private EnemyCheckPlayer enemyCheckPlayer;
+    public EnemyCheckPlayer EnemyCheckPlayer { get => enemyCheckPlayer; }
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -44,6 +46,7 @@ public class EnemyController : MyMonoBehaviour
         this.LoadDamageReceiver();
         this.LoadEnemyImpact();
         this.LoadSO();
+        this.LoadEnemyCheckPlayer();
         this.LoadMovement();
         this.LoadDespawnByDistance();
         this.LoadAnimator();
@@ -81,7 +84,7 @@ public class EnemyController : MyMonoBehaviour
     {
         if (this.movement == null)
         {
-            this.movement = this.GetComponentInChildren<FollowPlayerMovement>();
+            this.movement = this.GetComponentInChildren<EnemyMovement>();
         }
     }
     private void LoadDamageSender()
@@ -159,6 +162,15 @@ public class EnemyController : MyMonoBehaviour
             Debug.LogWarning($"LoadWarp: {this.gameObject.name}");
         }
     }
+    private void LoadEnemyCheckPlayer()
+    {
+        if (this.enemyCheckPlayer != null) return;
+        else
+        {
+            this.enemyCheckPlayer = this.GetComponentInChildren<EnemyCheckPlayer>();
+            Debug.LogWarning($"LoadEnemyCheckPlayer: {this.gameObject.name}");
+        }
+    }
     protected override void LoadValues()
     {
         if (this.enemySO == null) return;
@@ -173,6 +185,7 @@ public class EnemyController : MyMonoBehaviour
         if (this.movement != null)
         {
             this.movement.SetSpeed(this.enemySO.speed);
+            this.movement.SetTargetRadius(this.enemySO.targetRadius);
         }
         if (this.despawnByDistance != null)
         {

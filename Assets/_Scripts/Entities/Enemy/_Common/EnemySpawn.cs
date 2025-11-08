@@ -68,7 +68,12 @@ public class EnemySpawn : SpawnObject
         {
             this.spawnPoint = this.getRandomPoints.GetRandomSpawnPoint();
             this.prefabToSpawn = this.getRandomPrefabs.GetRandomPrefab();
-            this.Spawn();
+            GameObject enemy = this.SpawnAndReturn();
+            if (enemy != null)
+            {
+                EnemyController enemyController = enemy.GetComponent<EnemyController>();
+                HPBarSpawner.Instance.SpawnHPBar(enemyController);
+            }
         }
     }
     private void FixedUpdate()
