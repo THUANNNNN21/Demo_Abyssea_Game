@@ -26,8 +26,8 @@ public class UISlotSpawner : SpawnObject
     }
     private void LoadSpawner()
     {
-        if (this.Spawnner != null) return;
-        this.Spawnner = this.uiInventoryController.ContentHolder;
+        if (this.spawnner != null) return;
+        this.spawnner = this.uiInventoryController.ContentHolder;
         Debug.LogWarning(this.gameObject.name + ": Load Spawnner");
     }
     private void LoadPoolObject()

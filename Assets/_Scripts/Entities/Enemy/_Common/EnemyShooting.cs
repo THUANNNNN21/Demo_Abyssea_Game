@@ -29,7 +29,7 @@ public class EnemyShooting : Shooting, IShootingObservable
     }
     private void LoadShootAfterAppearing()
     {
-        this.shootAfterAppearing = this.enemyController.AfterAppear;
+        this.shootAfterAppearing = this.enemyController.EnemyAbility.AfterAppear;
     }
     private void LoadEnemyController()
     {
@@ -41,9 +41,10 @@ public class EnemyShooting : Shooting, IShootingObservable
     }
     private void LoadSpawner()
     {
-        if (this.Spawnner == null)
+        if (this.spawnner == null)
         {
-            this.Spawnner = GameObject.Find("EnemySpawner");
+            GameObject enemySpawner = GameObject.Find("EnemySpawner");
+            this.spawnner = enemySpawner.transform.Find("Holder").gameObject;
         }
     }
     private void LoadSkillSO()
@@ -97,7 +98,7 @@ public class EnemyShooting : Shooting, IShootingObservable
             this.ResetCooldown();
         }
     }
-    private void PlayShootAnimation()
+    protected virtual void PlayShootAnimation()
     {
         if (animator != null)
         {

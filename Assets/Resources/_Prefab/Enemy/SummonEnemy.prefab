@@ -99,10 +99,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4871222907374852817}
+  - component: {fileID: 7329034810801191353}
   - component: {fileID: 2280921189868820898}
   - component: {fileID: 80896305061140528}
-  - component: {fileID: 7329034810801191353}
-  m_Layer: 0
+  - component: {fileID: 8040926141840295600}
+  m_Layer: 11
   m_Name: SummonEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -130,6 +131,33 @@ Transform:
   - {fileID: 5137091261674008344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &7329034810801191353
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286973366752225125}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &2280921189868820898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,34 +192,22 @@ MonoBehaviour:
   movement: {fileID: 6680321289896086379}
   damageSender: {fileID: 4157072717415510658}
   enemyDamReceiver: {fileID: 1562008340301853780}
-  enemyImpact: {fileID: 0}
+  enemyAbility: {fileID: 6228716687182188036}
   despawnByDistance: {fileID: 2280921189868820898}
-  objAppearing: {fileID: 0}
-  afterAppear: {fileID: 0}
-  shootingStateTracker: {fileID: 1865067797900292452}
   enemySO: {fileID: 11400000, guid: 97145f28e8d0e490fb0ab5414e3193e6, type: 2}
   animator: {fileID: 7523238817787190054}
-  warp: {fileID: 0}
   enemyLevelUp: {fileID: 488805167325283022}
-  enemyShooting:
-  - {fileID: 8212440832735923892}
   enemyCheckPlayer: {fileID: 1196935758170064543}
---- !u!50 &7329034810801191353
-Rigidbody2D:
-  serializedVersion: 5
+--- !u!61 &8040926141840295600
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2286973366752225125}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -199,10 +215,35 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.12797993, y: -0.20207357}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.2559599, y: 1.1347156}
+  m_EdgeRadius: 0
 --- !u!1 &3955294927159419451
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,14 +291,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   speed: 5
   target: {fileID: 0}
-  playerController: {fileID: 0}
   enemyController: {fileID: 80896305061140528}
-  distance: 0
   timeToChangeTarget: 0.5
-  dummyTarget: {fileID: 6496614659388685966}
   targetRadius: 0
   fakeTargetRadius: 10
   distanceToPlayerForMove: 20
+  distance: 0
 --- !u!1 &6452799851519710910
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5041907544591932894}
+  - component: {fileID: 6228716687182188036}
   m_Layer: 0
   m_Name: EnemyAbilities
   m_TagString: Untagged
@@ -421,6 +461,26 @@ Transform:
   - {fileID: 5806575751484456284}
   m_Father: {fileID: 4871222907374852817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6228716687182188036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713918736134562553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c0c25e597b04c5199cd890b009ff03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAbility
+  enemyController: {fileID: 80896305061140528}
+  enemyImpact: {fileID: 0}
+  enemyShooting: {fileID: 0}
+  shootingStateTracker: {fileID: 0}
+  objAppearing: {fileID: 0}
+  afterAppear: {fileID: 0}
+  enemyWarp: {fileID: 0}
+  enemySummon: {fileID: 0}
 --- !u!1001 &1374930097236601771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -654,36 +714,65 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 3691770586388163233, guid: 028056fe020b047fbb8ea992ea1d0002, type: 3}
-    - {fileID: 502047967593843174, guid: 028056fe020b047fbb8ea992ea1d0002, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1892947580940163295, guid: 028056fe020b047fbb8ea992ea1d0002, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1687833616488663994}
+    - targetCorrespondingSourceObject: {fileID: 1892947580940163295, guid: 028056fe020b047fbb8ea992ea1d0002, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1726529666710049210}
   m_SourcePrefab: {fileID: 100100000, guid: 028056fe020b047fbb8ea992ea1d0002, type: 3}
---- !u!114 &1865067797900292452 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6011167689038702912, guid: 028056fe020b047fbb8ea992ea1d0002, type: 3}
-  m_PrefabInstance: {fileID: 5371097181705525284}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4727b128421454a8cec34b910026e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShootingStateTracker
 --- !u!4 &5806575751484456284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1881626737172309368, guid: 028056fe020b047fbb8ea992ea1d0002, type: 3}
   m_PrefabInstance: {fileID: 5371097181705525284}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8212440832735923892 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4283357557009651344, guid: 028056fe020b047fbb8ea992ea1d0002, type: 3}
+--- !u!1 &5822276522940514555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1892947580940163295, guid: 028056fe020b047fbb8ea992ea1d0002, type: 3}
   m_PrefabInstance: {fileID: 5371097181705525284}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &1687833616488663994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5822276522940514555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4aec65eaebf5483c8e9883d4e52ec50, type: 3}
+  m_Script: {fileID: 11500000, guid: 6df022d25060d4fc5b6a43f8818a2b24, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyShooting
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySummon
+  timer: 0
+  delayTime: 4
+  isReady: 1
+  prefabToSpawn: {fileID: 5642428094254244692, guid: ac576e87ce9014218b81c4121b1cf014, type: 3}
+  spawnPoint: {fileID: 5806575751484456284}
+  spawnner: {fileID: 0}
+  poolObject: {fileID: 0}
+  minions: []
+  prefabsCanExist: 10
+  skillSO: {fileID: 11400000, guid: b23df8460bcdc432090046abd80f09f0, type: 2}
+  enemyController: {fileID: 80896305061140528}
+  shootAfterAppearing: {fileID: 0}
+  animator: {fileID: 7523238817787190054}
+  isStoppingShooting: 0
+  distanceToPlayerForShoot: 20
+--- !u!114 &1726529666710049210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5822276522940514555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4727b128421454a8cec34b910026e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootingStateTracker
+  isShooting: 0

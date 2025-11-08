@@ -39,6 +39,7 @@ public class EProjectileImpact : MyMonoBehaviour
             Debug.Log("Projectile hit the player!");
             projectileCtrl.DamSender.SendDamage(other.transform);
             projectileCtrl.Animator.SetTrigger("isDestroyed");
+            SoundManager.Instance.PlaySound(SoundType.Explosion, 1f);
         }
     }
 }

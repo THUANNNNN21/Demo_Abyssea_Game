@@ -27,31 +27,28 @@ public class EnemyAnimmationEvent : MyMonoBehaviour
     }
     public void OnAppearAnimationComplete()
     {
-        this.enemyController.ObjAppearing.FullyAppeared();
+        this.enemyController.EnemyAbility.ObjAppearing.FullyAppeared();
     }
     public void OnShootAnimationComplete()
     {
-        for (int i = 0; i < this.enemyController.EnemyShooting.Count; i++)
-        {
-            var shooting = this.enemyController.EnemyShooting[i];
-            shooting.TriggerOnShootComplete();
-        }
+        var shooting = this.enemyController.EnemyAbility.EnemyShooting;
+        shooting.TriggerOnShootComplete();
     }
     public void OnAttackAnimationPlay()
     {
-        this.enemyController.EnemyImpact.AttackAllPlayers();
+        this.enemyController.EnemyAbility.EnemyImpact.AttackAllPlayers();
     }
     public void OnAttackAnimationComplete()
     {
-        this.enemyController.EnemyImpact.CompleteAttack();
+        this.enemyController.EnemyAbility.EnemyImpact.CompleteAttack();
     }
     public void OnWarpAnimationComplete()
     {
-        this.enemyController.Warp.WarpFinish();
+        this.enemyController.EnemyAbility.EnemyWarp.WarpFinish();
     }
 
     public void OnWarpAnimationPlay()
     {
-        this.enemyController.Warp.Warping();
+        this.enemyController.EnemyAbility.EnemyWarp.Warping();
     }
 }

@@ -14,9 +14,9 @@ public class PlayerShooting : Shooting
     }
     private void LoadSpawner()
     {
-        if (this.Spawnner == null)
+        if (this.spawnner == null)
         {
-            this.Spawnner = GameObject.Find("ProjectileContainer");
+            this.spawnner = GameObject.Find("ProjectileContainer");
         }
     }
     private void LoadSkillSO()
@@ -62,6 +62,7 @@ public class PlayerShooting : Shooting
     {
         if (!this.isReady) return;
         this.Spawn();
+        SoundManager.Instance.PlaySound(SoundType.PlayerShoot, 0.2f);
         this.ResetCooldown();
     }
 }

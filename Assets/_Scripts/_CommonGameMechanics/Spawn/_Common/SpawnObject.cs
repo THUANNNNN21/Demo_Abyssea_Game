@@ -5,7 +5,8 @@ public abstract class SpawnObject : Cooldown
     [Header("Spawn Object Settings")]
     [SerializeField] protected GameObject prefabToSpawn;
     [SerializeField] protected Transform spawnPoint;
-    [SerializeField] protected GameObject Spawnner;
+    [SerializeField] protected GameObject spawnner;
+    public GameObject Spawnner => spawnner;
     public PoolObject poolObject;
     [SerializeField] protected List<Transform> minions;
     [SerializeField] protected int prefabsCanExist = 10;
@@ -29,7 +30,7 @@ public abstract class SpawnObject : Cooldown
     }
     private GameObject CreateNewObject()
     {
-        GameObject newObj = Instantiate(this.prefabToSpawn, this.Spawnner.transform);
+        GameObject newObj = Instantiate(this.prefabToSpawn, this.spawnner.transform);
         newObj.name = this.prefabToSpawn.name;
         return newObj;
     }

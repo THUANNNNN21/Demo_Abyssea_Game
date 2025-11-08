@@ -31,6 +31,7 @@ public class EnemyDamReceiver : DamageReceiver
         base.OnDead();
         this.AddAmount();
         enemyController.Animator.SetTrigger("isDestroyed");
+        SoundManager.Instance.PlaySound(SoundType.EnemyDeath, 0.5f);
     }
     private void AddAmount()
     {

@@ -70,6 +70,7 @@ public class Burn : MyMonoBehaviour
     private void BurningProcess()
     {
         if (!isBurning) return;
+        SoundManager.Instance.PlaySound(SoundType.PlayerBurn, 0.3f);
 
         burnTimer += Time.fixedDeltaTime;
         tickTimer += Time.fixedDeltaTime;
@@ -77,6 +78,7 @@ public class Burn : MyMonoBehaviour
         // Mỗi tickRate giây đốt một lần
         if (tickTimer >= tickRate)
         {
+            SoundManager.Instance.PlaySound(SoundType.PlayerBurn, 1f);
             this.Burning();
             tickTimer -= tickRate;
         }

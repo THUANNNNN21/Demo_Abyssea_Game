@@ -23,5 +23,6 @@ public class ProjectileImpact : Impact
     {
         this.projectileController.DamageSender.SendDamage(other.transform);
         this.projectileController.Animator.SetTrigger("isDestroyed");
+        SoundManager.Instance.PlaySound(SoundType.Explosion, 1f);
     }
 }

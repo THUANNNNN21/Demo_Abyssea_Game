@@ -54,6 +54,7 @@ public class Heal : MyMonoBehaviour
         {
             int healAmount = Mathf.RoundToInt(healMax * (healPercentPerSecond / 100f));
             healController.SkillController.PlayerController.PlayerDamReceiver.Add(healAmount);
+            SoundManager.Instance.PlaySound(SoundType.PlayerHeal, 0.5f);
 
             // Debug.Log($"Hồi {healAmount} HP ({healPercentPerSecond}%). HP hiện tại: {healController.SkillController.PlayerController.PlayerDamReceiver.Health}/{healController.SkillController.PlayerController.PlayerDamReceiver.HealthMax}");
 

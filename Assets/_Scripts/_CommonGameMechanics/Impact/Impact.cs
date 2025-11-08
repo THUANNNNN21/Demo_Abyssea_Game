@@ -27,7 +27,6 @@ public abstract class Impact : Cooldown
         {
             this.rb2D = GetComponentInParent<Rigidbody2D>();
         }
-        this.rb2D.bodyType = RigidbodyType2D.Kinematic; // Không cần vật lý, chỉ cần trigger
         this.rb2D.gravityScale = 0; // Không cần trọng lực
     }
     protected abstract void OnTriggerEnter2D(Collider2D other);

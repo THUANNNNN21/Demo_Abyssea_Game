@@ -29,6 +29,7 @@ public class PlayerWarp : Warp
         if (!this.isReady) return;
         this.skillController.PlayerController.Animator.SetBool("warp", true);
         skillController.PlayerController.PlayerMovement.SetIsMoving(false);
+        SoundManager.Instance.PlaySound(SoundType.PlayerWarp, 0.5f);
     }
     public void WarpFinish()
     {

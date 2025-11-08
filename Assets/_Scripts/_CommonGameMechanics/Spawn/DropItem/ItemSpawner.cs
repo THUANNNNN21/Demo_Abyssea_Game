@@ -27,10 +27,10 @@ public class ItemSpawner : SpawnObject
     }
     private void LoadSpawner()
     {
-        if (this.Spawnner != null) return;
+        if (this.spawnner != null) return;
         else
         {
-            this.Spawnner = this.transform.Find("Holder").gameObject;
+            this.spawnner = this.transform.Find("Holder").gameObject;
         }
     }
     private void LoadPoolObject()

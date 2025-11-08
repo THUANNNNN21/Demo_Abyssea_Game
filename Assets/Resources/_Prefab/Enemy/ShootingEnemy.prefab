@@ -87,7 +87,8 @@ GameObject:
   - component: {fileID: 6429776592880139707}
   - component: {fileID: 6341132935666892004}
   - component: {fileID: 7454215441324886019}
-  m_Layer: 0
+  - component: {fileID: 4382842221859918794}
+  m_Layer: 11
   m_Name: ShootingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -104,15 +105,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 509479786548662543}
   - {fileID: 3532469981692581482}
   - {fileID: 7928615558877556332}
   - {fileID: 5181895681434328887}
   - {fileID: 5122245995109951174}
   - {fileID: 2374599510000241598}
+  - {fileID: 509479786548662543}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6429776592880139707
@@ -149,17 +150,11 @@ MonoBehaviour:
   movement: {fileID: 5917394948123000591}
   damageSender: {fileID: 0}
   enemyDamReceiver: {fileID: 2639251019975962983}
-  enemyImpact: {fileID: 0}
+  enemyAbility: {fileID: 3933056551822010705}
   despawnByDistance: {fileID: 6429776592880139707}
-  objAppearing: {fileID: 0}
-  afterAppear: {fileID: 0}
-  shootingStateTracker: {fileID: 0}
   enemySO: {fileID: 11400000, guid: a63bc785ceb2247109d5e3b96ff829a2, type: 2}
   animator: {fileID: 2131633315342324003}
-  warp: {fileID: 0}
   enemyLevelUp: {fileID: 7873400206641466661}
-  enemyShooting:
-  - {fileID: 8617629640154542224}
   enemyCheckPlayer: {fileID: 184144005728216756}
 --- !u!50 &7454215441324886019
 Rigidbody2D:
@@ -184,10 +179,56 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!61 &4382842221859918794
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158649348409826695}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.021097422, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.8860831, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &3604958704538626041
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5122245995109951174}
+  - component: {fileID: 3933056551822010705}
   m_Layer: 0
   m_Name: EnemyAbilities
   m_TagString: Untagged
@@ -358,6 +400,26 @@ Transform:
   - {fileID: 7563034960952309628}
   m_Father: {fileID: 2317784385916134956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3933056551822010705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6939014272722057967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c0c25e597b04c5199cd890b009ff03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAbility
+  enemyController: {fileID: 6341132935666892004}
+  enemyImpact: {fileID: 0}
+  enemyShooting: {fileID: 8617629640154542224}
+  shootingStateTracker: {fileID: 0}
+  objAppearing: {fileID: 0}
+  afterAppear: {fileID: 0}
+  enemyWarp: {fileID: 0}
+  enemySummon: {fileID: 0}
 --- !u!1 &7492842041985667224
 GameObject:
   m_ObjectHideFlags: 0

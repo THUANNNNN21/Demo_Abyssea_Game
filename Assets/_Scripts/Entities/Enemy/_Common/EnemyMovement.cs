@@ -82,12 +82,12 @@ public class EnemyMovement : FollowPlayerMovement
 
     private void LoadMoveAfterAppear()
     {
-        moveAfterAppear = enemyController.AfterAppear;
+        moveAfterAppear = enemyController.EnemyAbility.AfterAppear;
     }
 
     private void LoadShootingStateTracker()
     {
-        shootingStateTracker = enemyController.ShootingStateTracker;
+        shootingStateTracker = enemyController.EnemyAbility.ShootingStateTracker;
     }
 
     private void LoadRigidbody2D()

@@ -114,6 +114,7 @@ public class AbleToSelect : MonoBehaviour
         }
 
         changeModel.EquipItem(equipmentItem);
+        SoundManager.Instance.PlaySound(SoundType.UseItem, 0.5f);
     }
 
     // Helper methods

@@ -53,10 +53,19 @@ public class UIInventory : MyMonoBehaviour
     public virtual void Toggle()
     {
         this.uiInventoryController.gameObject.SetActive(!this.uiInventoryController.gameObject.activeSelf);
+        if (this.uiInventoryController.gameObject.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
     public void Close()
     {
         this.uiInventoryController.gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
     private void ShowSlotItems()
     {

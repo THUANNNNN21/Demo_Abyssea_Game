@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: NormalEnemy
   m_EditorClassIdentifier: 
   enemyName: 
-  maxHP: 200
+  maxHP: 100
   damage: 2
   speed: 10
   maxDistance: 500
   expReward: 100
   scoreReward: 3
   timeReward: 0
+  targetRadius: 0
   dropList:
   - name: Wing
     itemInInventory:
@@ -48,4 +49,3 @@ MonoBehaviour:
       itemsCount: 1
       isOnHotKeySlot: 0
     dropRate: 30
-  isDestroyWhenImpact: 0

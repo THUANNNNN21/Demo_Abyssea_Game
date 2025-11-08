@@ -23,12 +23,12 @@ public class HPBarSpawner : SpawnObject
     }
     private void LoadSpawner()
     {
-        if (this.Spawnner == null)
+        if (this.spawnner == null)
         {
             Transform holder = this.transform.Find("Holder");
             if (holder != null)
             {
-                this.Spawnner = holder.gameObject;
+                this.spawnner = holder.gameObject;
             }
         }
     }

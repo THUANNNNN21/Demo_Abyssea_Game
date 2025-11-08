@@ -4,7 +4,7 @@ public class LevelByTime : Level
 {
     [Header("Level By Time")]
     [SerializeField] private bool isStartLeveling = false;
-    [SerializeField] private float timePerLevel = 10f;
+    [SerializeField] private float timePerLevel = 20f;
     [SerializeField] private float time;
     protected virtual void FixedUpdate()
     {

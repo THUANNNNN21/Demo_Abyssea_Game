@@ -5,9 +5,14 @@ public class EnemySummon : EnemyShooting
     {
         if (this.isReady)
         {
+            this.PlayShootAnimation();
             GameObject enemy = this.SpawnAndReturn();
-            // enemy.GetComponent<EnemyController>().Movement.SpawnPoint = this.transform.parent;
-            this.ResetCooldown();
+            if (enemy != null)
+            {
+                EnemyController enemyCtrl = enemy.GetComponent<EnemyController>();
+                HPBarSpawner.Instance.SpawnHPBar(enemyCtrl);
+                this.ResetCooldown();
+            }
         }
     }
 }

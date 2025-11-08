@@ -68,7 +68,7 @@ public class UIItemSpawner : SpawnObject
         }
 
         // Tạm thời set Spawnner là slot trống
-        this.Spawnner = emptySlot.gameObject;
+        this.spawnner = emptySlot.gameObject;
         GameObject itemObj = this.SpawnAndReturn();
         UIItem uiItem = itemObj.GetComponentInChildren<UIItem>();
         this.SetUIItem(uiItem, item);

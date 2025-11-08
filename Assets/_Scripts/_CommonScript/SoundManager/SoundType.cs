@@ -3,7 +3,6 @@ public enum SoundType
     BackgroundMainMenu,
     BackgroundGamePlay,
     PlayerAttack,
-    PlayerHurt,
     PlayerShoot,
     PlayerWarp,
     PlayerBurn,
@@ -11,10 +10,11 @@ public enum SoundType
     LevelUp,
     EnemyAttack,
     EnemyDeath,
-    EnemyHurt,
+    Explosion,
     EnemySpawn,
     EnemyShoot,
     ItemPickup,
     GameOver,
-    ButtonClick
+    ButtonClick,
+    UseItem
 }

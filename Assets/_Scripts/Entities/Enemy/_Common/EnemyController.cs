@@ -15,27 +15,17 @@ public class EnemyController : MyMonoBehaviour
 
     [SerializeField] private EnemyDamReceiver enemyDamReceiver;
     public EnemyDamReceiver EnemyDamReceiver { get => enemyDamReceiver; }
-    [SerializeField] private EnemyImpact enemyImpact;
-    public EnemyImpact EnemyImpact { get => enemyImpact; }
+    [SerializeField] private EnemyAbility enemyAbility;
+    public EnemyAbility EnemyAbility { get => enemyAbility; }
 
     [SerializeField] private DespawnByDistance despawnByDistance;
     public DespawnByDistance DespawnByDistance { get => despawnByDistance; }
-    [SerializeField] private ObjAppearing objAppearing;
-    public ObjAppearing ObjAppearing { get => objAppearing; }
-    [SerializeField] private AppearanceStateTracker afterAppear;
-    public AppearanceStateTracker AfterAppear => this.afterAppear;
-    [SerializeField] private ShootingStateTracker shootingStateTracker;
-    public ShootingStateTracker ShootingStateTracker => this.shootingStateTracker;
     [SerializeField] private EnemySO enemySO;
     public EnemySO EnemySO { get => enemySO; }
     [SerializeField] private Animator animator;
     public Animator Animator { get => animator; }
-    [SerializeField] private EnemyWarp warp;
-    public EnemyWarp Warp { get => warp; }
     [SerializeField] private EnemyLevelUp enemyLevelUp;
     public EnemyLevelUp EnemyLevelUp { get => enemyLevelUp; }
-    [SerializeField] private List<EnemyShooting> enemyShooting;
-    public List<EnemyShooting> EnemyShooting { get => enemyShooting; }
     [SerializeField] private EnemyCheckPlayer enemyCheckPlayer;
     public EnemyCheckPlayer EnemyCheckPlayer { get => enemyCheckPlayer; }
     protected override void LoadComponents()
@@ -44,26 +34,21 @@ public class EnemyController : MyMonoBehaviour
         this.LoadModel();
         this.LoadDamageSender();
         this.LoadDamageReceiver();
-        this.LoadEnemyImpact();
+        this.LoadEnemyAbility();
         this.LoadSO();
         this.LoadEnemyCheckPlayer();
         this.LoadMovement();
         this.LoadDespawnByDistance();
         this.LoadAnimator();
-        this.LoadObjAppearing();
-        this.LoadAfterAppear();
         this.LoadEnemyLevelUp();
-        this.LoadShootingStateTracker();
-        this.LoadListEnemyShooting();
-        this.LoadWarp();
     }
-    private void LoadEnemyImpact()
+    private void LoadEnemyAbility()
     {
-        if (this.enemyImpact != null) return;
+        if (this.enemyAbility != null) return;
         else
         {
-            this.enemyImpact = this.GetComponentInChildren<EnemyImpact>();
-            Debug.LogWarning($"LoadEnemyImpact: {this.gameObject.name}");
+            this.enemyAbility = this.GetComponentInChildren<EnemyAbility>();
+            Debug.LogWarning($"LoadEnemyAbility: {this.gameObject.name}");
         }
     }
     private void LoadModel()
@@ -115,51 +100,11 @@ public class EnemyController : MyMonoBehaviour
             this.despawnByDistance = this.GetComponent<DespawnByDistance>();
         }
     }
-    protected void LoadObjAppearing()
-    {
-        if (this.objAppearing != null) return;
-        else
-        {
-            this.objAppearing = GetComponentInChildren<ObjAppearing>();
-        }
-    }
-    private void LoadAfterAppear()
-    {
-        if (this.afterAppear != null) return;
-        else
-        {
-            this.afterAppear = GetComponentInChildren<AppearanceStateTracker>();
-        }
-    }
     private void LoadEnemyLevelUp()
     {
         if (this.enemyLevelUp == null)
         {
             this.enemyLevelUp = this.GetComponentInChildren<EnemyLevelUp>();
-        }
-    }
-    protected void LoadShootingStateTracker()
-    {
-        if (this.shootingStateTracker != null) return;
-        else
-        {
-            this.shootingStateTracker = GetComponentInChildren<ShootingStateTracker>();
-        }
-    }
-    private void LoadListEnemyShooting()
-    {
-        if (this.enemyShooting == null || this.enemyShooting.Count == 0)
-        {
-            this.enemyShooting = new List<EnemyShooting>(GetComponentsInChildren<EnemyShooting>());
-        }
-    }
-    private void LoadWarp()
-    {
-        if (this.warp != null) return;
-        else
-        {
-            this.warp = this.GetComponentInChildren<EnemyWarp>();
-            Debug.LogWarning($"LoadWarp: {this.gameObject.name}");
         }
     }
     private void LoadEnemyCheckPlayer()

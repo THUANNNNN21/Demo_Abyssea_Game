@@ -68,6 +68,7 @@ public class EnemyImpact : Impact
         if (enemyController.DamageSender != null)
         {
             enemyController.DamageSender.SendDamage(target);
+            SoundManager.Instance.PlaySound(SoundType.EnemyAttack, 0.2f);
         }
     }
 

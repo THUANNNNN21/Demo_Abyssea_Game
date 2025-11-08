@@ -125,7 +125,7 @@ public class GameManager : MyMonoBehaviour
         this.currentTime += amount;
         this.timerText.UpdateTimerUI(this.currentTime);
     }
-    void EndGame()
+    public void EndGame()
     {
         this.isGameOver = true;
         this.finalScoreText.UpdateFinalScoreUI(this.score);

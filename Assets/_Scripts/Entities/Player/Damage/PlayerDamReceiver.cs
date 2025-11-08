@@ -32,6 +32,7 @@ public class PlayerDamReceiver : DamageReceiver
     protected override void OnDead()
     {
         base.OnDead();
+        GameManager.Instance.EndGame();
         Debug.LogWarning("Player has died. Game Over.");
     }
     #endregion
