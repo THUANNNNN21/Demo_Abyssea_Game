@@ -37,8 +37,8 @@ public class UIItem : MyMonoBehaviour
     private void LoadItemCountText()
     {
         if (this.itemCountText != null) return;
-        Debug.LogWarning($"[{this.gameObject.name}] ItemCountText not found, please check again!");
-        this.itemCountText = transform.Find("ItemCount").GetComponent<TextMeshProUGUI>();
+        Debug.LogWarning($"[{this.gameObject.name}] ItemLevelText not found, please check again!");
+        this.itemCountText = transform.Find("ItemLevel").GetComponent<TextMeshProUGUI>();
     }
     private void LoadAbleToSelect()
     {
@@ -58,7 +58,7 @@ public class UIItem : MyMonoBehaviour
     }
     public void SetItemCount(int count, int maxCount)
     {
-        this.ItemCountText.text = $"{count}/{maxCount}";
+        // this.ItemCountText.text = $"{count}/{maxCount}";
     }
     public void SetItemSprite(Sprite sprite)
     {
@@ -87,6 +87,7 @@ public class UIItem : MyMonoBehaviour
         if (this.dragItem != null)
         {
             this.dragItem.SetCurrentLevel(level);
+            this.ItemCountText.text = $"Lv. {level}";
         }
     }
 }

@@ -38,6 +38,7 @@ public class LevelUpBonus : MyMonoBehaviour
         this.BonusMoveSpeed(totalBonusPoints);
         this.BonusInventorySize();
         this.SizeGrowth(currentLevel);
+        LevelController.PlayerController.SkillController.UpdateSkillDelays(currentLevel);
         Debug.Log($"LevelUpBonus: Applied {totalBonusPoints} bonus points for Level {currentLevel}");
     }
 
@@ -75,13 +76,13 @@ public class LevelUpBonus : MyMonoBehaviour
         this.LevelController.PlayerController.transform.localScale = newScale;
     }
 
-    [Header("Testing")]
-    [SerializeField] private int testLevel = 2;
+    // [Header("Testing")]
+    // [SerializeField] private int testLevel = 2;
 
-    [ContextMenu("Test Bonus")]
-    public void TestBonus()
-    {
-        this.BonusPoint(testLevel);
-        Debug.Log($"Applied bonus for Level {testLevel}: {bonusPointsPerLevel + testLevel} total points");
-    }
+    // [ContextMenu("Test Bonus")]
+    // public void TestBonus()
+    // {
+    //     this.BonusPoint(testLevel);
+    //     Debug.Log($"Applied bonus for Level {testLevel}: {bonusPointsPerLevel + testLevel} total points");
+    // }
 }

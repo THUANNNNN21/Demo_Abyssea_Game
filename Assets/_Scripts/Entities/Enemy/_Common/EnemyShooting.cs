@@ -29,7 +29,9 @@ public class EnemyShooting : Shooting, IShootingObservable
     }
     private void LoadShootAfterAppearing()
     {
-        this.shootAfterAppearing = this.enemyController.EnemyAbility.AfterAppear;
+        if (this.enemyController.EnemyAbility.AfterAppear == null) return;
+        else
+            this.shootAfterAppearing = this.enemyController.EnemyAbility.AfterAppear;
     }
     private void LoadEnemyController()
     {

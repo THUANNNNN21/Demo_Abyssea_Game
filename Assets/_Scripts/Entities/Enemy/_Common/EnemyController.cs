@@ -118,27 +118,51 @@ public class EnemyController : MyMonoBehaviour
     }
     protected override void LoadValues()
     {
-        if (this.enemySO == null) return;
+        base.LoadValues();
+
+        // Check if MapManager and MapLevel are available
+        if (MapManager.Instance == null || MapManager.Instance.MapLevel == null)
+        {
+            Debug.LogWarning($"MapManager or MapLevel not found for {gameObject.name}. Using default level 1.");
+            LoadValuesWithLevel(1);
+            return;
+        }
+
+        int mapLevel = MapManager.Instance.MapLevel.CurrentLevel;
+        LoadValuesWithLevel(mapLevel);
+    }
+
+    private void LoadValuesWithLevel(int mapLevel)
+    {
+        if (enemySO == null) return;
+
         if (enemyDamReceiver != null)
         {
-            this.enemyDamReceiver.SetHPMax(this.enemySO.maxHP);
+            enemyDamReceiver.SetHPMax(enemySO.maxHP * mapLevel);
+            enemyDamReceiver.SetRewards(enemySO.expReward * mapLevel, enemySO.scoreReward * mapLevel, enemySO.timeReward * mapLevel);
         }
-        if (this.damageSender != null)
+
+        if (damageSender != null)
         {
-            this.damageSender.SetDamage(this.enemySO.damage);
+            damageSender.SetDamage(enemySO.damage * mapLevel);
         }
-        if (this.movement != null)
+
+        if (movement != null)
         {
-            this.movement.SetSpeed(this.enemySO.speed);
-            this.movement.SetTargetRadius(this.enemySO.targetRadius);
+            movement.SetSpeed(enemySO.speed * mapLevel);
+            movement.SetTargetRadius(enemySO.targetRadius);
+            movement.SetDistanceToPlayerForMove(enemySO.distanceToPlayerForMove);
+            movement.SetFakeTargetRadius(enemySO.fakeTargetRadius);
         }
-        if (this.despawnByDistance != null)
+
+        if (despawnByDistance != null)
         {
-            this.despawnByDistance.SetDistance(this.enemySO.maxDistance);
+            despawnByDistance.SetDistance(enemySO.maxDistance);
         }
-        if (this.enemyLevelUp != null)
+
+        if (enemyLevelUp != null)
         {
-            this.enemyLevelUp.SetScale();
+            enemyLevelUp.SetScale();
         }
     }
 }

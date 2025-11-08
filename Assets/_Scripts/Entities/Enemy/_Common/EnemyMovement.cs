@@ -191,7 +191,7 @@ public class EnemyMovement : FollowPlayerMovement
     #region Public Methods
     public void SetTargetRadius(float radius)
     {
-        targetRadius = radius;
+        this.targetRadius = radius;
     }
 
     private float RandomSpeed()
@@ -199,6 +199,14 @@ public class EnemyMovement : FollowPlayerMovement
         float minSpeed = enemyController.EnemySO.speed - 1f;
         float maxSpeed = enemyController.EnemySO.speed + 1f;
         return Random.Range(minSpeed, maxSpeed);
+    }
+    public void SetDistanceToPlayerForMove(float distance)
+    {
+        this.distanceToPlayerForMove = distance;
+    }
+    public void SetFakeTargetRadius(float radius)
+    {
+        this.fakeTargetRadius = radius;
     }
     #endregion
 }

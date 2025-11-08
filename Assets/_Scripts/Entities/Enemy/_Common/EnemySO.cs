@@ -4,15 +4,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy", menuName = "Scriptable Objects/EnemySO")]
 public class EnemySO : ScriptableObject
 {
+    [Header("Enemy Stats")]
     public string enemyName;
+    [Header("Enemy Damage Stats")]
     public int maxHP;
     public int damage;
+    [Header("Enemy Movement Stats")]
     public float speed;
     public float maxDistance;
+    public float targetRadius;
+    public float fakeTargetRadius;
+    public float distanceToPlayerForMove;
+    [Header("Enemy Rewards")]
     public int expReward;
     public int scoreReward;
     public float timeReward;
-    public float targetRadius;
     public List<ItemDropRate> dropList;
 
     private void OnValidate()

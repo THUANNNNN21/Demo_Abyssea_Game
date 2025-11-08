@@ -241,8 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd83ed0f07b144cdbb18693fc1a563fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
-  healthMax: 200
+  health: 400
+  healthMax: 400
   isDead: 0
   enemyController: {fileID: 6306081411485733408}
 --- !u!114 &490683922850745478
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd521164fe6a4e229bfc26f50b6352d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 8
   enemyController: {fileID: 6306081411485733408}
 --- !u!1 &5642428094254244692
 GameObject:
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 1356750883617084868}
   m_Layer: 11
   m_Name: NormalEnemy
-  m_TagString: Meteorite
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,13 +545,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e225a1457ef4cccad614c5492fdaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  speed: 10
+  speed: 40
   target: {fileID: 0}
   enemyController: {fileID: 6306081411485733408}
   timeToChangeTarget: 1
   targetRadius: 0
-  fakeTargetRadius: 10
-  distanceToPlayerForMove: 20
+  fakeTargetRadius: 0
+  distanceToPlayerForMove: 0
   distance: 0
 --- !u!1 &7607448413615224291
 GameObject:

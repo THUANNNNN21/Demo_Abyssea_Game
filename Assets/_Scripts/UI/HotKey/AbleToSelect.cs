@@ -9,7 +9,7 @@ public enum SkillType
     Warp
 }
 
-public class AbleToSelect : MonoBehaviour
+public class AbleToSelect : MyMonoBehaviour
 {
     [Header("Skill Settings")]
     [SerializeField] private SkillType skillType = SkillType.Shooting;
@@ -26,7 +26,17 @@ public class AbleToSelect : MonoBehaviour
         get => equipmentItem;
         set => equipmentItem = value;
     }
-
+    private ItemController itemController;
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadItemController();
+    }
+    private void LoadItemController()
+    {
+        if (itemController != null) return;
+        itemController = GetComponentInParent<ItemController>();
+    }
     // ✅ Method mới: Chỉ equip item khi select
     public void EquipItem()
     {

@@ -10,6 +10,8 @@ public class EProjectileCtrl : MyMonoBehaviour
     public DespawnByDistance DespawnByDistance => despawnByDistance;
     [SerializeField] private Animator animator;
     public Animator Animator => animator;
+    [SerializeField] private ProjectileSO projectileSO;
+    public ProjectileSO ProjectileSO => projectileSO;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -42,5 +44,28 @@ public class EProjectileCtrl : MyMonoBehaviour
         if (animator != null) return;
         animator = GetComponentInChildren<Animator>();
         Debug.LogWarning($"Load Animator in {gameObject.name}.");
+    }
+    protected override void LoadValues()
+    {
+        base.LoadValues();
+
+        // Check if MapManager and MapLevel are available
+        if (MapManager.Instance == null || MapManager.Instance.MapLevel == null)
+        {
+            Debug.LogWarning($"MapManager or MapLevel not found for {gameObject.name}. Using default level 1.");
+            LoadValuesWithLevel(1);
+            return;
+        }
+
+        int mapLevel = MapManager.Instance.MapLevel.CurrentLevel;
+        LoadValuesWithLevel(mapLevel);
+    }
+
+    private void LoadValuesWithLevel(int mapLevel)
+    {
+        if (damSender != null && projectileSO != null)
+        {
+            damSender.SetDamage(projectileSO.damage * mapLevel);
+        }
     }
 }

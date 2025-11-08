@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolObject: {fileID: 0}
+  animator: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
   maxDistance: 60
@@ -176,6 +177,10 @@ PrefabInstance:
       propertyPath: itemController
       value: 
       objectReference: {fileID: 7057317365582965467}
+    - target: {fileID: 3229878774772999649, guid: f89d4b26c41464de6842eeeef4c9b487, type: 3}
+      propertyPath: m_EditorClassIdentifier
+      value: Assembly-CSharp::AbleToPickup
+      objectReference: {fileID: 0}
     - target: {fileID: 4272716162941322675, guid: f89d4b26c41464de6842eeeef4c9b487, type: 3}
       propertyPath: m_Radius
       value: 0.7

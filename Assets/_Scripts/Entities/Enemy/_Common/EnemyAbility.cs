@@ -38,13 +38,11 @@ public class EnemyAbility : MyMonoBehaviour
         else
         {
             this.enemyImpact = this.GetComponentInChildren<EnemyImpact>();
-            Debug.LogWarning($"LoadEnemyImpact: {this.gameObject.name}");
         }
     }
     private void LoadEnemyController()
     {
         if (enemyController != null) return;
-        Debug.LogWarning($"EnemyAbility: LoadEnemyController {transform.name}!");
         enemyController = GetComponentInParent<EnemyController>();
     }
     private void LoadEnemyShooting()
@@ -53,7 +51,6 @@ public class EnemyAbility : MyMonoBehaviour
         else
         {
             this.enemyShooting = this.GetComponentInChildren<EnemyShooting>();
-            Debug.LogWarning($"LoadEnemyShooting: {this.gameObject.name}");
         }
     }
     private void LoadEnemyWarp()
@@ -62,7 +59,6 @@ public class EnemyAbility : MyMonoBehaviour
         else
         {
             this.enemyWarp = this.GetComponentInChildren<EnemyWarp>();
-            Debug.LogWarning($"LoadEnemyWarp: {this.gameObject.name}");
         }
     }
     private void LoadEnemySummon()
@@ -71,7 +67,6 @@ public class EnemyAbility : MyMonoBehaviour
         else
         {
             this.enemySummon = this.GetComponentInChildren<EnemySummon>();
-            Debug.LogWarning($"LoadEnemySummon: {this.gameObject.name}");
         }
     }
     protected void LoadObjAppearing()

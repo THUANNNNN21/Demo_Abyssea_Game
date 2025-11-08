@@ -6,6 +6,9 @@ public class EnemyDamReceiver : DamageReceiver
 {
     [SerializeField] private EnemyController enemyController;
     public EnemyController EnemyController { get => enemyController; }
+    private int scoreReward;
+    private int expReward;
+    private float timeReward;
 
     private void LoadController()
     {
@@ -35,9 +38,9 @@ public class EnemyDamReceiver : DamageReceiver
     }
     private void AddAmount()
     {
-        PlayerController.Instance.LevelController.LevelUp.AddExp(enemyController.EnemySO.expReward);
-        GameManager.Instance.AddScore(enemyController.EnemySO.scoreReward);
-        GameManager.Instance.AddTime(enemyController.EnemySO.timeReward);
+        PlayerController.Instance.LevelController.LevelUp.AddExp(expReward);
+        GameManager.Instance.AddScore(scoreReward);
+        GameManager.Instance.AddTime(timeReward);
     }
     public void DropItems()
     {
@@ -53,5 +56,11 @@ public class EnemyDamReceiver : DamageReceiver
     private void OnEnable()
     {
         this.ResetHealth();
+    }
+    public void SetRewards(int exp, int score, float time)
+    {
+        this.expReward = exp;
+        this.scoreReward = score;
+        this.timeReward = time;
     }
 }

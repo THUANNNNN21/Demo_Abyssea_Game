@@ -29,6 +29,14 @@ public class SkillController : MyMonoBehaviour
         this.LoadBurnController();
         this.LoadHealController();
     }
+    // protected override void LoadValues()
+    // {
+    //     int level = playerController.LevelController.LevelUp.CurrentLevel;
+    //     this.playerShooting.SetDelayTime(10 - level);
+    //     this.burnController.ActiveBurn.SetDelayTime(10 - level);
+    //     this.healController.ActiveHeal.SetDelayTime(10 - level);
+    //     this.warp.SetDelayTime(10 - level);
+    // }
     #endregion
 
     #region Component Loading Methods
@@ -64,6 +72,13 @@ public class SkillController : MyMonoBehaviour
         if (this.healController != null) return;
         this.healController = GetComponentInChildren<HealController>();
         Debug.LogWarning(this.gameObject.name + ": Load HealController");
+    }
+    public void UpdateSkillDelays(int level)
+    {
+        this.playerShooting.SetDelayTime(11 - level);
+        this.burnController.ActiveBurn.SetDelayTime(11 - level);
+        this.healController.ActiveHeal.SetDelayTime(11 - level);
+        this.warp.SetDelayTime(11 - level);
     }
     #endregion
 }

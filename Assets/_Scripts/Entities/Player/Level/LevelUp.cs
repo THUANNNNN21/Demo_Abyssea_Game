@@ -64,17 +64,17 @@ public class LevelUp : MyMonoBehaviour
         float newExpRequirement = this.expToNextLevel * ExpGrow;
         this.expToNextLevel = Mathf.RoundToInt(newExpRequirement);
     }
-    [Header("Testing")]
-    [SerializeField] private int addExp;
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Test();
-        }
-    }
-    private void Test()
-    {
-        AddExp(addExp);
-    }
+    // [Header("Testing")]
+    // [SerializeField] private int addExp;
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.L))
+    //     {
+    //         Test();
+    //     }
+    // }
+    // private void Test()
+    // {
+    //     AddExp(addExp);
+    // }
 }
