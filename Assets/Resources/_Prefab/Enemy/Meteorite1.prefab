@@ -75,8 +75,8 @@ Transform:
   m_GameObject: {fileID: 4334742909083019393}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.3271, y: 0.4044, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6395699771004496942}
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6e91b2901414845a4ada57a84f1208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageSender
-  damage: 20
+  damage: 12
 --- !u!1 &5740359710855150219
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ Transform:
   m_GameObject: {fileID: 5740359710855150219}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.132, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -314,8 +314,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.3979501}
-  m_Radius: 0.7212513
+  m_Offset: {x: -0.34682852, y: 0.44624266}
+  m_Radius: 0.3261302
 --- !u!114 &3693332192755200616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,4 +402,4 @@ MonoBehaviour:
   damSender: {fileID: 5231311766188526703}
   despawnByDistance: {fileID: 1303986101263146929}
   animator: {fileID: 4809739097078101895}
-  projectileSO: {fileID: 0}
+  projectileSO: {fileID: 11400000, guid: b5cba95ea95244d2491b63f0d5d2050d, type: 2}

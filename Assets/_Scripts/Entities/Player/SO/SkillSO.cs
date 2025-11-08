@@ -12,5 +12,5 @@ public enum PrefabToSpawnName
     None = 0,
     Meteorite1 = 1,
     Meteorite2 = 2,
-    NormalEnemy = 3,
+    ShootingEnemy_1 = 3,
 }

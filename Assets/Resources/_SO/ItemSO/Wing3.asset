@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 811ddb16ceb854f7f901b04be2704775, type: 3}
-  m_Name: Wing
+  m_Name: Wing3
   m_EditorClassIdentifier: 
   itemName: 1
   itemType: 1
   itemModelType: 3
-  sprite: {fileID: 2067027362, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
-  skillType: 3
+  sprite: {fileID: 1680717612, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
+  skillType: 2
   defaultMaxStack: 1
   levelUpRecipes: []

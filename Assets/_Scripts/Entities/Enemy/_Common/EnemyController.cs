@@ -116,42 +116,36 @@ public class EnemyController : MyMonoBehaviour
             Debug.LogWarning($"LoadEnemyCheckPlayer: {this.gameObject.name}");
         }
     }
-    protected override void LoadValues()
+    void OnEnable()
     {
-        base.LoadValues();
-
-        // Check if MapManager and MapLevel are available
         if (MapManager.Instance == null || MapManager.Instance.MapLevel == null)
         {
             Debug.LogWarning($"MapManager or MapLevel not found for {gameObject.name}. Using default level 1.");
-            LoadValuesWithLevel(1);
+            this.LoadValuesWithLevel(1);
             return;
         }
-
-        int mapLevel = MapManager.Instance.MapLevel.CurrentLevel;
-        LoadValuesWithLevel(mapLevel);
+        this.LoadValuesWithLevel(MapManager.Instance.MapLevel.CurrentLevel);
     }
-
-    private void LoadValuesWithLevel(int mapLevel)
+    public void LoadValuesWithLevel(int mapLevel)
     {
         if (enemySO == null) return;
 
         if (enemyDamReceiver != null)
         {
-            enemyDamReceiver.SetHPMax(enemySO.maxHP * mapLevel);
-            enemyDamReceiver.SetRewards(enemySO.expReward * mapLevel, enemySO.scoreReward * mapLevel, enemySO.timeReward * mapLevel);
+            enemyDamReceiver.SetHPMax(enemySO.maxHP * Mathf.RoundToInt(1 + 0.25f * mapLevel));
+            enemyDamReceiver.SetRewards(enemySO.expReward * Mathf.RoundToInt(1 + 0.15f * mapLevel), enemySO.scoreReward * Mathf.RoundToInt(1 + 0.25f * mapLevel), enemySO.timeReward * (1 - 0.1f * mapLevel));
         }
 
         if (damageSender != null)
         {
-            damageSender.SetDamage(enemySO.damage * mapLevel);
+            damageSender.SetDamage(enemySO.damage * Mathf.RoundToInt(1 + 0.2f * mapLevel));
         }
 
         if (movement != null)
         {
-            movement.SetSpeed(enemySO.speed * mapLevel);
+            movement.SetSpeed(enemySO.speed * (1 + 0.05f * mapLevel));
             movement.SetTargetRadius(enemySO.targetRadius);
-            movement.SetDistanceToPlayerForMove(enemySO.distanceToPlayerForMove);
+            movement.SetDistanceToPlayerForMove(enemySO.distanceToPlayerForMove * (1 + 0.1f * mapLevel));
             movement.SetFakeTargetRadius(enemySO.fakeTargetRadius);
         }
 
@@ -164,5 +158,7 @@ public class EnemyController : MyMonoBehaviour
         {
             enemyLevelUp.SetScale();
         }
+
+        Debug.LogWarning($"{this.gameObject.name}: Load Values With Level {mapLevel}");
     }
 }

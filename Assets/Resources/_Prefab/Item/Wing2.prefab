@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7057317365582965467}
   - component: {fileID: 2428324512033071078}
   m_Layer: 10
-  m_Name: Shell
+  m_Name: Wing2
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,9 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemController
   itemInInventory:
     id: 
-    itemSO: {fileID: 11400000, guid: aa030b16b0a644bebb5fbad964128ff3, type: 2}
+    itemSO: {fileID: 11400000, guid: e452abf546407468b920a37ad48ce935, type: 2}
     upgradeLevel: 0
-    maxStack: 3
+    maxStack: 0
     itemsCount: 1
     isOnHotKeySlot: 0
   despawnObject: {fileID: 2428324512033071078}
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -105626146, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
+  m_Sprite: {fileID: -1578093663, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

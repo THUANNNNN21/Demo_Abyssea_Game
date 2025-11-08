@@ -6,13 +6,17 @@ public class Level : MyMonoBehaviour
     [SerializeField] private int currentLevel = 1;
     public int CurrentLevel { get => currentLevel; }
     [SerializeField] private int maxLevel = 10;
-    public int MaxLevel { get => maxLevel; }
+    public int MaxLevel
+    {
+        get => maxLevel;
+        set => maxLevel = value;
+    }
     protected void LevelUp()
     {
         this.currentLevel += 1;
         this.LimitLevel();
     }
-    protected void SetLevel(int level)
+    protected virtual void SetLevel(int level)
     {
         this.currentLevel = level;
         this.LimitLevel();

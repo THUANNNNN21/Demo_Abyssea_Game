@@ -490,6 +490,10 @@ PrefabInstance:
       propertyPath: m_EditorClassIdentifier
       value: Assembly-CSharp::EnemyShooting
       objectReference: {fileID: 0}
+    - target: {fileID: 3320862358387902114, guid: e4c6819f416cc4fc8a9dada22b3550de, type: 3}
+      propertyPath: distanceToPlayerForShoot
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3563656816880025934, guid: e4c6819f416cc4fc8a9dada22b3550de, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.31

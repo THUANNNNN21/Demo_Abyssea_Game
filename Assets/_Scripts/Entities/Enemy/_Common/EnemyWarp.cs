@@ -5,7 +5,7 @@ public class EnemyWarp : Warp
     [SerializeField] private EnemyController enemyController;
     public EnemyController EnemyController { get => enemyController; }
     [SerializeField] private bool isWarpToPlayer = true;
-    [SerializeField] private float maxDistanceToWarp = 5f; // Distance threshold to trigger warp
+    [SerializeField] private float maxDistanceToWarp = 3f; // Distance threshold to trigger warp
 
     protected override void LoadComponents()
     {

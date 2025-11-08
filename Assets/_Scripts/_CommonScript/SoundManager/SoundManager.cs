@@ -70,7 +70,7 @@ public class SoundManager : MyMonoBehaviour
 
         backgroundAudioSource.loop = true;
         backgroundAudioSource.playOnAwake = false;
-        Debug.Log("Background AudioSource initialized");
+        // Debug.Log("Background AudioSource initialized");
     }
     public void PlaySound(SoundType soundType, float volume = 1f)
     {
@@ -106,7 +106,7 @@ public class SoundManager : MyMonoBehaviour
         backgroundAudioSource.clip = clip;
         backgroundAudioSource.volume = volume;
         backgroundAudioSource.Play();
-        Debug.Log($"Playing background music: {clip.name} ({bgType})");
+        // Debug.Log($"Playing background music: {clip.name} ({bgType})");
     }
 
     public void StopBackgroundMusic()
@@ -114,7 +114,7 @@ public class SoundManager : MyMonoBehaviour
         if (backgroundAudioSource != null && backgroundAudioSource.isPlaying)
         {
             backgroundAudioSource.Stop();
-            Debug.Log("Background music stopped");
+            // Debug.Log("Background music stopped");
         }
     }
 

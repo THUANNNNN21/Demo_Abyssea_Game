@@ -4,11 +4,16 @@ public class LevelByTime : Level
 {
     [Header("Level By Time")]
     [SerializeField] private bool isStartLeveling = false;
-    [SerializeField] private float timePerLevel = 20f;
+    [SerializeField] private float timePerLevel = 30f;
     [SerializeField] private float time;
+    void Start()
+    {
+        this.time = 0f;
+        Invoke(nameof(Leveling), timePerLevel);
+    }
     protected virtual void FixedUpdate()
     {
-        this.Leveling();
+        this.time += Time.fixedDeltaTime;
     }
     protected void SetStartLeveling(bool isStart)
     {
@@ -17,9 +22,11 @@ public class LevelByTime : Level
     private void Leveling()
     {
         if (!this.isStartLeveling) return;
-        this.time += Time.fixedDeltaTime;
         int newLevel = this.GetlevelByTime();
-        this.SetLevel(newLevel);
+        if (newLevel != this.CurrentLevel)
+        {
+            this.SetLevel(newLevel);
+        }
     }
     private int GetlevelByTime()
     {

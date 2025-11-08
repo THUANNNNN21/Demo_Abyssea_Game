@@ -13,21 +13,23 @@ MonoBehaviour:
   m_Name: ShootingEnemy_1
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
   enemyName: 
-  maxHP: 500
+  maxHP: 200
   damage: 0
-  speed: 6
+  speed: 5
   maxDistance: 500
-  expReward: 20
-  scoreReward: 39
-  timeReward: 40
   targetRadius: 15
+  fakeTargetRadius: 25
+  distanceToPlayerForMove: 15
+  expReward: 80
+  scoreReward: 4
+  timeReward: 400
   dropList:
-  - name: Wing1
+  - name: Wing
     itemInInventory:
       id: 
-      itemSO: {fileID: 11400000, guid: 5ece5cf634d984825abee2e859252b69, type: 2}
+      itemSO: {fileID: 11400000, guid: bb6ab6e1f501543fa80382ed8168dfbc, type: 2}
       upgradeLevel: 0
       maxStack: 1
       itemsCount: 1
       isOnHotKeySlot: 0
-    dropRate: 20
+    dropRate: 100

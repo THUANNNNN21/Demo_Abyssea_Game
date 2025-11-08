@@ -108,7 +108,7 @@ public class ItemLooter : MyMonoBehaviour
         {
             ableToPickup.PickedUp();
             nearbyItems.Remove(nearestItem);
-            Debug.Log($"Picked up: {nearestItem.transform.parent.name}");
+            // Debug.Log($"Picked up: {nearestItem.transform.parent.name}");
         }
     }
 

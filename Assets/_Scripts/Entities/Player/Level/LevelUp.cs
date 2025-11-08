@@ -13,8 +13,6 @@ public class LevelUp : MyMonoBehaviour
     public int CurrentExp => currentExp;
     [SerializeField] private int expToNextLevel = 100;
     public int ExpToNextLevel => expToNextLevel;
-    [SerializeField] private float expGrow = 1.2f;
-    public float ExpGrow => expGrow;
     public static event Action<int> OnLevelUp; // Event khi level up
     public static event Action<int, int> OnExpChanged; // Event khi EXP thay đổi
     protected override void LoadComponents()
@@ -30,7 +28,7 @@ public class LevelUp : MyMonoBehaviour
     }
     public void AddExp(int exp)
     {
-        Debug.Log($"Nhận được {exp} EXP. Tổng EXP hiện tại: {currentExp}/{expToNextLevel}");
+        // Debug.Log($"Nhận được {exp} EXP. Tổng EXP hiện tại: {currentExp}/{expToNextLevel}");
         currentExp += exp;
         OnExpChanged?.Invoke(currentExp, expToNextLevel);
         while (this.CanLevelUp())
@@ -61,9 +59,10 @@ public class LevelUp : MyMonoBehaviour
     }
     private void UpdateNextLevelExpRequirement()
     {
-        float newExpRequirement = this.expToNextLevel * ExpGrow;
-        this.expToNextLevel = Mathf.RoundToInt(newExpRequirement);
+        float newExpRequirement = expToNextLevel * 1.15f + currentLevel * 10f;
+        expToNextLevel = Mathf.RoundToInt(newExpRequirement);
     }
+
     // [Header("Testing")]
     // [SerializeField] private int addExp;
     // void Update()

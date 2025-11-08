@@ -5,8 +5,6 @@ public class LevelUpBonus : MyMonoBehaviour
 {
     [SerializeField] private LevelController levelController;
     public LevelController LevelController => levelController;
-    [SerializeField] private int bonusPointsPerLevel = 5;
-    public int BonusPointsPerLevel => bonusPointsPerLevel;
     void OnEnable()
     {
         LevelUp.OnLevelUp += BonusPoint;
@@ -31,58 +29,49 @@ public class LevelUpBonus : MyMonoBehaviour
 
     protected void BonusPoint(int currentLevel)
     {
-        int totalBonusPoints = bonusPointsPerLevel + currentLevel;
-
-        this.BonusDamage(totalBonusPoints);
-        this.BonusMaxHealth(totalBonusPoints);
-        this.BonusMoveSpeed(totalBonusPoints);
-        this.BonusInventorySize();
+        this.BonusDamage(currentLevel);
+        this.BonusMaxHealth(currentLevel);
+        this.BonusMoveSpeed(currentLevel);
+        this.BonusInventorySize(currentLevel);
         this.SizeGrowth(currentLevel);
         LevelController.PlayerController.SkillController.UpdateSkillDelays(currentLevel);
-        Debug.Log($"LevelUpBonus: Applied {totalBonusPoints} bonus points for Level {currentLevel}");
     }
 
-    private void BonusDamage(int bonusPoints)
+    private void BonusDamage(int currentLevel)
     {
-        int newDamage = LevelController.PlayerController.DamSender.Damage + bonusPoints;
+        float damageMultiplier = 1f + 0.05f * currentLevel;
+        int baseDamage = LevelController.PlayerController.DamSender.Damage;
+        int newDamage = Mathf.RoundToInt(baseDamage * damageMultiplier);
         this.LevelController.PlayerController.DamSender.SetDamage(newDamage);
     }
 
-    private void BonusMaxHealth(int bonusPoints)
+    private void BonusMaxHealth(int currentLevel)
     {
-        int newMaxHealth = LevelController.PlayerController.PlayerDamReceiver.HealthMax + bonusPoints * 10;
+        float healthMultiplier = 1f + 0.08f * currentLevel;
+        int baseHealth = LevelController.PlayerController.PlayerDamReceiver.HealthMax;
+        int newMaxHealth = Mathf.RoundToInt(baseHealth * healthMultiplier);
         this.LevelController.PlayerController.PlayerDamReceiver.SetHPMax(newMaxHealth);
     }
 
-    private void BonusMoveSpeed(int bonusPoints)
+    private void BonusMoveSpeed(int currentLevel)
     {
-        float newMoveSpeed = LevelController.PlayerController.PlayerMovement.Speed + bonusPoints * 0.05f;
+        float speedMultiplier = 1f + 0.02f * currentLevel;
+        float newMoveSpeed = LevelController.PlayerController.PlayerMovement.Speed * speedMultiplier;
         this.LevelController.PlayerController.PlayerMovement.SetSpeed(newMoveSpeed);
     }
 
-    private void BonusInventorySize()
+    private void BonusInventorySize(int currentLevel)
     {
-        int newInventorySize = LevelController.PlayerController.InventoryController.Inventory.MaxSlot + 1;
+        int inventoryBonus = currentLevel / 3;
+        int baseInventorySize = LevelController.PlayerController.InventoryController.Inventory.MaxSlot;
+        int newInventorySize = baseInventorySize + inventoryBonus;
         this.LevelController.PlayerController.InventoryController.Inventory.SetMaxSlot(newInventorySize);
     }
 
     private void SizeGrowth(int currentLevel)
     {
-        float bonusPoints = currentLevel * 0.1f + 1f;
-
-        // Nhân scale hiện tại với multiplier
-        Vector3 newScale = new(bonusPoints, bonusPoints, 1f);
-
+        float scaleMultiplier = 1f + 0.02f * currentLevel;
+        Vector3 newScale = Vector3.one * scaleMultiplier;
         this.LevelController.PlayerController.transform.localScale = newScale;
     }
-
-    // [Header("Testing")]
-    // [SerializeField] private int testLevel = 2;
-
-    // [ContextMenu("Test Bonus")]
-    // public void TestBonus()
-    // {
-    //     this.BonusPoint(testLevel);
-    //     Debug.Log($"Applied bonus for Level {testLevel}: {bonusPointsPerLevel + testLevel} total points");
-    // }
 }

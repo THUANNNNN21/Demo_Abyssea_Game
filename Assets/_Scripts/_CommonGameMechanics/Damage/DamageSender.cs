@@ -29,7 +29,7 @@ public class DamageSender : MyMonoBehaviour
     {
         DamageReceiver damageReceiver = obj.GetComponentInChildren<DamageReceiver>();
         if (damageReceiver == null) return;
-        Debug.Log(this.transform.parent.name + " sending " + this.damage + " damage to " + obj.transform.parent.name);
+        // Debug.Log(this.transform.parent.name + " sending " + this.damage + " damage to " + obj.transform.parent.name);
         damageReceiver.Remove(this.damage);
         damageReceiver.CheckDead();
     }

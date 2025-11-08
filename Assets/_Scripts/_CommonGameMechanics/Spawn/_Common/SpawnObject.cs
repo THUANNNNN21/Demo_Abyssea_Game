@@ -9,7 +9,7 @@ public abstract class SpawnObject : Cooldown
     public GameObject Spawnner => spawnner;
     public PoolObject poolObject;
     [SerializeField] protected List<Transform> minions;
-    [SerializeField] protected int prefabsCanExist = 10;
+    [SerializeField] protected int prefabsCanExist = 3;
 
     protected virtual GameObject GetObjectFromPool()
     {

@@ -3,6 +3,18 @@ using UnityEngine;
 
 public class EnemySpawn : SpawnObject
 {
+    private static EnemySpawn instance;
+    public static EnemySpawn Instance { get { return instance; } }
+    protected override void Awake()
+    {
+        base.Awake();
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
+    }
     [SerializeField] private int objectsPerSpawn;
     [Header("Random Instantiate")]
     [SerializeField] private GetRandomPoints getRandomPoints;
@@ -58,13 +70,13 @@ public class EnemySpawn : SpawnObject
     {
         if (this.isReady)
         {
-            this.SpawnRandom();
+            this.SpawnRandom(this.objectsPerSpawn);
             this.ResetCooldown();
         }
     }
-    private void SpawnRandom()
+    private void SpawnRandom(int amount)
     {
-        for (int i = 0; i < this.objectsPerSpawn; i++)
+        for (int i = 0; i < amount; i++)
         {
             this.spawnPoint = this.getRandomPoints.GetRandomSpawnPoint();
             this.prefabToSpawn = this.getRandomPrefabs.GetRandomPrefab();
@@ -76,9 +88,17 @@ public class EnemySpawn : SpawnObject
             }
         }
     }
+    void Start()
+    {
+        this.SpawnRandom(10);
+    }
     private void FixedUpdate()
     {
         this.Timing();
         this.SpawnWithCooldown();
+    }
+    public void SetObjectsPerSpawn(int amount)
+    {
+        this.objectsPerSpawn = amount;
     }
 }

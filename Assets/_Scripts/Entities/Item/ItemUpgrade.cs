@@ -40,12 +40,12 @@ public class ItemUpgrade : MyMonoBehaviour
         ItemInInventory itemInInventory = this.InventoryController.Inventory.GetItemByID(id);
         if (itemInInventory == null)
         {
-            Debug.Log("Item not found");
+            // Debug.Log("Item not found");
             return false;
         }
         if (itemInInventory.itemSO.itemType != ItemType.Equipment)
         {
-            Debug.Log("Item is not equipment");
+            // Debug.Log("Item is not equipment");
             return false;
         }
         if (itemInInventory.itemsCount < 1) return false;

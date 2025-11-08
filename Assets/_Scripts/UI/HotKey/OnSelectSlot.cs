@@ -49,7 +49,7 @@ public class OnSelectSlot : MyMonoBehaviour
         }
         else
         {
-            Debug.Log("No item is currently selected to cast.", this);
+            //Debug.Log("No item is currently selected to cast.", this);
         }
     }
 

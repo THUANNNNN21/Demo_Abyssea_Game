@@ -106,7 +106,7 @@ public class UIInventory : MyMonoBehaviour
     private void ClearItems()
     {
         this.uiInventoryController.UIInventorySpawner.ClearItems();
-        Debug.Log("Cleared all items in UI Inventory");
+        //Debug.Log("Cleared all items in UI Inventory");
     }
 }
 

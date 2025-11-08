@@ -33,7 +33,7 @@ public class MainMenuManager : MyMonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
+        Debug.LogWarning("Quit Game");
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #endif

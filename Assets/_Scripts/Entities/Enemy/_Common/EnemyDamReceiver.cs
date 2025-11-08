@@ -44,7 +44,7 @@ public class EnemyDamReceiver : DamageReceiver
     }
     public void DropItems()
     {
-        if (ItemSpawner.Instance != null)
+        if (ItemSpawner.Instance != null || this.GetDropList().Count > 0)
         {
             ItemSpawner.Instance.Drop(this.GetDropList(), this.gameObject);
         }

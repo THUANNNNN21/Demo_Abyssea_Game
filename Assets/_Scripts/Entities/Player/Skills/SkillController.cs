@@ -75,10 +75,26 @@ public class SkillController : MyMonoBehaviour
     }
     public void UpdateSkillDelays(int level)
     {
-        this.playerShooting.SetDelayTime(11 - level);
-        this.burnController.ActiveBurn.SetDelayTime(11 - level);
-        this.healController.ActiveHeal.SetDelayTime(11 - level);
-        this.warp.SetDelayTime(11 - level);
+        float newShootingDelay = NewDelayTime(this.playerShooting.DelayTime, level);
+        playerShooting.SetDelayTime(newShootingDelay);
+
+        float newBurnDelay = NewDelayTime(this.burnController.ActiveBurn.DelayTime, level);
+        burnController.ActiveBurn.SetDelayTime(newBurnDelay);
+
+        float newHealDelay = NewDelayTime(this.healController.ActiveHeal.DelayTime, level);
+        healController.ActiveHeal.SetDelayTime(newHealDelay);
+
+        float newWarpDelay = NewDelayTime(this.warp.DelayTime, level);
+        warp.SetDelayTime(newWarpDelay);
+    }
+    private float NewDelayTime(float baseDelay, int level)
+    {
+        float percentReducePerLevel = 0.05f; // Giảm 5% mỗi level
+        float minPercent = 0.3f;             // Không thấp hơn 30% ban đầu
+
+        float scale = Mathf.Max(1f - level * percentReducePerLevel, minPercent);
+        float newDelay = Mathf.FloorToInt(baseDelay * scale);
+        return newDelay;
     }
     #endregion
 }

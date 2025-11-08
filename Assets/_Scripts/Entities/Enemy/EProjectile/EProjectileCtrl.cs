@@ -19,6 +19,7 @@ public class EProjectileCtrl : MyMonoBehaviour
         this.LoadDamageSender();
         this.LoadDespawnByDistance();
         this.LoadAnimator();
+        this.LoadProjectileSO();
     }
     private void LoadProjectileImpact()
     {
@@ -45,11 +46,16 @@ public class EProjectileCtrl : MyMonoBehaviour
         animator = GetComponentInChildren<Animator>();
         Debug.LogWarning($"Load Animator in {gameObject.name}.");
     }
+    private void LoadProjectileSO()
+    {
+        if (projectileSO != null) return;
+        projectileSO = Resources.Load<ProjectileSO>("_SO/ProjectileSO/" + this.name);
+        Debug.LogWarning($"Load ProjectileSO in {gameObject.name}.");
+    }
     protected override void LoadValues()
     {
         base.LoadValues();
 
-        // Check if MapManager and MapLevel are available
         if (MapManager.Instance == null || MapManager.Instance.MapLevel == null)
         {
             Debug.LogWarning($"MapManager or MapLevel not found for {gameObject.name}. Using default level 1.");
@@ -65,7 +71,7 @@ public class EProjectileCtrl : MyMonoBehaviour
     {
         if (damSender != null && projectileSO != null)
         {
-            damSender.SetDamage(projectileSO.damage * mapLevel);
+            damSender.SetDamage(projectileSO.damage * Mathf.RoundToInt(1 + 0.2f * mapLevel));
         }
     }
 }

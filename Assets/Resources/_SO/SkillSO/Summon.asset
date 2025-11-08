@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Summon
   m_EditorClassIdentifier: Assembly-CSharp::SkillSO
   skillName: Summon
-  cooldownTime: 4
+  cooldownTime: 10
   prefabToSpawnName: 3

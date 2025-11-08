@@ -401,4 +401,5 @@ MonoBehaviour:
   projectileImpact: {fileID: 3693332192755200616}
   damSender: {fileID: 5231311766188526703}
   despawnByDistance: {fileID: 1303986101263146929}
-  animator: {fileID: 0}
+  animator: {fileID: 4809739097078101895}
+  projectileSO: {fileID: 0}

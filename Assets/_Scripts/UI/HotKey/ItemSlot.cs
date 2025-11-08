@@ -60,7 +60,7 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
                 InventoryDrop inventoryDrop = PlayerController.Instance.InventoryController.InventoryDrop;
                 inventoryDrop.DropItem(dragItem.ID);
                 Debug.Log(dragItem.transform.parent);
-                Debug.Log("Item dropped!");
+                // Debug.Log("Item dropped!");
                 return;
             }
             if (this.transform.childCount > 0)
@@ -72,7 +72,7 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
                         dragItem.CurrentLevel == existingDragItem.CurrentLevel && beginSlot.isHotKeySlot == false && this.isHotKeySlot == false)
                     {
                         inventoryCtlr.ItemUpgrade.UpgradeItem(existingDragItem.ID);
-                        Debug.Log("Items upgraded");
+                        // Debug.Log("Items upgraded");
                         return;
                     }
                     else
@@ -80,7 +80,7 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
 
                         existingDragItem.SetOriginalParent(originalParent);
                         existingDragItem.transform.SetParent(originalParent);
-                        Debug.Log("existingDragItem new parent: " + existingDragItem.transform.parent);
+                        //Debug.Log("existingDragItem new parent: " + existingDragItem.transform.parent);
                         inventoryCtlr.Inventory.SetItemSlotType(existingDragItem.ID, beginSlot.isHotKeySlot);
                     }
                     dragItem.SetOriginalParent(this.transform);
@@ -90,6 +90,6 @@ public class ItemSlot : MyMonoBehaviour, IDropHandler
             }
         }
         dragItem.SetOriginalParent(this.transform);
-        Debug.Log("dragItem new parent: " + dragItem.transform.parent);
+        //Debug.Log("dragItem new parent: " + dragItem.transform.parent);
     }
 }

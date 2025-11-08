@@ -120,7 +120,7 @@ public class UIItemSpawner : SpawnObject
                 // Xóa tất cả items trong slot này
                 foreach (Transform item in slot)
                 {
-                    Debug.Log($"Despawning item: {item.gameObject.name}");
+                    //Debug.Log($"Despawning item: {item.gameObject.name}");
                     this.DespawnObject.ReturnObject(item.gameObject);
                 }
             }
@@ -144,7 +144,7 @@ public class UIItemSpawner : SpawnObject
             Transform child = hotKeyTransform.GetChild(i);
             if (child.GetComponent<UIItem>() != null)
             {
-                Debug.Log($"Despawning hotkey item: {child.gameObject.name}");
+                //Debug.Log($"Despawning hotkey item: {child.gameObject.name}");
                 this.DespawnObject.ReturnObject(child.gameObject);
             }
             // Không xoá các item nằm sâu hơn (trong các con của con)

@@ -18,7 +18,7 @@ public class SoundList
         if (clips.Length > 0)
         {
             audioClips.AddRange(clips);
-            Debug.Log($"Loaded {clips.Length} audio clips from {path}");
+            // Debug.Log($"Loaded {clips.Length} audio clips from {path}");
         }
         else
         {

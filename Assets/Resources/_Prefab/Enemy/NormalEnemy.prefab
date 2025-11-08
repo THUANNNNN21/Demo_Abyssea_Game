@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1399773499398807263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4343462656388275795}
+  - component: {fileID: 999315053088353789}
+  m_Layer: 0
+  m_Name: EnemyLevelUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4343462656388275795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399773499398807263}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.30723572, y: 0.7518368, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1120374859379949814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &999315053088353789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399773499398807263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee863a71a495a4e09be816a38c202570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLevelUp
+  scale: 1
+  enemyController: {fileID: 6306081411485733408}
 --- !u!1 &1552076359291857304
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 1552076359291857304}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,9 +286,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd83ed0f07b144cdbb18693fc1a563fc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  health: 400
-  healthMax: 400
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamReceiver
+  health: 0
+  healthMax: 0
   isDead: 0
   enemyController: {fileID: 6306081411485733408}
 --- !u!114 &490683922850745478
@@ -257,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd521164fe6a4e229bfc26f50b6352d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 8
+  damage: 2
   enemyController: {fileID: 6306081411485733408}
 --- !u!1 &5642428094254244692
 GameObject:
@@ -292,6 +338,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4343462656388275795}
   - {fileID: 1110016720880264347}
   - {fileID: 3532258519764345419}
   - {fileID: 4023879685074676519}
@@ -337,7 +384,7 @@ MonoBehaviour:
   despawnByDistance: {fileID: 4028221855493845269}
   enemySO: {fileID: 11400000, guid: dfa56ed7502384740997a30b93d4837f, type: 2}
   animator: {fileID: 4876301868940158697}
-  enemyLevelUp: {fileID: 0}
+  enemyLevelUp: {fileID: 999315053088353789}
   enemyCheckPlayer: {fileID: 1849656175687391422}
 --- !u!50 &6818488845505015164
 Rigidbody2D:
@@ -545,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e225a1457ef4cccad614c5492fdaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  speed: 40
+  speed: 10
   target: {fileID: 0}
   enemyController: {fileID: 6306081411485733408}
   timeToChangeTarget: 1
