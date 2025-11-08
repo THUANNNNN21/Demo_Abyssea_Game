@@ -23,8 +23,20 @@ public class MainMenuManager : MyMonoBehaviour
         {
             SoundManager.Instance.PlaySound(SoundType.BackgroundMainMenu, 0.5f);
         }
+        howToPlayPanel.SetActive(false);
     }
     [SerializeField] private GameObject howToPlayPanel;
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadHowToPlayPanel();
+    }
+    private void LoadHowToPlayPanel()
+    {
+        if (howToPlayPanel != null) return;
+        this.howToPlayPanel = GameObject.Find("HowToPlayPanel");
+        Debug.LogWarning($"Load HowToPlayPanel in {gameObject.name}.");
+    }
 
     public void StartGame()
     {
