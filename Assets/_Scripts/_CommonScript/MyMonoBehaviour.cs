@@ -1,4 +1,4 @@
-using UnityEditor.PackageManager.Requests;
+
 using UnityEngine;
 
 public abstract class MyMonoBehaviour : MonoBehaviour
@@ -8,10 +8,10 @@ public abstract class MyMonoBehaviour : MonoBehaviour
         this.LoadComponents();
         this.LoadValues();
     }
-    protected virtual bool ShouldAutoLoad()
-    {
-        return false;
-    }
+    // protected virtual bool ShouldAutoLoad()
+    // {
+    //     return false;
+    // }
     // Các hàm virtual để script con tùy biến
     protected void Reset()
     {

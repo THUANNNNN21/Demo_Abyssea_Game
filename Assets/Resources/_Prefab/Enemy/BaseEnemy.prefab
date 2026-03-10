@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWarp
   timer: 0
-  delayTime: 3.5
+  delayTime: 10
   isReady: 1
   warpDistance: 5
   enemyController: {fileID: 1817111627022787510}

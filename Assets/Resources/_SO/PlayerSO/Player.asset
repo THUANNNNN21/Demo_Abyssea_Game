@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   playerName: Player
-  maxHP: 8000
-  damage: 25
+  maxHP: 200
+  damage: 30
   attackRange: 0.5
   attackDelay: 1
   speed: 8

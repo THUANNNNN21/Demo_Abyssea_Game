@@ -19,6 +19,7 @@ public class EnemySpawn : SpawnObject
     [Header("Random Instantiate")]
     [SerializeField] private GetRandomPoints getRandomPoints;
     [SerializeField] private GetRandomPrefabs getRandomPrefabs;
+    [SerializeField] private int enemyStart;
     protected override void LoadComponents()
     {
         this.LoadSpawner();
@@ -90,7 +91,7 @@ public class EnemySpawn : SpawnObject
     }
     void Start()
     {
-        this.SpawnRandom(10);
+        this.SpawnRandom(this.enemyStart);
     }
     private void FixedUpdate()
     {
